@@ -20,22 +20,22 @@ class LogInButton extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         width: 300,
-        height: 70,
+        height: 50,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(40)),
           border: Border.all(
             color: Colors.white,
             style: transparent ? BorderStyle.solid : BorderStyle.none,
           ),
-          color: transparent ? Colors.transparent : Colors.red,
-          gradient: const LinearGradient(
-            colors: [Colors.red, Colors.black],
-          ),
+          color: transparent
+              ? Colors.transparent
+              : const Color.fromARGB(210, 255, 255, 255),
         ),
         child: Center(
             child: Text(
           text,
-          style: const TextStyle(color: Colors.white, fontSize: 29),
+          style: TextStyle(
+              color: transparent ? Colors.white : Colors.black, fontSize: 20),
         )),
       ),
     );
