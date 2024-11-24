@@ -30,10 +30,7 @@ Future<dynamic> logInBottomSheet(BuildContext context,
       return Container(
         height: 600,
         decoration: BoxDecoration(
-          gradient: CustomGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
+          color: Color.fromRGBO(232, 219, 180, 1),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(40),
             topRight: Radius.circular(40),

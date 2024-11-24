@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class LogInButton extends StatelessWidget {
@@ -16,7 +18,9 @@ class LogInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       //this to disable splash effect of the button
-      style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
+      style: ButtonStyle(
+        splashFactory: NoSplash.splashFactory,
+      ),
       onPressed: onPressed,
       child: Container(
         width: 300,
@@ -24,18 +28,21 @@ class LogInButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(40)),
           border: Border.all(
-            color: Colors.white,
+            color: Color.fromARGB(255, 237, 246, 221),
             style: transparent ? BorderStyle.solid : BorderStyle.none,
           ),
           color: transparent
               ? Colors.transparent
-              : const Color.fromARGB(210, 255, 255, 255),
+              : const Color.fromARGB(255, 237, 246, 221),
         ),
         child: Center(
             child: Text(
           text,
           style: TextStyle(
-              color: transparent ? Colors.white : Colors.black, fontSize: 20),
+              color: transparent
+                  ? Color.fromARGB(255, 237, 246, 221)
+                  : Color(0xff263720),
+              fontSize: 20),
         )),
       ),
     );

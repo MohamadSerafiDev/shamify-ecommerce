@@ -13,10 +13,7 @@ class LogInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: CustomGradient(
-            begin: Alignment.topLeft, end: Alignment.bottomRight),
-      ),
+      decoration: BoxDecoration(color: Color(0xff263720)),
       child: Column(
         children: [
           const SizedBox(
@@ -28,14 +25,14 @@ class LogInPage extends StatelessWidget {
                 Image.asset(
                   'images/welcomeicon.png',
                   width: 150,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 237, 246, 221),
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 Text('Welcome to Our Store',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 237, 246, 221),
                         fontSize: 35,
                         fontWeight: FontWeight.bold))
               ],
