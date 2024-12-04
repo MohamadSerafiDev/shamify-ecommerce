@@ -2,7 +2,7 @@
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:store/componants/login_page/log_in_button.dart';
+import 'package:store/componants/login_page/auth_button.dart';
 
 class LogInTextField extends StatelessWidget {
   final bool ispass;
@@ -35,11 +35,7 @@ class LogInTextField extends StatelessWidget {
               // some logic
             },
             decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               hintText: hintText,
-              filled: true,
-              fillColor: Colors.grey[300],
               suffix: Icon(ispass ? Icons.password : Icons.phone),
               counter: ispass && isLogin
                   ? TextButton(
@@ -52,11 +48,6 @@ class LogInTextField extends StatelessWidget {
                       ),
                     )
                   : const Text(''),
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-              ),
             ),
           ),
         ),

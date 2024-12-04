@@ -27,6 +27,8 @@ class _HomePageState extends State<HomePage> {
       // minimum: EdgeInsets.symmetric(horizontal: 20),
       child: Scaffold(
         extendBody: true,
+        //top search
+        appBar: appBarComponants(),
         bottomNavigationBar: CrystalNavigationBar(
           currentIndex: index,
           items: [
@@ -47,63 +49,14 @@ class _HomePageState extends State<HomePage> {
           duration: Duration(seconds: 2),
           enablePaddingAnimation: true,
           paddingR: EdgeInsets.symmetric(horizontal: 10),
-          onTap: (p0) {
+          onTap: (selected) {
             setState(() {
-              index = p0;
+              index = selected;
             });
           },
         ),
-        body: Column(
+        body: ListView(
           children: [
-            SizedBox(
-              height: 5,
-            ),
-            //top search
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextFormField(
-                    decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none),
-                      prefixIcon: Icon(Icons.search),
-                      hintText: "Search",
-                      filled: true,
-                      fillColor: Colors.grey[300],
-                    ),
-                    onFieldSubmitted: (value) {
-                      //search backend
-                    },
-                  )),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      // navigation to cart
-                    },
-                    child: Icon(
-                      Icons.shopping_cart_rounded,
-                      color: Colors.white,
-                      size: 25,
-                    ),
-                    color: Color.fromRGBO(142, 108, 239, 1),
-                    height: 45,
-                    minWidth: 10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(60)),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
             //categories row and see all
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -117,12 +70,13 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
-                  Text(
-                    "See All",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text("See All",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey)),
                   )
                 ],
               ),
@@ -130,8 +84,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10,
             ),
-            //buttons row
+            //categories buttons row
             SizedBox(
+              //avoid unlimited width error
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.15,
               child: ListView(
@@ -141,29 +96,240 @@ class _HomePageState extends State<HomePage> {
                     ...List.generate(
                       7,
                       (index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 75,
-                                width: 75,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey[300],
-                                    borderRadius: BorderRadius.circular(50)),
-                                child: Center(child: Icon(cat[index]['icon'])),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(cat[index]['name'])
-                            ],
-                          ),
-                        );
+                        return CategoriesListView(cat: cat, index: index);
                       },
                     )
                   ]),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            //top seling and see all
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Top Selling",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "See All >>",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ))
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            //Top Selling row
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: double.infinity,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(left: 15),
+                children: [
+                  ...List.generate(
+                    10,
+                    (index) {
+                      return topSellingListView(
+                        index: index,
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+            Text('hihihihi')
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar appBarComponants() {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      actions: [
+        SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          child: TextFormField(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none),
+              prefixIcon: Icon(Icons.search),
+              hintText: "Search",
+              filled: true,
+              fillColor: Colors.grey[300],
+            ),
+            onFieldSubmitted: (value) {
+              //search backend
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              MaterialButton(
+                onPressed: () {
+                  // navigation to cart
+                },
+                child: Icon(
+                  Icons.shopping_cart_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                color: Color.fromRGBO(142, 108, 239, 1),
+                height: 50,
+                minWidth: 50,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60)),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CategoriesListView extends StatelessWidget {
+  const CategoriesListView({
+    super.key,
+    required this.cat,
+    required this.index,
+  });
+
+  final List<Map<String, dynamic>> cat;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Column(
+        children: [
+          InkWell(
+            splashColor: Colors.transparent,
+            onTap: () {
+              //categories navigation
+            },
+            child: Container(
+              height: 75,
+              width: 75,
+              decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(50)),
+              child: Center(child: Icon(cat[index]['icon'])),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(cat[index]['name'])
+        ],
+      ),
+    );
+  }
+}
+
+class topSellingListView extends StatefulWidget {
+  topSellingListView({super.key, required this.index});
+  List<bool> isfav = List.generate(20, (index) => false);
+  final int index;
+
+  @override
+  State<topSellingListView> createState() => _ProductsListViewState();
+}
+
+class _ProductsListViewState extends State<topSellingListView> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Card(
+        color: Colors.grey[300],
+        //product stack
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: 200,
+                  color: Colors.grey[200],
+                ),
+                Positioned(
+                  top: 5,
+                  right: 5,
+                  child: IconButton(
+                    icon: Icon(
+                      widget.isfav[widget.index]
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
+                      size: 30,
+                    ),
+                    color:
+                        widget.isfav[widget.index] ? Colors.red : Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        widget.isfav[widget.index] =
+                            !widget.isfav[widget.index];
+                      });
+                    },
+                  ),
+                ),
+                Positioned(
+                  top: 70,
+                  left: 25,
+                  child: Image.asset(
+                    'images/cream.png',
+                    width: 150,
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: Text(
+                'Product Name',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: Text(
+                'Product Price *',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[600]),
+              ),
+            ),
           ],
         ),
       ),

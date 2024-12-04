@@ -3,8 +3,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:store/componants/login_page/custom_gradient.dart';
-import 'package:store/componants/login_page/log_in_button.dart';
+import 'package:store/componants/login_page/auth_button.dart';
 import 'package:store/componants/login_page/log_in_text_field.dart';
 
 TextEditingController phonecontroller = TextEditingController();
@@ -30,7 +29,6 @@ Future<dynamic> logInBottomSheet(BuildContext context,
       return Container(
         height: 600,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(232, 219, 180, 1),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(40),
             topRight: Radius.circular(40),
@@ -74,44 +72,47 @@ Future<dynamic> logInBottomSheet(BuildContext context,
                     isconfirm: true,
                     controller: confirmcontroller,
                   ),
-            LogInButton(
-              text: isLogin ? 'Log In' : 'Sign Up',
-              transparent: !isLogin,
-              onPressed: isLogin
-                  ? () {
-                      //login logic
-                    }
-                  : () {
-                      //sign up logic
-                      if (passwordcontroller.text == confirmcontroller.text) {
-                        if (passwordcontroller.text.length < 8) {
-                          ErrorDialog(
-                            context,
-                            title: 'Warning!',
-                            contentType: ContentType.help,
-                            message:
-                                'your password must be at least 8 characters',
-                          );
-                        } else if (phonecontroller.text.length < 10 ||
-                            phonecontroller.text.length > 14) {
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: AuthButton(
+                text: isLogin ? 'Log In' : 'Sign Up',
+                transparent: !isLogin,
+                onPressed: isLogin
+                    ? () {
+                        //login logic
+                      }
+                    : () {
+                        //sign up logic
+                        if (passwordcontroller.text == confirmcontroller.text) {
+                          if (passwordcontroller.text.length < 8) {
+                            ErrorDialog(
+                              context,
+                              title: 'Warning!',
+                              contentType: ContentType.help,
+                              message:
+                                  'your password must be at least 8 characters',
+                            );
+                          } else if (phonecontroller.text.length < 10 ||
+                              phonecontroller.text.length > 14) {
+                            ErrorDialog(
+                              context,
+                              title: 'Error',
+                              message: 'invalid phone number',
+                              contentType: ContentType.warning,
+                            );
+                          } else {
+                            // Forward to next page
+                          }
+                        } else {
                           ErrorDialog(
                             context,
                             title: 'Error',
-                            message: 'invalid phone number',
-                            contentType: ContentType.warning,
+                            message: 'passwords do not match',
+                            contentType: ContentType.failure,
                           );
-                        } else {
-                          // Forward to next page
                         }
-                      } else {
-                        ErrorDialog(
-                          context,
-                          title: 'Error',
-                          message: 'passwords do not match',
-                          contentType: ContentType.failure,
-                        );
-                      }
-                    },
+                      },
+              ),
             )
           ],
         ),
