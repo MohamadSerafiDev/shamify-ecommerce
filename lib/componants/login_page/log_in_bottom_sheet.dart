@@ -2,8 +2,12 @@
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:store/componants/home_page/home_page.dart';
 import 'package:store/componants/login_page/auth_button.dart';
+import 'package:store/componants/login_page/auth_cubit/log_in/login_cubit.dart';
 import 'package:store/componants/login_page/log_in_text_field.dart';
 
 TextEditingController phonecontroller = TextEditingController();
@@ -26,100 +30,195 @@ Future<dynamic> logInBottomSheet(BuildContext context,
     ),
     context: context,
     builder: (context) {
-      return Container(
-        height: 600,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
-          ),
-        ),
-        child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            Center(
-              child: Image.asset(
-                imagePath,
-                width: 120,
+      return BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ),
+                (Route<dynamic> route) => false);
+          } else if (state is LoginFailure) {
+            ErrorDialog(
+              context,
+              title: 'Warning!',
+              contentType: ContentType.help,
+              message: 'Your password must be at least 8 characters',
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is LoginLoading) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            return Container(
+              height: 600,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 70,
-            ),
-            LogInTextField(
-              ispass: false,
-              hintText: 'phone number',
-              isLogin: isLogin,
-              isconfirm: false,
-              controller: phonecontroller,
-            ),
-            const SizedBox(
-              height: 0,
-            ),
-            LogInTextField(
-              ispass: true,
-              hintText: 'password',
-              isLogin: isLogin,
-              isconfirm: false,
-              controller: passwordcontroller,
-            ),
-            isLogin
-                ? Container()
-                : LogInTextField(
-                    ispass: true,
-                    hintText: 're-confirm your password',
-                    isLogin: isLogin,
-                    isconfirm: true,
-                    controller: confirmcontroller,
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  Center(
+                    child: Image.asset(
+                      imagePath,
+                      width: 120,
+                    ),
                   ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: AuthButton(
-                text: isLogin ? 'Log In' : 'Sign Up',
-                transparent: !isLogin,
-                onPressed: isLogin
-                    ? () {
-                        //login logic
-                      }
-                    : () {
-                        //sign up logic
-                        if (passwordcontroller.text == confirmcontroller.text) {
-                          if (passwordcontroller.text.length < 8) {
-                            ErrorDialog(
-                              context,
-                              title: 'Warning!',
-                              contentType: ContentType.help,
-                              message:
-                                  'your password must be at least 8 characters',
-                            );
-                          } else if (phonecontroller.text.length < 10 ||
-                              phonecontroller.text.length > 14) {
-                            ErrorDialog(
-                              context,
-                              title: 'Error',
-                              message: 'invalid phone number',
-                              contentType: ContentType.warning,
-                            );
-                          } else {
-                            // Forward to next page
-                          }
-                        } else {
-                          ErrorDialog(
-                            context,
-                            title: 'Error',
-                            message: 'passwords do not match',
-                            contentType: ContentType.failure,
-                          );
-                        }
-                      },
+                  const SizedBox(
+                    height: 70,
+                  ),
+                  LogInTextField(
+                    ispass: false,
+                    hintText: 'phone number',
+                    isLogin: isLogin,
+                    isconfirm: false,
+                    controller: phonecontroller,
+                  ),
+                  const SizedBox(
+                    height: 0,
+                  ),
+                  LogInTextField(
+                    ispass: true,
+                    hintText: 'password',
+                    isLogin: isLogin,
+                    isconfirm: false,
+                    controller: passwordcontroller,
+                  ),
+                  isLogin
+                      ? Container()
+                      : LogInTextField(
+                          ispass: true,
+                          hintText: 're-confirm your password',
+                          isLogin: isLogin,
+                          isconfirm: true,
+                          controller: confirmcontroller,
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: AuthButton(
+                        text: isLogin ? 'Log In' : 'Sign Up',
+                        transparent: !isLogin,
+                        onPressed: () {
+                          BlocProvider.of<LoginCubit>(context)
+                              .logInWithPhoneAndPassword(phonecontroller.text,
+                                  passwordcontroller.text);
+                          phonecontroller.clear();
+                          passwordcontroller.clear();
+                        }),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
+            );
+          }
+        },
       );
     },
   );
 }
+
+///
+///
+//
+
+///
+//
+// Container(
+//         height: 600,
+//         decoration: BoxDecoration(
+//           borderRadius: const BorderRadius.only(
+//             topLeft: Radius.circular(40),
+//             topRight: Radius.circular(40),
+//           ),
+//         ),
+//         child: ListView(
+//           physics: const NeverScrollableScrollPhysics(),
+//           children: [
+//             Center(
+//               child: Image.asset(
+//                 imagePath,
+//                 width: 120,
+//               ),
+//             ),
+//             const SizedBox(
+//               height: 70,
+//             ),
+//             LogInTextField(
+//               ispass: false,
+//               hintText: 'phone number',
+//               isLogin: isLogin,
+//               isconfirm: false,
+//               controller: phonecontroller,
+//             ),
+//             const SizedBox(
+//               height: 0,
+//             ),
+//             LogInTextField(
+//               ispass: true,
+//               hintText: 'password',
+//               isLogin: isLogin,
+//               isconfirm: false,
+//               controller: passwordcontroller,
+//             ),
+//             isLogin
+//                 ? Container()
+//                 : LogInTextField(
+//                     ispass: true,
+//                     hintText: 're-confirm your password',
+//                     isLogin: isLogin,
+//                     isconfirm: true,
+//                     controller: confirmcontroller,
+//                   ),
+//             Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: 40),
+//               child: AuthButton(
+//                 text: isLogin ? 'Log In' : 'Sign Up',
+//                 transparent: !isLogin,
+//                 onPressed: isLogin
+//                     ? () {
+//                         //login logic
+//                       }
+//                     : () {
+//                         //sign up logic
+//                         if (passwordcontroller.text == confirmcontroller.text) {
+//                           if (passwordcontroller.text.length < 8) {
+//                             ErrorDialog(
+//                               context,
+//                               title: 'Warning!',
+//                               contentType: ContentType.help,
+//                               message:
+//                                   'your password must be at least 8 characters',
+//                             );
+//                           } else if (phonecontroller.text.length < 10 ||
+//                               phonecontroller.text.length > 14) {
+//                             ErrorDialog(
+//                               context,
+//                               title: 'Error',
+//                               message: 'invalid phone number',
+//                               contentType: ContentType.warning,
+//                             );
+//                           } else {
+//                             // Forward to next page
+//                           }
+//                         } else {
+//                           ErrorDialog(
+//                             context,
+//                             title: 'Error',
+//                             message: 'passwords do not match',
+//                             contentType: ContentType.failure,
+//                           );
+//                         }
+//                       },
+//               ),
+//             )
+//           ],
+//         ),
+//       );
+///
+///
 
 Future<dynamic> ErrorDialog(BuildContext context,
     {required String title,

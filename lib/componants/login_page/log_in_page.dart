@@ -25,13 +25,10 @@ class LogInPage extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        const Text(
-          'Welcome to Our Store',
-          style: TextStyle(
+        Text('Welcome to Our Store',
+            style: TextStyles.textStyle32.copyWith(
               color: Color.fromRGBO(142, 108, 239, 1),
-              fontSize: 30,
-              fontWeight: FontWeight.bold),
-        ),
+            )),
         const SizedBox(
           height: 80,
         ),
@@ -62,10 +59,6 @@ class LogInPage extends StatelessWidget {
             },
           ),
         ),
-        Text(
-          'im mohamad serafi',
-          style: TextStyles.textStyle32,
-        )
       ],
     );
   }
