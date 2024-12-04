@@ -2,6 +2,7 @@
 
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:store/styles/assets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,7 +27,6 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       // minimum: EdgeInsets.symmetric(horizontal: 20),
       child: Scaffold(
-        extendBody: true,
         //top search
         appBar: appBarComponants(),
         bottomNavigationBar: CrystalNavigationBar(
@@ -169,14 +169,10 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           child: TextFormField(
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none),
-              prefixIcon: Icon(Icons.search),
+              prefixIcon: Icon(
+                Icons.search,
+              ),
               hintText: "Search",
-              filled: true,
-              fillColor: Colors.grey[300],
             ),
             onFieldSubmitted: (value) {
               //search backend
@@ -190,21 +186,19 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: 20,
               ),
-              MaterialButton(
-                onPressed: () {
-                  // navigation to cart
-                },
-                child: Icon(
-                  Icons.shopping_cart_rounded,
-                  color: Colors.white,
-                  size: 20,
-                ),
-                color: Color.fromRGBO(142, 108, 239, 1),
-                height: 50,
-                minWidth: 50,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60)),
-              )
+              ElevatedButton(
+                  onPressed: () {
+                    // navigation to cart
+                  },
+                  child: Image.asset(
+                    AppIcons.cart,
+                    width: 20,
+                    height: 20,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    minimumSize: Size(50, 50),
+                  )),
             ],
           ),
         ),
@@ -304,7 +298,7 @@ class _ProductsListViewState extends State<topSellingListView> {
                   top: 70,
                   left: 25,
                   child: Image.asset(
-                    'images/cream.png',
+                    AppImages.bell,
                     width: 150,
                   ),
                 )

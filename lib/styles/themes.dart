@@ -8,6 +8,7 @@ class Themes {
   ThemeData light = ThemeData.light(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Constants.lightbackgroundcolor,
     textTheme: GoogleFonts.aBeeZeeTextTheme(),
+    iconTheme: IconThemeData(color: Colors.black),
     buttonTheme: ButtonThemeData(
       buttonColor: Constants.buttoncolor,
     ),
@@ -45,6 +46,7 @@ class Themes {
   ThemeData dark = ThemeData.dark(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Constants.darkbackgroundcolor,
     textTheme: GoogleFonts.aBeeZeeTextTheme(),
+    iconTheme: IconThemeData(color: Colors.white),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: Constants.buttoncolor,

@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:store/componants/login_page/auth_button.dart';
 
 class LogInTextField extends StatelessWidget {
   final bool ispass;
@@ -35,7 +33,8 @@ class LogInTextField extends StatelessWidget {
               // some logic
             },
             decoration: InputDecoration(
-              hintText: hintText,
+              floatingLabelBehavior: FloatingLabelBehavior.auto,
+              label: Text(hintText),
               suffix: Icon(ispass ? Icons.password : Icons.phone),
               counter: ispass && isLogin
                   ? TextButton(

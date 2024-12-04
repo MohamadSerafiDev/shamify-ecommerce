@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:store/componants/home_page/home_page.dart';
 import 'package:store/componants/login_page/log_in_page.dart';
 import 'package:store/styles/themes.dart';
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: isdark ? Themes().dark : Themes().light,
       home: Scaffold(
-        body: LogInPage(),
+        extendBody: true,
+        body: HomePage(),
       ),
     );
   }
