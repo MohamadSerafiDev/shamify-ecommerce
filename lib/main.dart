@@ -1,12 +1,11 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:store/componants/home_page/home_page.dart';
-import 'package:store/componants/auth/auth_cubit/log_in/login_cubit.dart';
-import 'package:store/componants/auth/auth_cubit/signup/cubit/signup_cubit.dart';
-import 'package:store/componants/auth/auth_page.dart';
+import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
+import 'package:store/cubits/log_in/login_cubit.dart';
+import 'package:store/cubits/signup/signup_cubit.dart';
+import 'package:store/pages/auth_page/auth_page.dart';
+import 'package:store/pages/home_page/home_page.dart';
 import 'package:store/styles/themes.dart';
 
 void main() {
@@ -14,6 +13,7 @@ void main() {
     providers: [
       BlocProvider(create: (context) => LoginCubit()),
       BlocProvider(create: (context) => SignUpCubit()),
+      BlocProvider(create: (context) => FavouriteCubit()),
     ],
     child: const MyApp(),
   ));
@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: isdark ? Themes().dark : Themes().light,
-      home: Scaffold(
+      home: const Scaffold(
         extendBody: true,
-        body: AuthPage(),
+        body: HomePage(),
       ),
     );
   }

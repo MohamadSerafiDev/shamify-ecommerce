@@ -45,7 +45,7 @@ class Themes {
   //dark mode
   ThemeData dark = ThemeData.dark(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Constants.darkbackgroundcolor,
-    textTheme: GoogleFonts.aBeeZeeTextTheme(),
+    textTheme: GoogleFonts.aBeeZeeTextTheme(Typography.whiteHelsinki),
     iconTheme: IconThemeData(color: Colors.white),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

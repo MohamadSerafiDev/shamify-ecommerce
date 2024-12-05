@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:store/componants/auth/auth_bottom_sheet.dart';
-import 'package:store/componants/auth/auth_button.dart';
+import 'package:store/pages/auth_page/widgets/auth_bottom_sheet.dart';
+import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
 
