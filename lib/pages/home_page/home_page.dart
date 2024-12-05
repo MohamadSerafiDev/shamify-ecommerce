@@ -1,9 +1,14 @@
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store/cubits/navigation/navigation_cubit.dart';
+import 'package:store/custom_icons.dart';
 import 'package:store/pages/home_page/widgets/app_bar_componants.dart';
 import 'package:store/pages/home_page/widgets/categories_list_view.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
+import 'package:store/styles/assets.dart';
+import 'package:store/styles/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController searchcontroller = TextEditingController();
-  int index = 0;
   List<Map<String, dynamic>> cat = [
     {'name': 'shirts', 'icon': Icons.numbers},
     {'name': 'T-shirts', 'icon': Icons.numbers},
@@ -34,30 +38,41 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBarComponants(
           searchcontroller: searchcontroller,
         ),
-        bottomNavigationBar: CrystalNavigationBar(
-          currentIndex: index,
-          items: [
-            CrystalNavigationBarItem(
-                icon: Icons.home, selectedColor: Colors.blue),
-            CrystalNavigationBarItem(
-                icon: Icons.favorite, selectedColor: Colors.red),
-          ],
-          backgroundColor: Colors.grey.withOpacity(0.1),
-          enableFloatingNavBar: true,
-          boxShadow: [
-            BoxShadow(
-                blurRadius: 10,
-                color: Colors.grey.withOpacity(0.3),
-                blurStyle: BlurStyle.inner,
-                offset: const Offset(0, 2)),
-          ],
-          duration: const Duration(seconds: 2),
-          enablePaddingAnimation: true,
-          paddingR: const EdgeInsets.symmetric(horizontal: 10),
-          onTap: (selected) {
-            setState(() {
-              index = selected;
-            });
+        bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
+          builder: (context, state) {
+            return CrystalNavigationBar(
+              currentIndex: state.selectedIndex,
+              selectedItemColor: Constants.buttoncolor,
+              items: [
+                CrystalNavigationBarItem(
+                  icon: CustomIcons.home_1,
+                ),
+                CrystalNavigationBarItem(
+                  icon: CustomIcons.notification,
+                ),
+                CrystalNavigationBarItem(
+                  icon: CustomIcons.orders,
+                ),
+                CrystalNavigationBarItem(
+                  icon: CustomIcons.profile,
+                ),
+              ],
+              backgroundColor: Colors.grey.withOpacity(0.1),
+              enableFloatingNavBar: true,
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 10,
+                    color: Colors.grey.withOpacity(0.3),
+                    blurStyle: BlurStyle.inner,
+                    offset: const Offset(0, 2)),
+              ],
+              duration: const Duration(seconds: 1),
+              enablePaddingAnimation: true,
+              paddingR: const EdgeInsets.symmetric(horizontal: 10),
+              onTap: (selected) {
+                context.read<NavigationCubit>().selectTab(selected);
+              },
+            );
           },
         ),
         body: Padding(

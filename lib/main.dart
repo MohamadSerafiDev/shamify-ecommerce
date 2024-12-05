@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/cubits/log_in/login_cubit.dart';
+import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/signup/signup_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/home_page.dart';
@@ -14,6 +15,7 @@ void main() {
       BlocProvider(create: (context) => LoginCubit()),
       BlocProvider(create: (context) => SignUpCubit()),
       BlocProvider(create: (context) => FavouriteCubit()),
+      BlocProvider(create: (context) => NavigationCubit()),
     ],
     child: const MyApp(),
   ));
