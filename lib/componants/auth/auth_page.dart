@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:store/componants/login_page/log_in_bottom_sheet.dart';
-import 'package:store/componants/login_page/auth_button.dart';
+import 'package:store/componants/auth/auth_bottom_sheet.dart';
+import 'package:store/componants/auth/auth_button.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
 
-class LogInPage extends StatelessWidget {
-  const LogInPage({
+class AuthPage extends StatelessWidget {
+  const AuthPage({
     super.key,
   });
 
@@ -37,7 +37,7 @@ class LogInPage extends StatelessWidget {
             text: 'Log In',
             transparent: false,
             onPressed: () async {
-              await logInBottomSheet(context,
+              await authBottomSheet(context,
                   isLogin: true,
                   imagePath: AppImages.login,
                   buttonText: 'Log In');
@@ -52,7 +52,7 @@ class LogInPage extends StatelessWidget {
             text: 'Sign Up',
             transparent: true,
             onPressed: () async {
-              await logInBottomSheet(context,
+              await authBottomSheet(context,
                   isLogin: false,
                   imagePath: AppImages.signup,
                   buttonText: 'Sign Up');

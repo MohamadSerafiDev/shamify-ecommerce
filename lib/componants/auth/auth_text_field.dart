@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class LogInTextField extends StatelessWidget {
+class AuthTextField extends StatelessWidget {
   final bool ispass;
   final bool isconfirm;
   final bool isLogin;
   // final bool withbutton;
   final TextEditingController controller;
   final String hintText;
-  const LogInTextField(
+  const AuthTextField(
       {super.key,
       required this.ispass,
       required this.hintText,
