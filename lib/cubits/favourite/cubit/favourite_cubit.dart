@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -15,6 +13,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
     } else {
       emit(FavouriteSelected());
     }
+    // fav api
     isfav[index] = !isfav[index];
   }
 }

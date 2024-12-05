@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:store/styles/constants.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
@@ -23,9 +24,7 @@ class AuthButton extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                    color: transparent
-                        ? Color.fromRGBO(142, 108, 239, 1)
-                        : Colors.white,
+                    color: transparent ? Constants.buttoncolor : Colors.white,
                     fontSize: 20),
               ),
             ),
@@ -40,9 +39,7 @@ class AuthButton extends StatelessWidget {
                 child: Text(
               text,
               style: TextStyle(
-                  color: transparent
-                      ? Color.fromRGBO(142, 108, 239, 1)
-                      : Colors.white,
+                  color: transparent ? Constants.buttoncolor : Colors.white,
                   fontSize: 20),
             )),
           );

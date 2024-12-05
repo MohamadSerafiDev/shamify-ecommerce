@@ -1,9 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:store/pages/auth_page/widgets/auth_bottom_sheet.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/styles/assets.dart';
+import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
 class AuthPage extends StatelessWidget {
@@ -27,7 +26,7 @@ class AuthPage extends StatelessWidget {
         ),
         Text('Welcome to Our Store',
             style: TextStyles.textStyle32.copyWith(
-              color: Color.fromRGBO(142, 108, 239, 1),
+              color: Constants.buttoncolor,
             )),
         const SizedBox(
           height: 80,

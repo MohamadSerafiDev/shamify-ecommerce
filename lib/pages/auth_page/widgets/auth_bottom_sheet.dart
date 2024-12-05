@@ -1,4 +1,4 @@
-// ignore_for_file:  use_build_context_synchronously, library_prefixes
+// ignore_for_file: use_build_context_synchronously, library_prefixes
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart'
     as gTransition;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:store/cubits/signup/signup_cubit.dart';
+import 'package:store/pages/auth_page/widgets/error_dialog.dart';
 import 'package:store/pages/home_page/home_page.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/cubits/log_in/login_cubit.dart';
@@ -149,34 +150,6 @@ Future<dynamic> authBottomSheet(BuildContext context,
             );
           }
         },
-      );
-    },
-  );
-}
-
-//error dialog
-
-Future<dynamic> errorDialog(BuildContext context,
-    {required String title,
-    required String message,
-    required ContentType contentType}) {
-  return showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (context) {
-      Future.delayed(const Duration(seconds: 2), () {
-        Navigator.of(context).pop();
-        phonecontroller.clear();
-        passwordcontroller.clear();
-        confirmcontroller.clear();
-      });
-      return Center(
-        child: AwesomeSnackbarContent(
-          color: Constants.buttoncolor,
-          title: title,
-          message: message,
-          contentType: contentType,
-        ),
       );
     },
   );
