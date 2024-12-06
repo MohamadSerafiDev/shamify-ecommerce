@@ -35,7 +35,6 @@ dependencies:
     flutter:
         sdk: flutter
     flutter_bloc: ^8.1.6
-    flutter_svg: ^2.0.16
     get: ^4.6.6
     google_fonts: ^6.2.1
     modal_bottom_sheet: ^3.0.0

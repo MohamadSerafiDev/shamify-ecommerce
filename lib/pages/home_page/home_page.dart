@@ -1,24 +1,15 @@
-import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/cubits/navigation/navigation_cubit.dart';
-import 'package:store/custom_icons.dart';
-import 'package:store/pages/home_page/widgets/app_bar_componants.dart';
 import 'package:store/pages/home_page/widgets/categories_list_view.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
-import 'package:store/styles/assets.dart';
-import 'package:store/styles/constants.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  HomePage({
+    super.key,
+  });
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  TextEditingController searchcontroller = TextEditingController();
   List<Map<String, dynamic>> cat = [
     {'name': 'shirts', 'icon': Icons.numbers},
     {'name': 'T-shirts', 'icon': Icons.numbers},
@@ -28,116 +19,70 @@ class _HomePageState extends State<HomePage> {
     {'name': 'Accessories', 'icon': Icons.numbers},
     {'name': 'Gloves', 'icon': Icons.numbers},
   ];
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      // minimum: EdgeInsets.symmetric(horizontal: 20),
-      child: Scaffold(
-        extendBody: true,
-        //top search
-        appBar: AppBarComponants(
-          searchcontroller: searchcontroller,
-        ),
-        bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
-          builder: (context, state) {
-            return CrystalNavigationBar(
-              currentIndex: state.selectedIndex,
-              selectedItemColor: Constants.buttoncolor,
-              items: [
-                CrystalNavigationBarItem(
-                  icon: CustomIcons.home_1,
-                ),
-                CrystalNavigationBarItem(
-                  icon: CustomIcons.notification,
-                ),
-                CrystalNavigationBarItem(
-                  icon: CustomIcons.orders,
-                ),
-                CrystalNavigationBarItem(
-                  icon: CustomIcons.profile,
-                ),
-              ],
-              backgroundColor: Colors.grey.withOpacity(0.1),
-              enableFloatingNavBar: true,
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 10,
-                    color: Colors.grey.withOpacity(0.3),
-                    blurStyle: BlurStyle.inner,
-                    offset: const Offset(0, 2)),
-              ],
-              duration: const Duration(seconds: 1),
-              enablePaddingAnimation: true,
-              paddingR: const EdgeInsets.symmetric(horizontal: 10),
-              onTap: (selected) {
-                context.read<NavigationCubit>().selectTab(selected);
-              },
-            );
-          },
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
-            clipBehavior: Clip.none,
-            children: [
-              //categories row and see all
-              TextRow(
-                start: 'Categories',
-                onPressed: () {},
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              //categories buttons row
-              SizedBox(
-                //avoid unlimited width error
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.15,
-                child: ListView(
-                    clipBehavior: Clip.none,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      ...List.generate(
-                        7,
-                        (index) {
-                          return CategoriesListView(cat: cat, index: index);
-                        },
-                      )
-                    ]),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              //top seling and see all
-              TextRow(
-                start: "Top Stores",
-                onPressed: () {},
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              //Top Selling row
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: double.infinity,
-                child: ListView(
-                  clipBehavior: Clip.none,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    ...List.generate(
-                      10,
-                      (index) {
-                        return TopStoresListView(
-                          index: index,
-                        );
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ListView(
+        clipBehavior: Clip.none,
+        children: [
+          //categories row and see all
+          TextRow(
+            start: 'Categories',
+            onPressed: () {},
           ),
-        ),
+          const SizedBox(
+            height: 10,
+          ),
+          //categories buttons row
+          SizedBox(
+            //avoid unlimited width error
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.15,
+            child: ListView(
+                clipBehavior: Clip.none,
+                scrollDirection: Axis.horizontal,
+                children: [
+                  ...List.generate(
+                    7,
+                    (index) {
+                      return CategoriesListView(cat: cat, index: index);
+                    },
+                  )
+                ]),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          //top seling and see all
+          TextRow(
+            start: "Top Stores",
+            onPressed: () {},
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          //Top Selling row
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: double.infinity,
+            child: ListView(
+              clipBehavior: Clip.none,
+              scrollDirection: Axis.horizontal,
+              children: [
+                ...List.generate(
+                  10,
+                  (index) {
+                    return TopStoresListView(
+                      index: index,
+                    );
+                  },
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

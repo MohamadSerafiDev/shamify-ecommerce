@@ -1,7 +1,7 @@
 part of 'navigation_cubit.dart';
 
-class NavigationState {
+class NavigationBarState {
   final int selectedIndex;
 
-  NavigationState(this.selectedIndex);
+  NavigationBarState(this.selectedIndex);
 }

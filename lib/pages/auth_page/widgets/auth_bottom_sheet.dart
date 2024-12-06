@@ -9,11 +9,10 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart'
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:store/cubits/signup/signup_cubit.dart';
 import 'package:store/pages/auth_page/widgets/error_dialog.dart';
-import 'package:store/pages/home_page/home_page.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/cubits/log_in/login_cubit.dart';
 import 'package:store/pages/auth_page/widgets/auth_text_field.dart';
-import 'package:store/styles/constants.dart';
+import 'package:store/pages/home_page/main_home_page.dart';
 
 TextEditingController phonecontroller = TextEditingController();
 TextEditingController passwordcontroller = TextEditingController();
@@ -46,7 +45,7 @@ Future<dynamic> authBottomSheet(BuildContext context,
         //navigation and error dialog
         listener: (context, state) async {
           if (state is LoginSuccess) {
-            await Get.offAll(const HomePage(),
+            await Get.offAll(MainHomePage(),
                 transition: gTransition.Transition.fade,
                 duration: const Duration(milliseconds: 1000));
             dispose();

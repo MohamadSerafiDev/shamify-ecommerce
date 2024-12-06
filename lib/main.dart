@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/cubits/log_in/login_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
+import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/signup/signup_cubit.dart';
-import 'package:store/pages/auth_page/auth_page.dart';
-import 'package:store/pages/home_page/home_page.dart';
+import 'package:store/pages/home_page/main_home_page.dart';
 import 'package:store/styles/themes.dart';
 
 void main() {
@@ -15,7 +15,8 @@ void main() {
       BlocProvider(create: (context) => LoginCubit()),
       BlocProvider(create: (context) => SignUpCubit()),
       BlocProvider(create: (context) => FavouriteCubit()),
-      BlocProvider(create: (context) => NavigationCubit()),
+      BlocProvider(create: (context) => NavigationBarCubit()),
+      BlocProvider(create: (context) => ProfileImageCubit()),
     ],
     child: const MyApp(),
   ));
@@ -33,10 +34,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: isdark ? Themes().dark : Themes().light,
-      home: const Scaffold(
-        extendBody: true,
-        body: HomePage(),
-      ),
+      home: MainHomePage(),
     );
   }
 }

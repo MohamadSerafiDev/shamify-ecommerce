@@ -23,7 +23,7 @@ class TextRow extends StatelessWidget {
         children: [
           Text(
             start,
-            style: TextStyles.textStyle24,
+            style: TextStyles.textStyle22,
           ),
           const Spacer(),
           TextButton(
