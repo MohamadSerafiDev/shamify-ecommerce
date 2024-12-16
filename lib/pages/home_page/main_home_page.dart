@@ -11,28 +11,25 @@ class MainHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      // minimum: EdgeInsets.symmetric(horizontal: 20),
-      child: Scaffold(
-        extendBody: true,
-        //top search
-        appBar: AppBarComponants(
-          searchcontroller: searchcontroller,
-        ),
-        bottomNavigationBar: const BottomNavBar(),
-        body: BlocBuilder<NavigationBarCubit, NavigationBarState>(
-          builder: (context, state) {
-            return AnimatedSwitcher(
-              duration: const Duration(
-                milliseconds: 200,
-              ),
-              transitionBuilder: (Widget child, Animation<double> animation) =>
-                  FadeTransition(opacity: animation, child: child),
-              child: BlocProvider.of<NavigationBarCubit>(context).pages[
-                  BlocProvider.of<NavigationBarCubit>(context).currentIndex],
-            );
-          },
-        ),
+    return Scaffold(
+      extendBody: true,
+      //top search
+      appBar: AppBarComponants(
+        searchcontroller: searchcontroller,
+      ),
+      bottomNavigationBar: const BottomNavBar(),
+      body: BlocBuilder<NavigationBarCubit, NavigationBarState>(
+        builder: (context, state) {
+          return AnimatedSwitcher(
+            duration: const Duration(
+              milliseconds: 300,
+            ),
+            transitionBuilder: (Widget child, Animation<double> animation) =>
+                FadeTransition(opacity: animation, child: child),
+            child: BlocProvider.of<NavigationBarCubit>(context).pages[
+                BlocProvider.of<NavigationBarCubit>(context).currentIndex],
+          );
+        },
       ),
     );
   }

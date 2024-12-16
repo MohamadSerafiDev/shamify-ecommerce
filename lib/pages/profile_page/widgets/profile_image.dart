@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
-import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 
 class ProfileImage extends StatelessWidget {
@@ -29,14 +28,14 @@ class ProfileImage extends StatelessWidget {
                 child:
                     BlocProvider.of<ProfileImageCubit>(context).imagePath == ''
                         ? const Icon(
-                            Icons.add_box_outlined,
+                            Icons.image,
                             size: 50,
                             color: Colors.white,
                           )
                         : Image.file(
                             File(BlocProvider.of<ProfileImageCubit>(context)
                                 .imagePath),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
               ),
               Positioned(

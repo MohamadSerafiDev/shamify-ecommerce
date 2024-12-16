@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
-
 import 'package:flutter/material.dart';
 import 'package:store/custom_icons.dart';
 import 'package:store/styles/assets.dart';
@@ -15,11 +13,7 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Constants.darkbackgroundcolor,
       actions: [
         SizedBox(
-          width: 30,
-        ),
-        SizedBox(
-          width: 320,
-          height: 50,
+          width: MediaQuery.of(context).size.width * 0.7,
           child: TextFormField(
             controller: searchcontroller,
             decoration: InputDecoration(
@@ -41,20 +35,19 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Row(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    // navigation to cart
-                  },
-                  child: Icon(
-                    CustomIcons.notification,
-                    size: 15,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
-                  )),
-            ],
+          child: SizedBox(
+            height: 45,
+            child: ElevatedButton(
+                onPressed: () {
+                  // navigation to cart
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                ),
+                child: const Icon(
+                  CustomIcons.notification,
+                  size: 20,
+                )),
           ),
         ),
       ],
@@ -62,5 +55,5 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(60);
+  Size get preferredSize => const Size.fromHeight(60);
 }
