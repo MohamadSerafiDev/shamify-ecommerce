@@ -12,53 +12,55 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 100,
-        ),
-        Image.asset(
-          AppImages.splahview,
-          width: 150,
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Text('Welcome to Our Store',
-            style: TextStyles.textStyle32.copyWith(
-              color: Constants.buttoncolor,
-            )),
-        const SizedBox(
-          height: 80,
-        ),
-        Center(
-          child: AuthButton(
-            text: 'Log In',
-            transparent: false,
-            onPressed: () async {
-              await authBottomSheet(context,
-                  isLogin: true,
-                  imagePath: AppImages.login,
-                  buttonText: 'Log In');
-            },
+    return Scaffold(
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 100,
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Center(
-          child: AuthButton(
-            text: 'Sign Up',
-            transparent: true,
-            onPressed: () async {
-              await authBottomSheet(context,
-                  isLogin: false,
-                  imagePath: AppImages.signup,
-                  buttonText: 'Sign Up');
-            },
+          Image.asset(
+            AppImages.splahview,
+            width: 150,
           ),
-        ),
-      ],
+          const SizedBox(
+            height: 30,
+          ),
+          Text('Welcome to Our Store',
+              style: TextStyles.textStyle32.copyWith(
+                color: Constants.buttoncolor,
+              )),
+          const SizedBox(
+            height: 80,
+          ),
+          Center(
+            child: AuthButton(
+              text: 'Log In',
+              transparent: false,
+              onPressed: () async {
+                await authBottomSheet(context,
+                    isLogin: true,
+                    imagePath: AppImages.login,
+                    buttonText: 'Log In');
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: AuthButton(
+              text: 'Sign Up',
+              transparent: true,
+              onPressed: () async {
+                await authBottomSheet(context,
+                    isLogin: false,
+                    imagePath: AppImages.signup,
+                    buttonText: 'Sign Up');
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

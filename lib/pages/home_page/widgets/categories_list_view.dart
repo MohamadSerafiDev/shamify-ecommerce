@@ -13,30 +13,34 @@ class CategoriesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 13),
-      child: Column(
-        children: [
-          InkWell(
-            splashColor: Colors.transparent,
-            onTap: () {
-              //categories navigation
-            },
-            child: Container(
-              height: 75,
-              width: 75,
-              decoration: BoxDecoration(
-                  color: Constants.darkinsidecolor,
-                  borderRadius: BorderRadius.circular(50)),
-              child: Center(child: Icon(cat[index]['icon'])),
+    return Row(
+      children: [
+        Column(
+          children: [
+            InkWell(
+              splashColor: Colors.transparent,
+              onTap: () {
+                //categories navigation
+              },
+              child: Container(
+                height: 75,
+                width: 75,
+                decoration: BoxDecoration(
+                    color: Constants.darkinsidecolor,
+                    borderRadius: BorderRadius.circular(50)),
+                child: Center(child: Icon(cat[index]['icon'])),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(cat[index]['name'])
-        ],
-      ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(cat[index]['name']),
+          ],
+        ),
+        const SizedBox(
+          width: 13,
+        )
+      ],
     );
   }
 }

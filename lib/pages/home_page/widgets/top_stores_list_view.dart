@@ -12,7 +12,9 @@ class TopStoresListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 12),
+      padding: index == 0
+          ? const EdgeInsets.only(left: 0)
+          : const EdgeInsets.only(left: 12),
       child: Card(
         color: Constants.darkinsidecolor,
         //product stack

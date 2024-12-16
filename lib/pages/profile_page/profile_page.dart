@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
+import 'package:store/cubits/shared_preferences/shared_preferences_cubit.dart';
 import 'package:store/pages/profile_page/widgets/first_and_last_name_and_address_edit.dart';
 import 'package:store/pages/profile_page/widgets/profile_image.dart';
 import 'package:store/pages/profile_page/widgets/profile_settings.dart';
+import 'package:store/shared_preferences/TokenManage.dart';
 import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
@@ -59,7 +61,11 @@ class ProfilePage extends StatelessWidget {
           height: 25,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () async {
+            print(await Tokenmanage().getToken());
+            await Tokenmanage().removeToken();
+            await BlocProvider.of<SharedPreferencesCubit>(context).getToken();
+          },
           child: Text(
             "Sign Out",
             style: TextStyles.textStyle22.copyWith(

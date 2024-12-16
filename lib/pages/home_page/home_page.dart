@@ -66,7 +66,6 @@ class HomePage extends StatelessWidget {
           //Top Selling row
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
-            width: double.infinity,
             child: ListView(
               clipBehavior: Clip.none,
               scrollDirection: Axis.horizontal,

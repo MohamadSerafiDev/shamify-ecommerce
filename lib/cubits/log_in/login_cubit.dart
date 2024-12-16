@@ -1,4 +1,8 @@
+// ignore_for_file: missing_required_param
+
 import 'package:bloc/bloc.dart';
+import 'package:store/api/api.dart';
+import 'package:store/shared_preferences/TokenManage.dart';
 
 part 'login_state.dart';
 
@@ -7,20 +11,16 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> logInWithPhoneAndPassword(
       {required String phone, required String password}) async {
+    //if you found the user in your database go
     try {
       emit(LoginLoading());
-      //if you found the user in your database go
-      if (phone == 'admin' && password == 'admin') {
-        await Future.delayed(const Duration(seconds: 1), () {});
-        emit(LoginSuccess());
-      }
-      //if the user is not found or the password is wrong go to the error message
-      else {
-        emit(LoginFailure(
-            errormessage:
-                'The phone number or password you entered is incorrect.'));
-      }
+      dynamic data = await Api().post(
+          url: 'http://26.46.185.74:8000/api/v1/login',
+          body: {'phone': phone, 'password': password});
+      Tokenmanage().saveToken(data['token']);
+      emit(LoginSuccess());
     } catch (e) {
+      //if the user is not found or the password is wrong go to the error message
       emit(LoginFailure(errormessage: e.toString()));
     }
   }
