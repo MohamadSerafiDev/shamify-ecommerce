@@ -8,36 +8,34 @@ class FirstAndLastNameAndAddressEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Name: ',
-              style: TextStyles.textStyle18,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'phone: ',
-                  style: TextStyles.textStyle14.copyWith(
-                    color: Colors.grey,
-                  ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Name: ',
+            style: TextStyles.textStyle18,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'phone: ',
+                style: TextStyles.textStyle14.copyWith(
+                  color: Colors.grey,
                 ),
-                TextButton(onPressed: () {}, child: const Text("Edit"))
-              ],
-            ),
-            Text(
-              'Address: ',
-              style: TextStyles.textStyle14.copyWith(
-                color: Colors.grey,
               ),
+              TextButton(onPressed: () {}, child: const Text("Edit"))
+            ],
+          ),
+          Text(
+            'Address: ',
+            style: TextStyles.textStyle14.copyWith(
+              color: Colors.grey,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

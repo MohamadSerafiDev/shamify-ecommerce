@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
@@ -12,25 +14,51 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: InkWell(
-        splashColor: Colors.transparent,
-        onTap: () {
-          BlocProvider.of<ProfileImageCubit>(context)
-              .updateImage(AppImages.search);
-        },
-        child: Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-            color: Constants.darkinsidecolor,
-            borderRadius: BorderRadius.circular(50),
-            image: DecorationImage(
-                image: AssetImage(
-                  BlocProvider.of<ProfileImageCubit>(context).imagePath,
+      child: BlocBuilder<ProfileImageCubit, ProfileImageState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              Container(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                height: 120,
+                width: 120,
+                decoration: BoxDecoration(
+                  color: Constants.darkinsidecolor,
+                  borderRadius: BorderRadius.circular(60),
                 ),
-                fit: BoxFit.cover),
-          ),
-        ),
+                child:
+                    BlocProvider.of<ProfileImageCubit>(context).imagePath == ''
+                        ? const Icon(
+                            Icons.add_box_outlined,
+                            size: 50,
+                            color: Colors.white,
+                          )
+                        : Image.file(
+                            File(BlocProvider.of<ProfileImageCubit>(context)
+                                .imagePath),
+                            fit: BoxFit.fill,
+                          ),
+              ),
+              Positioned(
+                bottom: 3,
+                right: 3,
+                child: InkWell(
+                  onTap: () => BlocProvider.of<ProfileImageCubit>(context)
+                      .pickImageFromGallery(),
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Constants.buttoncolor,
+                      borderRadius: BorderRadius.circular(60),
+                    ),
+                    child: const Icon(Icons.edit),
+                  ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }

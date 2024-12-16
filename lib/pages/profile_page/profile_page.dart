@@ -12,63 +12,62 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 60,
+    return Column(
+      children: [
+        const SizedBox(
+          height: 60,
+        ),
+        BlocBuilder<ProfileImageCubit, ProfileImageState>(
+          builder: (context, state) {
+            return const ProfileImage();
+          },
+        ),
+        const SizedBox(
+          height: 32,
+        ),
+        Container(
+          height: 110,
+          width: 350,
+          decoration: BoxDecoration(
+            color: Constants.darkinsidecolor,
+            borderRadius: BorderRadius.circular(10),
           ),
-          BlocBuilder<ProfileImageCubit, ProfileImageState>(
-            builder: (context, state) {
-              return const ProfileImage();
-            },
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          Container(
-            height: 110,
-            width: 350,
-            decoration: BoxDecoration(
-              color: Constants.darkinsidecolor,
-              borderRadius: BorderRadius.circular(10),
+          child: const FirstAndLastNameAndAddressEdit(),
+        ),
+        const SizedBox(
+          height: 26,
+        ),
+        ProfileSettings(
+          text: 'Favourites',
+          onTap: () {},
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        ProfileSettings(
+          text: 'Language',
+          onTap: () {},
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        ProfileSettings(
+          text: 'Theme',
+          onTap: () {},
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            "Sign Out",
+            style: TextStyles.textStyle22.copyWith(
+              color: Colors.red,
             ),
-            child: const FirstAndLastNameAndAddressEdit(),
           ),
-          const SizedBox(
-            height: 26,
-          ),
-          ProfileSettings(
-            text: 'Favourites',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          ProfileSettings(
-            text: 'Language',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          ProfileSettings(
-            text: 'Theme',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          TextButton(
-              onPressed: () {},
-              child: Text(
-                "Sign Out",
-                style: TextStyles.textStyle22.copyWith(
-                  color: Colors.red,
-                ),
-              ))
-        ],
-      ),
+        )
+      ],
     );
   }
 }
