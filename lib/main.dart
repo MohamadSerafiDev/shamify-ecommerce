@@ -5,7 +5,7 @@ import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/cubits/log_in/login_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
-import 'package:store/cubits/shared_preferences/shared_preferences_cubit.dart';
+import 'package:store/cubits/shared_preferences/token_manage_cubit.dart';
 import 'package:store/cubits/signup/signup_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
@@ -19,7 +19,7 @@ void main() {
       BlocProvider(create: (context) => FavouriteCubit()),
       BlocProvider(create: (context) => NavigationBarCubit()),
       BlocProvider(create: (context) => ProfileImageCubit()),
-      BlocProvider(create: (context) => SharedPreferencesCubit()),
+      BlocProvider(create: (context) => TokenManageCubit()),
     ],
     child: const MyApp(),
   ));
@@ -34,18 +34,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: isdark ? Themes().dark : Themes().light,
-        home: BlocBuilder<SharedPreferencesCubit, SharedPreferencesState>(
-          builder: (context, state) {
-            BlocProvider.of<SharedPreferencesCubit>(context).getToken();
-            if (state is SharedPreferencesNoToken) {
-              return AuthPage();
-            } else {
-              return MainHomePage();
-            }
-          },
-        ));
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: isdark ? Themes().dark : Themes().light,
+      home: BlocListener<TokenManageCubit, TokenManageState>(
+        listener: (context, state) {},
+        child: BlocProvider.of<TokenManageCubit>(context).getPage(),
+      ),
+    );
   }
 }

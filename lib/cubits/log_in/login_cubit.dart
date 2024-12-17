@@ -14,10 +14,11 @@ class LoginCubit extends Cubit<LoginState> {
     //if you found the user in your database go
     try {
       emit(LoginLoading());
-      dynamic data = await Api().post(
-          url: 'http://26.46.185.74:8000/api/v1/login',
-          body: {'phone': phone, 'password': password});
-      Tokenmanage().saveToken(data['token']);
+      // dynamic data = await Api().post(
+      //     url: 'http://26.46.185.74:8000/api/v1/login',
+      //     body: {'phone': phone, 'password': password});
+      await Tokenmanage().saveToken('data[kifhjiugdgfnighuygd');
+      print(await Tokenmanage().getToken());
       emit(LoginSuccess());
     } catch (e) {
       //if the user is not found or the password is wrong go to the error message

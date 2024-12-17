@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
-import 'package:store/cubits/shared_preferences/shared_preferences_cubit.dart';
+import 'package:store/cubits/shared_preferences/token_manage_cubit.dart';
+import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/profile_page/widgets/first_and_last_name_and_address_edit.dart';
 import 'package:store/pages/profile_page/widgets/profile_image.dart';
 import 'package:store/pages/profile_page/widgets/profile_settings.dart';
@@ -62,9 +65,10 @@ class ProfilePage extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            print(await Tokenmanage().getToken());
-            await Tokenmanage().removeToken();
-            await BlocProvider.of<SharedPreferencesCubit>(context).getToken();
+            // print(await Tokenmanage().getToken());
+            BlocProvider.of<TokenManageCubit>(context).removedToken();
+            // print(await Tokenmanage().getToken());
+            Get.offAll(const AuthPage());
           },
           child: Text(
             "Sign Out",
