@@ -33,14 +33,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Future<void> checkToken() async {
+      BlocProvider.of<TokenManageCubit>(context).checkToken();
+    }
+
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: isdark ? Themes().dark : Themes().light,
-      home: BlocListener<TokenManageCubit, TokenManageState>(
-        listener: (context, state) {},
-        child: BlocProvider.of<TokenManageCubit>(context).getPage(),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: isdark ? Themes().dark : Themes().light,
+        home: BlocBuilder<TokenManageCubit, TokenManageState>(
+          builder: (context, state) {
+            checkToken();
+            if (state is TokenManageNoToken) {
+              return AuthPage();
+            } else {
+              return MainHomePage();
+            }
+          },
+        ));
   }
 }
