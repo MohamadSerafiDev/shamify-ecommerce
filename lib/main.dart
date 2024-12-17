@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           builder: (context, state) {
             checkToken();
             if (state is TokenManageNoToken) {
-              return AuthPage();
+              return const AuthPage();
             } else {
               return MainHomePage();
             }

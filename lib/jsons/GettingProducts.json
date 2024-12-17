@@ -1,0 +1,43 @@
+// {{PHPLocal}}/api/v1/products
+{
+    
+    "data": [
+        {
+            "id": 1,
+            "name": "Burger",
+            "ingredients": "1234",
+            "type": "123",
+            "price": 2000,
+            "count": 1231,
+            "imageSource": "..."
+        },
+        {
+            "id": 2,
+            "name": "Pizza",
+            "ingredients": "1234",
+            "type": "123",
+            "price": 1000,
+            "count": 1234,
+            "imageSource": "..."
+        },
+        {
+            "id": 3,
+            "name": "Shaworma",
+            "ingredients": "1234",
+            "type": "123",
+            "price": 1500,
+            "count": 1234,
+            "imageSource": "..."
+        },
+        {
+            
+            "id": 4,
+            "name": "shoes",
+            "ingredients": "1234",
+            "type": "shoes",
+            "price": 3000,
+            "count": 12,
+            "imageSource": "..."
+        }
+    ]
+}

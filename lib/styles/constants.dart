@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 class Constants {
+  static const String localip = 'http://26.46.185.74:8000';
   static const Color buttoncolor = Color(0xFF8E6CEF);
   static const Color iconselectedcolor = Color(0xFF8E6CEF);
   //

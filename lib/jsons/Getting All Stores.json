@@ -1,0 +1,21 @@
+// {{PHPLocal}}/api/v1/stores
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "foodito",
+            "type": "restaurant",
+            "description": "gg",
+            "location": "Damascus",
+            "imageSource": ""
+        },
+        {
+            "id": 2,
+            "name": "xo",
+            "type": "clothes",
+            "description": "nice store",
+            "location": "Damascus,mazzeh",
+            "imageSource": ""
+        }
+    ]
+}

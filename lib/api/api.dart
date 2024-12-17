@@ -24,10 +24,11 @@ class Api {
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode >= 200 && response.statusCode < 300) {
+      print(jsonDecode(response.body));
       return jsonDecode(response.body);
     } else {
       throw Exception(
-          'status code : ${response.statusCode} , and the body :${jsonDecode(response.body)} ');
+          'status code : ${response.statusCode}  and the body :${jsonDecode(response.body)} ');
     }
   }
 }

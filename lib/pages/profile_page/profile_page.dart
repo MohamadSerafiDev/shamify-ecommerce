@@ -1,7 +1,10 @@
+// ignore_for_file: missing_required_param
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:store/api/api.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/shared_preferences/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
@@ -65,10 +68,14 @@ class ProfilePage extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            // print(await Tokenmanage().getToken());
+            print(await TokenManage().getToken());
             BlocProvider.of<TokenManageCubit>(context).removedToken();
             // print(await Tokenmanage().getToken());
             Get.offAll(const AuthPage());
+            // await Api().post(
+            //   url: 'http://26.46.185.74:8000/api/v1/logout',
+            //   token: await TokenManage().getToken(),
+            // );
           },
           child: Text(
             "Sign Out",
