@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
-import 'package:store/cubits/token/token_manage_cubit.dart';
+import 'package:store/cubits/token/token_and_data_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/profile_page/widgets/first_and_last_name_and_address_edit.dart';
 import 'package:store/pages/profile_page/widgets/profile_image.dart';
@@ -73,7 +73,7 @@ class ProfilePage extends StatelessWidget {
               url: '${Constants.localip}/api/v1/logout',
               withToken: true,
             );
-            BlocProvider.of<TokenManageCubit>(context).removedToken();
+            BlocProvider.of<TokenAndDataManageCubit>(context).removedToken();
             Get.offAll(const AuthPage());
           },
           child: Text(

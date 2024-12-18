@@ -131,6 +131,8 @@ Future<dynamic> authBottomSheet(BuildContext context,
                               phone: phonecontroller.text,
                               password: passwordcontroller.text,
                             );
+                            phonecontroller.clear();
+                            passwordcontroller.clear();
                           } else {
                             if (passwordcontroller.text !=
                                 confirmcontroller.text) {
@@ -138,6 +140,9 @@ Future<dynamic> authBottomSheet(BuildContext context,
                                   title: 'Error',
                                   message: 'password not match',
                                   contentType: ContentType.warning);
+
+                              passwordcontroller.clear();
+                              confirmcontroller.clear();
                             } else {
                               BlocProvider.of<AuthCubit>(context)
                                   .signUpWithEmailAndPassword(
@@ -147,12 +152,12 @@ Future<dynamic> authBottomSheet(BuildContext context,
                                 firstName: 'firstName',
                                 lastName: 'lastName',
                               );
+
+                              phonecontroller.clear();
+                              passwordcontroller.clear();
+                              confirmcontroller.clear();
                             }
                           }
-
-                          phonecontroller.clear();
-                          passwordcontroller.clear();
-                          confirmcontroller.clear();
                         }),
                   )
                 ],

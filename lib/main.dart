@@ -5,9 +5,10 @@ import 'package:store/cubits/auth/auth_cubit.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
-import 'package:store/cubits/token/token_manage_cubit.dart';
+import 'package:store/cubits/token/token_and_data_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
+import 'package:store/shared_preferences/token_manage.dart';
 import 'package:store/styles/themes.dart';
 
 void main() {
@@ -17,7 +18,7 @@ void main() {
       BlocProvider(create: (context) => FavouriteCubit()),
       BlocProvider(create: (context) => NavigationBarCubit()),
       BlocProvider(create: (context) => ProfileImageCubit()),
-      BlocProvider(create: (context) => TokenManageCubit()),
+      BlocProvider(create: (context) => TokenAndDataManageCubit()),
     ],
     child: const MyApp(),
   ));
@@ -32,14 +33,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> checkToken() async {
-      BlocProvider.of<TokenManageCubit>(context).checkToken();
+      BlocProvider.of<TokenAndDataManageCubit>(context).checkToken();
     }
 
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: isdark ? Themes().dark : Themes().light,
-        home: BlocBuilder<TokenManageCubit, TokenManageState>(
+        home: BlocBuilder<TokenAndDataManageCubit, TokenAndDataManageState>(
           builder: (context, state) {
             checkToken();
             if (state is TokenManageNoToken) {

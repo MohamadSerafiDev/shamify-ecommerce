@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store/cubits/token/token_and_data_manage_cubit.dart';
 import 'package:store/pages/home_page/widgets/categories_list_view.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
+import 'package:store/services/stores/get_all_stores.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({
@@ -66,19 +69,29 @@ class HomePage extends StatelessWidget {
           //Top Selling row
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
-            child: ListView(
-              clipBehavior: Clip.none,
-              scrollDirection: Axis.horizontal,
-              children: [
-                ...List.generate(
-                  10,
-                  (index) {
-                    return TopStoresListView(
-                      index: index,
-                    );
-                  },
-                )
-              ],
+            child: FutureBuilder(
+              future:
+                  BlocProvider.of<TokenAndDataManageCubit>(context).setData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView(
+                    clipBehavior: Clip.none,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      ...List.generate(
+                        snapshot.data!.length,
+                        (index) {
+                          return TopStoresListView(
+                            index: index,
+                          );
+                        },
+                      )
+                    ],
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
             ),
           ),
         ],

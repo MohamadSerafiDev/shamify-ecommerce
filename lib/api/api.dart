@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -31,14 +33,15 @@ class Api {
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
 
-    dynamic data = jsonDecode(response.body);
-    print('Response Body: $data');
+    // dynamic data = jsonDecode(response.body);
+    // print('Response Body: $data');
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(jsonDecode(response.body));
       print(response.statusCode);
+
       return jsonDecode(response.body);
     } else {
-      throw data['message'];
+      throw jsonDecode(response.body)['message'];
     }
   }
 }

@@ -2,7 +2,6 @@
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:store/pages/auth_page/widgets/auth_bottom_sheet.dart';
 import 'package:store/styles/constants.dart';
 
 Future<dynamic> errorDialog(BuildContext context,
@@ -13,11 +12,8 @@ Future<dynamic> errorDialog(BuildContext context,
     barrierDismissible: false,
     context: context,
     builder: (context) {
-      Future.delayed(const Duration(seconds: 3), () {
+      Future.delayed(const Duration(seconds: 2), () {
         Navigator.of(context).pop();
-        phonecontroller.clear();
-        passwordcontroller.clear();
-        confirmcontroller.clear();
       });
       return Center(
         child: AwesomeSnackbarContent(

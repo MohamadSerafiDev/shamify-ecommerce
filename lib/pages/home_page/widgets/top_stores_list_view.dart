@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
+import 'package:store/cubits/token/token_and_data_manage_cubit.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 
@@ -65,21 +66,23 @@ class TopStoresListView extends StatelessWidget {
                 )
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Text(
-                'Product Name',
-                style: TextStyle(
+                BlocProvider.of<TokenAndDataManageCubit>(context)
+                    .storesData[index]['name'],
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Text(
-                'Product Price *',
-                style: TextStyle(
+                BlocProvider.of<TokenAndDataManageCubit>(context)
+                    .storesData[index]['type'],
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
