@@ -30,13 +30,15 @@ class Api {
     }
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
-    if (response.statusCode >= 200 && response.statusCode < 300) {
+
+    dynamic data = jsonDecode(response.body);
+    print('Response Body: $data');
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print(jsonDecode(response.body));
       print(response.statusCode);
       return jsonDecode(response.body);
     } else {
-      throw Exception(
-          'status code : ${response.statusCode}  and the body :${jsonDecode(response.body)} ');
+      throw data['message'];
     }
   }
 }

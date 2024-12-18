@@ -53,6 +53,7 @@ class AuthCubit extends Cubit<AuthState> {
       print(await TokenManage().getToken());
       emit(AuthSuccess());
     } catch (e) {
+      print(e);
       emit(AuthFailure(errormessage: e.toString()));
     }
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:store/cubits/auth/cubit/auth_cubit.dart';
+import 'package:store/cubits/auth/auth_cubit.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';

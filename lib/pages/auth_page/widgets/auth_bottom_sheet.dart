@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart'
     as gTransition;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:store/cubits/auth/cubit/auth_cubit.dart';
+import 'package:store/cubits/auth/auth_cubit.dart';
 import 'package:store/pages/auth_page/widgets/error_dialog.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/pages/auth_page/widgets/auth_text_field.dart';
@@ -125,19 +125,31 @@ Future<dynamic> authBottomSheet(BuildContext context,
                         transparent: !isLogin,
                         onPressed: () {
                           //login
-                          isLogin
-                              ? BlocProvider.of<AuthCubit>(context)
-                                  .logInWithPhoneAndPassword(
-                                      phone: phonecontroller.text,
-                                      password: passwordcontroller.text)
-                              // signup
-                              : BlocProvider.of<AuthCubit>(context)
+                          if (isLogin) {
+                            BlocProvider.of<AuthCubit>(context)
+                                .logInWithPhoneAndPassword(
+                              phone: phonecontroller.text,
+                              password: passwordcontroller.text,
+                            );
+                          } else {
+                            if (passwordcontroller.text !=
+                                confirmcontroller.text) {
+                              errorDialog(context,
+                                  title: 'Error',
+                                  message: 'password not match',
+                                  contentType: ContentType.warning);
+                            } else {
+                              BlocProvider.of<AuthCubit>(context)
                                   .signUpWithEmailAndPassword(
-                                      phone: phonecontroller.text,
-                                      password: passwordcontroller.text,
-                                      confirm: confirmcontroller.text,
-                                      firstName: 'firstName',
-                                      lastName: 'lastName');
+                                phone: phonecontroller.text,
+                                password: passwordcontroller.text,
+                                confirm: confirmcontroller.text,
+                                firstName: 'firstName',
+                                lastName: 'lastName',
+                              );
+                            }
+                          }
+
                           phonecontroller.clear();
                           passwordcontroller.clear();
                           confirmcontroller.clear();
