@@ -1,11 +1,14 @@
 import 'package:store/api/api.dart';
+import 'package:store/shared_preferences/token_manage.dart';
 import 'package:store/styles/constants.dart';
 
 class GetAllProducts {
   String baseUrl = '${Constants.localip}/api/v1/products';
 
   Future<List> getProducts() async {
-    Map<String, dynamic> data = await Api().get(url: baseUrl);
+    Map<String, dynamic> data = await Api().get(
+      url: baseUrl,
+    );
 
     List productsData = [];
     for (var element in data['data']) {

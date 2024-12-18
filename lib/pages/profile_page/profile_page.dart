@@ -68,14 +68,13 @@ class ProfilePage extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            print(await TokenManage().getToken());
+            // print(await TokenManage().getToken());
+            await Api().post(
+              url: 'http://26.46.185.74:8000/api/v1/logout',
+              withToken: true,
+            );
             BlocProvider.of<TokenManageCubit>(context).removedToken();
-            // print(await Tokenmanage().getToken());
             Get.offAll(const AuthPage());
-            // await Api().post(
-            //   url: 'http://26.46.185.74:8000/api/v1/logout',
-            //   token: await TokenManage().getToken(),
-            // );
           },
           child: Text(
             "Sign Out",

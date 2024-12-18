@@ -16,7 +16,8 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginLoading());
       dynamic data = await Api().post(
           url: 'http://26.46.185.74:8000/api/v1/login',
-          body: {'phone': phone, 'password': password});
+          body: {'phone': phone, 'password': password},
+          withToken: false);
       await TokenManage().saveToken(data[0]['token']);
       print(await TokenManage().getToken());
       emit(LoginSuccess());
