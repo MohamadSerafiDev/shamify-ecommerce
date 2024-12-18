@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:store/services/get_all_products.dart';
+import 'package:store/services/stores/get_store_data.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});
@@ -12,7 +11,7 @@ class OrdersPage extends StatelessWidget {
       child: Center(
         child: TextButton(
           onPressed: () async {
-            List data = await GetAllProducts().getProducts();
+            Map data = await GetStoreData().getData(id: 1);
             print(data);
           },
           child: Text('Orders'),

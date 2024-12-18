@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:store/cubits/auth/cubit/auth_cubit.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
-import 'package:store/cubits/log_in/login_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
-import 'package:store/cubits/shared_preferences/token_manage_cubit.dart';
-import 'package:store/cubits/signup/signup_cubit.dart';
+import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
 import 'package:store/styles/themes.dart';
@@ -14,8 +13,7 @@ import 'package:store/styles/themes.dart';
 void main() {
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider(create: (context) => LoginCubit()),
-      BlocProvider(create: (context) => SignUpCubit()),
+      BlocProvider(create: (context) => AuthCubit()),
       BlocProvider(create: (context) => FavouriteCubit()),
       BlocProvider(create: (context) => NavigationBarCubit()),
       BlocProvider(create: (context) => ProfileImageCubit()),

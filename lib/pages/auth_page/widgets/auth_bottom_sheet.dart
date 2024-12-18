@@ -7,10 +7,9 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart'
     as gTransition;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:store/cubits/signup/signup_cubit.dart';
+import 'package:store/cubits/auth/cubit/auth_cubit.dart';
 import 'package:store/pages/auth_page/widgets/error_dialog.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
-import 'package:store/cubits/log_in/login_cubit.dart';
 import 'package:store/pages/auth_page/widgets/auth_text_field.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
 
@@ -41,15 +40,15 @@ Future<dynamic> authBottomSheet(BuildContext context,
     ),
     context: context,
     builder: (context) {
-      return BlocConsumer<LoginCubit, LoginState>(
+      return BlocConsumer<AuthCubit, AuthState>(
         //navigation and error dialog
         listener: (context, state) async {
-          if (state is LoginSuccess) {
+          if (state is AuthSuccess) {
             await Get.offAll(MainHomePage(),
                 transition: gTransition.Transition.fade,
                 duration: const Duration(milliseconds: 1000));
             dispose();
-          } else if (state is LoginFailure) {
+          } else if (state is AuthFailure) {
             errorDialog(
               context,
               title: 'Warning!',
@@ -60,7 +59,7 @@ Future<dynamic> authBottomSheet(BuildContext context,
         },
         //initial value and loading indicator
         builder: (context, state) {
-          if (state is LoginLoading) {
+          if (state is AuthLoading) {
             return Container(
               height: 600,
               decoration: const BoxDecoration(
@@ -127,12 +126,12 @@ Future<dynamic> authBottomSheet(BuildContext context,
                         onPressed: () {
                           //login
                           isLogin
-                              ? BlocProvider.of<LoginCubit>(context)
+                              ? BlocProvider.of<AuthCubit>(context)
                                   .logInWithPhoneAndPassword(
                                       phone: phonecontroller.text,
                                       password: passwordcontroller.text)
                               // signup
-                              : BlocProvider.of<SignUpCubit>(context)
+                              : BlocProvider.of<AuthCubit>(context)
                                   .signUpWithEmailAndPassword(
                                       phone: phonecontroller.text,
                                       password: passwordcontroller.text,
