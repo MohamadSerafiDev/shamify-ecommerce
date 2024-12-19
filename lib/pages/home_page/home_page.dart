@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/cubits/token/token_and_data_manage_cubit.dart';
+import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/home_page/widgets/categories_list_view.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
 import 'package:store/services/stores/get_all_stores.dart';
+import 'package:store/styles/constants.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({
@@ -70,8 +72,7 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
             child: FutureBuilder(
-              future:
-                  BlocProvider.of<TokenAndDataManageCubit>(context).setData(),
+              future: GetAllStores().getStores(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView(
@@ -83,13 +84,44 @@ class HomePage extends StatelessWidget {
                         (index) {
                           return TopStoresListView(
                             index: index,
+                            data: snapshot.data,
                           );
                         },
                       )
                     ],
                   );
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return ListView(
+                    clipBehavior: Clip.none,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      ...List.generate(
+                        2,
+                        (index) {
+                          return Padding(
+                            padding: index == 0
+                                ? const EdgeInsets.only(left: 0)
+                                : const EdgeInsets.only(left: 12),
+                            child: CardLoading(
+                              curve: Curves.slowMiddle,
+                              animationDuration: Duration(milliseconds: 1300),
+                              animationDurationTwo:
+                                  Duration(milliseconds: 1300),
+                              cardLoadingTheme: CardLoadingTheme(
+                                colorOne: Constants.darkbackgroundcolor
+                                    .withOpacity(0.7),
+                                colorTwo: Constants.darkinsidecolor,
+                              ),
+                              height: MediaQuery.of(context).size.height * 0.4,
+                              width: 200,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  );
                 }
               },
             ),
