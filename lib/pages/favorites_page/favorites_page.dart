@@ -5,32 +5,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';
-import 'package:store/services/stores/get_specific_store_products.dart';
-import 'package:store/styles/assets.dart';
+import 'package:store/services/favorites/get_user_favorites.dart';
 import 'package:store/styles/constants.dart';
 
-class ProductPage extends StatelessWidget {
-  const ProductPage({super.key, required this.title});
-  final String title;
+class FavoritesPage extends StatelessWidget {
+  const FavoritesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvokedWithResult: (didPop, result) {
+    return WillPopScope(
+      onWillPop: () async {
         Get.back();
         BlocProvider.of<FavouriteCubit>(context).isfav = [];
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Constants.darkbackgroundcolor,
-          title: Text("$title Products"),
-          // clipBehavior: Clip.none,
+          title: Text('Your Favorites'),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: FutureBuilder(
-            future: GetSpecificStoreProducts()
-                .getStoreWithProducts(id: Get.arguments + 1),
+            future: GetUserFavorites().getFav(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return GridView.builder(

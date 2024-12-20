@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/custom_icons.dart';
+import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 
@@ -39,14 +43,16 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
             height: 45,
             child: ElevatedButton(
                 onPressed: () {
-                  // navigation to cart
+                  // navigation to fav
+                  Get.to(FavoritesPage());
                 },
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
                 ),
-                child: const Icon(
-                  CustomIcons.notification,
-                  size: 20,
+                child: Image.asset(
+                  AppIcons.isfav,
+                  width: 25,
+                  color: Colors.white,
                 )),
           ),
         ),

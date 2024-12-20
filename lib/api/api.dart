@@ -14,8 +14,10 @@ class Api {
     http.Response response = await http.get(Uri.parse(url),
         headers: {'Authorization': 'Bearer ${await TokenManage().getToken()}'});
     if (response.statusCode == 200) {
+      print(jsonDecode(response.body));
       return jsonDecode(response.body);
     } else {
+      print(jsonDecode(response.body));
       throw Exception('Failed to load data : ${response.statusCode}');
     }
   }

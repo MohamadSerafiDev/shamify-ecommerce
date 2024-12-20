@@ -53,7 +53,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         onPressed: () {
                           BlocProvider.of<FavouriteCubit>(context)
-                              .toggleFavourite(index);
+                              .toggleFavourite(index: index, id: data['id']);
                         },
                       );
                     },

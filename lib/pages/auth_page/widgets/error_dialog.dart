@@ -12,7 +12,7 @@ Future<dynamic> errorDialog(BuildContext context,
     barrierDismissible: false,
     context: context,
     builder: (context) {
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 3), () {
         Navigator.of(context).pop();
       });
       return Center(

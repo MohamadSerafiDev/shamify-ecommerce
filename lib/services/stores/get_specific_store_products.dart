@@ -13,7 +13,7 @@ class GetSpecificStoreProducts {
     for (var element in data['data']['products']) {
       storeProducts.add(element);
     }
-    print(storeProducts);
+
     return storeProducts;
   }
 }
