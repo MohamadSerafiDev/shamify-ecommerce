@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store/api/api.dart';
 import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
@@ -90,10 +89,16 @@ class ProductCard extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       IconButton(
-                          onPressed: () {},
-                          icon: Icon(
+                          onPressed: () async {
+                            await Api().post(
+                                url:
+                                    '${Constants.localip}/api/v1/add-to-cart/${data['id'].toString()}',
+                                body: {'quantity': "1"},
+                                withToken: true);
+                          },
+                          icon: const Icon(
                             Icons.add_shopping_cart_outlined,
                             size: 30,
                             color: Constants.buttoncolor,

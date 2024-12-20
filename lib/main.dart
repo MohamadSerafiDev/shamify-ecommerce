@@ -8,7 +8,6 @@ import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
-import 'package:store/shared_preferences/token_manage.dart';
 import 'package:store/styles/themes.dart';
 
 void main() {

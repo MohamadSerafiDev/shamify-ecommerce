@@ -16,7 +16,7 @@ class ProfileSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: Colors.transparent,
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         height: 60,
         width: 350,

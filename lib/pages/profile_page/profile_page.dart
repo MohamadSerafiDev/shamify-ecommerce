@@ -8,6 +8,7 @@ import 'package:store/api/api.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
+import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/pages/profile_page/widgets/first_and_last_name_and_address_edit.dart';
 import 'package:store/pages/profile_page/widgets/profile_image.dart';
 import 'package:store/pages/profile_page/widgets/profile_settings.dart';
@@ -47,7 +48,9 @@ class ProfilePage extends StatelessWidget {
         ),
         ProfileSettings(
           text: 'Favourites',
-          onTap: () {},
+          onTap: () {
+            Get.to(const FavoritesPage());
+          },
         ),
         const SizedBox(
           height: 8,

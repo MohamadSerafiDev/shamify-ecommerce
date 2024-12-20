@@ -26,11 +26,15 @@ class Api {
       {required String url,
       @required dynamic body,
       required bool withToken}) async {
-    Map<String, String>? headers = {};
+    Map<String, String>? headers = {
+      'Cookie': 'laravel_session=lDnWtI5B9xdGkoDeymWCtBM7hnRHgYvWINJPIJtm'
+    };
     if (withToken == true) {
       dynamic token = await TokenManage().getToken();
       print(token);
-      headers.addAll({'Authorization': 'Bearer $token'});
+      headers.addAll({
+        'Authorization': 'Bearer $token',
+      });
     }
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
