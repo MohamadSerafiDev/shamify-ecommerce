@@ -3,7 +3,7 @@ import 'package:store/styles/constants.dart';
 
 class GetAllStores {
   String baseUrl = '${Constants.localip}/api/v1/stores';
-  dynamic storesData;
+  // dynamic storesData;
 
   Future<dynamic> getStores() async {
     Map<String, dynamic> data = await Api().get(

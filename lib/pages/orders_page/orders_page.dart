@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:store/services/stores/get_all_stores.dart';
-import 'package:store/services/stores/get_store_data.dart';
+import 'package:store/api/api.dart';
+import 'package:store/shared_preferences/session_manage.dart';
+import 'package:store/styles/constants.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});
@@ -12,7 +13,9 @@ class OrdersPage extends StatelessWidget {
       child: Center(
         child: TextButton(
           onPressed: () async {
-            dynamic data = await GetAllStores().getStores();
+            dynamic data =
+                Api().get(url: '${Constants.localip}/api/v1/get-cart');
+            print(await SessionManage().getSessionId());
             print(data);
           },
           child: Text('Orders'),

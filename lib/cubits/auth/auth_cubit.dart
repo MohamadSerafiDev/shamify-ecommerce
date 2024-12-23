@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:store/api/api.dart';
@@ -22,7 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
           withToken: false);
       userData.addAll(data);
       await TokenManage().saveToken(data[0]['token']);
-      await SessionManage().saveSessionId(data[0]['sessionId']);
+
       print(await TokenManage().getToken());
       print(await SessionManage().getSessionId());
       emit(AuthSuccess());
@@ -53,7 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
           withToken: false);
       userData.addAll(data);
       await TokenManage().saveToken(data[0]['token']);
-      await SessionManage().saveSessionId(data[0]['sessionId']);
+
       print(await TokenManage().getToken());
       print(await SessionManage().getSessionId());
       emit(AuthSuccess());

@@ -12,6 +12,7 @@ import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/pages/profile_page/widgets/first_and_last_name_and_address_edit.dart';
 import 'package:store/pages/profile_page/widgets/profile_image.dart';
 import 'package:store/pages/profile_page/widgets/profile_settings.dart';
+import 'package:store/shared_preferences/session_manage.dart';
 import 'package:store/shared_preferences/token_manage.dart';
 import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
@@ -72,10 +73,10 @@ class ProfilePage extends StatelessWidget {
         TextButton(
           onPressed: () async {
             print(await TokenManage().getToken());
-            // await Api().post(
-            //   url: '${Constants.localip}/api/v1/logout',
-            //   withToken: true,
-            // );
+            await Api().post(
+              url: '${Constants.localip}/api/v1/logout',
+              withToken: true,
+            );
             BlocProvider.of<TokenManageCubit>(context).removedToken();
             Get.offAll(const AuthPage());
           },

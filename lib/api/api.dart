@@ -14,7 +14,7 @@ class Api {
 
     http.Response response = await http.get(Uri.parse(url), headers: {
       'Authorization': 'Bearer ${await TokenManage().getToken()}',
-      'Cookie': 'laravel_session=XEGYrh5L7T0h7W2oe7FVrmWKzmahBN4WKtFWYn6C'
+      'Cookie': '${await SessionManage().getSessionId()}'
     });
     if (response.statusCode == 200) {
       print(jsonDecode(response.body));
@@ -29,14 +29,13 @@ class Api {
       {required String url,
       @required dynamic body,
       required bool withToken}) async {
-    Map<String, String>? headers = {
-      'Cookie': 'laravel_session=XEGYrh5L7T0h7W2oe7FVrmWKzmahBN4WKtFWYn6C',
-    };
+    Map<String, String>? headers = {};
     if (withToken == true) {
       dynamic token = await TokenManage().getToken();
       print(token);
       headers.addAll({
         'Authorization': 'Bearer $token',
+        'Cookie': '${await SessionManage().getSessionId()}'
       });
     }
     http.Response response =
@@ -47,10 +46,21 @@ class Api {
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(jsonDecode(response.body));
       print(response.statusCode);
-
+      //for saving session id for the user when login or signup
+      if (response.headers['set-cookie'] != null &&
+          await SessionManage().getSessionId() == null) {
+        String rawCookies = response.headers['set-cookie']!;
+        SessionManage().saveSessionId(rawCookies.split(';')[0]);
+      }
+      // if (response.headers['set-cookie'] == null &&
+      //     response.headers['set-cookie'] != null) {
+      //   String cookie = response.headers['set-cookie']!;
+      //   String sessionId = cookie.split(';')[0];
+      //   await SessionManage().saveSessionId(sessionId);
+      // }
       return jsonDecode(response.body);
     } else {
-      throw jsonDecode(response.body)['message'];
+      print('object');
     }
   }
 }
