@@ -14,9 +14,9 @@ class MainHomePage extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       //top search
-      appBar: AppBarComponants(
-        searchcontroller: searchcontroller,
-      ),
+      // appBar: AppBarComponants(
+      //   searchcontroller: searchcontroller,
+      // ),
       bottomNavigationBar: const BottomNavBar(),
       body: BlocBuilder<NavigationBarCubit, NavigationBarState>(
         builder: (context, state) {

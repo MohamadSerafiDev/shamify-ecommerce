@@ -7,6 +7,7 @@ import 'package:store/cubits/fetch_store_products/fetch_store_products_cubit.dar
 import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
+import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
@@ -22,6 +23,7 @@ void main() {
       BlocProvider(create: (context) => TokenManageCubit()),
       BlocProvider(create: (context) => FetchStoresCubit()),
       BlocProvider(create: (context) => FetchStoreProductsCubit()),
+      BlocProvider(create: (context) => SearchCubit()),
     ],
     child: const MyApp(),
   ));

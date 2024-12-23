@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:store/api/api.dart';
+import 'package:store/services/search/search_for_products_and_stores.dart';
 import 'package:store/shared_preferences/session_manage.dart';
 import 'package:store/styles/constants.dart';
 
@@ -13,10 +14,11 @@ class OrdersPage extends StatelessWidget {
       child: Center(
         child: TextButton(
           onPressed: () async {
-            dynamic data =
-                Api().get(url: '${Constants.localip}/api/v1/get-cart');
-            print(await SessionManage().getSessionId());
-            print(data);
+            SearchModel data =
+                await SearchForProductsAndStores().search(query: 'o');
+            // print(await SessionManage().getSessionId());
+            print(data.products);
+            // print(data.stores);
           },
           child: Text('Orders'),
         ),
