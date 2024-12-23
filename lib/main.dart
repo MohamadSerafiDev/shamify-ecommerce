@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/auth/auth_cubit.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
+import 'package:store/cubits/fetch_store_products/fetch_store_products_cubit.dart';
 import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
@@ -20,6 +21,7 @@ void main() {
       BlocProvider(create: (context) => ProfileImageCubit()),
       BlocProvider(create: (context) => TokenManageCubit()),
       BlocProvider(create: (context) => FetchStoresCubit()),
+      BlocProvider(create: (context) => FetchStoreProductsCubit()),
     ],
     child: const MyApp(),
   ));

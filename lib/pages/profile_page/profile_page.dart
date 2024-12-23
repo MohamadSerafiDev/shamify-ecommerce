@@ -72,10 +72,10 @@ class ProfilePage extends StatelessWidget {
         TextButton(
           onPressed: () async {
             print(await TokenManage().getToken());
-            await Api().post(
-              url: '${Constants.localip}/api/v1/logout',
-              withToken: true,
-            );
+            // await Api().post(
+            //   url: '${Constants.localip}/api/v1/logout',
+            //   withToken: true,
+            // );
             BlocProvider.of<TokenManageCubit>(context).removedToken();
             Get.offAll(const AuthPage());
           },
