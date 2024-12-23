@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/api/api.dart';
-import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
+import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 

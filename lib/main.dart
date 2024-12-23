@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/auth/auth_cubit.dart';
-import 'package:store/cubits/favourite/cubit/favourite_cubit.dart';
+import 'package:store/cubits/favourite/favourite_cubit.dart';
+import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
@@ -18,6 +19,7 @@ void main() {
       BlocProvider(create: (context) => NavigationBarCubit()),
       BlocProvider(create: (context) => ProfileImageCubit()),
       BlocProvider(create: (context) => TokenManageCubit()),
+      BlocProvider(create: (context) => FetchStoresCubit()),
     ],
     child: const MyApp(),
   ));

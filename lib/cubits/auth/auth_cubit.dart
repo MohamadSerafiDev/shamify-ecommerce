@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:store/api/api.dart';
+import 'package:store/shared_preferences/session_manage.dart';
 import 'package:store/shared_preferences/token_manage.dart';
 import 'package:store/styles/constants.dart';
 
@@ -21,7 +22,9 @@ class AuthCubit extends Cubit<AuthState> {
           withToken: false);
       userData.addAll(data);
       await TokenManage().saveToken(data[0]['token']);
+      await SessionManage().saveSessionId(data[0]['sessionId']);
       print(await TokenManage().getToken());
+      print(await SessionManage().getSessionId());
       emit(AuthSuccess());
     } catch (e) {
       //if the user is not found or the password is wrong go to the error message
@@ -50,7 +53,9 @@ class AuthCubit extends Cubit<AuthState> {
           withToken: false);
       userData.addAll(data);
       await TokenManage().saveToken(data[0]['token']);
+      await SessionManage().saveSessionId(data[0]['sessionId']);
       print(await TokenManage().getToken());
+      print(await SessionManage().getSessionId());
       emit(AuthSuccess());
     } catch (e) {
       print(e);

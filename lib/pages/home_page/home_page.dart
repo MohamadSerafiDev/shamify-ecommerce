@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
+import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/home_page/widgets/categories_list_view.dart';
+import 'package:store/pages/home_page/widgets/shimmer_loading.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
 import 'package:store/services/stores/get_all_stores.dart';
@@ -71,57 +75,40 @@ class HomePage extends StatelessWidget {
           //Top Selling row
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
-            child: FutureBuilder(
-              future: GetAllStores().getStores(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
+            child: BlocConsumer<FetchStoresCubit, FetchStoresState>(
+              listener: (context, state) {
+                if (state is FetchStoresFailure) {
+                  errorDialog(context,
+                      title: 'error',
+                      message: state.errormessage,
+                      contentType: ContentType.failure);
+                }
+              },
+              builder: (context, state) {
+                if (state is FetchStoresLoading) {
+                  return ShimmerLoading();
+                } else if (state is FetchStoresSuccess) {
                   return ListView(
                     clipBehavior: Clip.none,
                     scrollDirection: Axis.horizontal,
                     children: [
                       ...List.generate(
-                        snapshot.data!.length,
+                        BlocProvider.of<FetchStoresCubit>(context)
+                            .storesData
+                            .length,
                         (index) {
                           return TopStoresListView(
                             index: index,
-                            data: snapshot.data,
+                            data: BlocProvider.of<FetchStoresCubit>(context)
+                                .storesData,
                           );
                         },
                       )
                     ],
                   );
                 } else {
-                  return ListView(
-                    clipBehavior: Clip.none,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      ...List.generate(
-                        2,
-                        (index) {
-                          return Padding(
-                            padding: index == 0
-                                ? const EdgeInsets.only(left: 0)
-                                : const EdgeInsets.only(left: 12),
-                            child: CardLoading(
-                              curve: Curves.slowMiddle,
-                              animationDuration: Duration(milliseconds: 1300),
-                              animationDurationTwo:
-                                  Duration(milliseconds: 1300),
-                              cardLoadingTheme: CardLoadingTheme(
-                                colorOne: Constants.darkbackgroundcolor
-                                    .withOpacity(0.7),
-                                colorTwo: Constants.darkinsidecolor,
-                              ),
-                              height: MediaQuery.of(context).size.height * 0.4,
-                              width: 200,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  );
+                  BlocProvider.of<FetchStoresCubit>(context).getStores();
+                  return ShimmerLoading();
                 }
               },
             ),
@@ -131,3 +118,28 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+// FutureBuilder(
+//               future: GetAllStores().getStores(),
+//               builder: (context, snapshot) {
+//                 if (snapshot.hasData) {
+//                   return ListView(
+//                     clipBehavior: Clip.none,
+//                     scrollDirection: Axis.horizontal,
+//                     children: [
+//                       ...List.generate(
+//                         snapshot.data!.length,
+//                         (index) {
+//                           return TopStoresListView(
+//                             index: index,
+//                             data: snapshot.data,
+//                           );
+//                         },
+//                       )
+//                     ],
+//                   );
+//                 } else {
+//                   return ShimmerLoading();
+//                 }
+//               },
+//             ),

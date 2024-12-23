@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:store/shared_preferences/session_manage.dart';
 import 'package:store/shared_preferences/token_manage.dart';
 
 class Api {
@@ -11,8 +12,10 @@ class Api {
     // dynamic token = await TokenManage().getToken();
     // print(token);
 
-    http.Response response = await http.get(Uri.parse(url),
-        headers: {'Authorization': 'Bearer ${await TokenManage().getToken()}'});
+    http.Response response = await http.get(Uri.parse(url), headers: {
+      'Authorization': 'Bearer ${await TokenManage().getToken()}',
+      'Cookie': 'laravel_session=XEGYrh5L7T0h7W2oe7FVrmWKzmahBN4WKtFWYn6C'
+    });
     if (response.statusCode == 200) {
       print(jsonDecode(response.body));
       return jsonDecode(response.body);
@@ -27,7 +30,7 @@ class Api {
       @required dynamic body,
       required bool withToken}) async {
     Map<String, String>? headers = {
-      'Cookie': 'laravel_session=lDnWtI5B9xdGkoDeymWCtBM7hnRHgYvWINJPIJtm'
+      'Cookie': 'laravel_session=XEGYrh5L7T0h7W2oe7FVrmWKzmahBN4WKtFWYn6C',
     };
     if (withToken == true) {
       dynamic token = await TokenManage().getToken();
