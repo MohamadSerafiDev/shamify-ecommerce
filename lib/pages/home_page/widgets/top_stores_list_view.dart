@@ -91,7 +91,7 @@ class TopStoresListView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Text(
-                  data[index]['type'],
+                  data[index]['name'],
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
