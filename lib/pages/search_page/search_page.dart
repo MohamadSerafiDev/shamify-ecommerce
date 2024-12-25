@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +55,7 @@ class SearchPage extends HookWidget {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: BlocConsumer<SearchCubit, SearchState>(
             listener: (context, state) {
               if (state is SearchFailure) {
@@ -69,7 +67,7 @@ class SearchPage extends HookWidget {
             },
             builder: (context, state) {
               if (state is Searchloading) {
-                return Column(
+                return const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Center(
@@ -98,7 +96,7 @@ class SearchPage extends HookWidget {
                       ],
                     ),
                     state.stores.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: Text('No Stores Found'),
                           )
                         : SizedBox(
@@ -125,7 +123,7 @@ class SearchPage extends HookWidget {
                       ],
                     ),
                     state.products.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: Text('No Products Found'),
                           )
                         : SizedBox(
@@ -158,10 +156,10 @@ class SearchPage extends HookWidget {
                         width: 200,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text(
+                    const Text(
                       'No thing found',
                       style: TextStyles.textStyle22,
                     ),

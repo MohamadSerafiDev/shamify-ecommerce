@@ -14,10 +14,10 @@ class OrdersPage extends StatelessWidget {
       child: Center(
         child: TextButton(
           onPressed: () async {
-            SearchModel data =
-                await SearchForProductsAndStores().search(query: 'o');
+            dynamic data =
+                await Api().get(url: '${Constants.localip}/api/v1/get-cart');
             // print(await SessionManage().getSessionId());
-            print(data.products);
+            print(data);
             // print(data.stores);
           },
           child: Text('Orders'),

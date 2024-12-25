@@ -41,6 +41,7 @@ class AuthCubit extends Cubit<AuthState> {
       required String confirm,
       required String firstName,
       required String lastName}) async {
+    await SessionManage().removeSessionId();
     try {
       emit(AuthLoading());
       dynamic data = await Api().post(
@@ -53,6 +54,7 @@ class AuthCubit extends Cubit<AuthState> {
             "password": password
           },
           withToken: false);
+
       userData.addAll(data);
       await TokenManage().saveToken(data[0]['token']);
 

@@ -60,7 +60,7 @@ class Api {
       // }
       return jsonDecode(response.body);
     } else {
-      print('object');
+      print(jsonDecode(response.body));
     }
   }
 }
