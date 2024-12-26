@@ -1,12 +1,14 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:store/styles/text_styles.dart';
 
 class NameAndDesc extends StatelessWidget {
   const NameAndDesc({
     super.key,
+    required this.name,
+    required this.desc,
   });
+  final String name;
+  final String desc;
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +16,19 @@ class NameAndDesc extends StatelessWidget {
       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Text(
-          'name',
+          name,
           textAlign: TextAlign.start,
           style: TextStyles.textStyle22,
         ),
-        SizedBox(
+        const SizedBox(
           height: 9,
         ),
         Text(
-          'nice cart to you',
+          desc,
           textAlign: TextAlign.start,
           style: TextStyles.textStyle14,
           overflow: TextOverflow.ellipsis,

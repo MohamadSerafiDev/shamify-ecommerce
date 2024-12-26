@@ -17,7 +17,7 @@ class Api {
       'Cookie': '${await SessionManage().getSessionId()}'
     });
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body));
+      // print(jsonDecode(response.body));
       return jsonDecode(response.body);
     } else {
       print(jsonDecode(response.body));
