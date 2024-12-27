@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
-import 'package:store/pages/home_page/widgets/app_bar_componants.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';

@@ -10,6 +10,7 @@ import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
+import 'package:store/cubits/theme/theme_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
@@ -28,6 +29,7 @@ void main() {
       BlocProvider(create: (context) => SearchCubit()),
       BlocProvider(create: (context) => FetchCartCubit()),
       BlocProvider(create: (context) => CounterCubit()),
+      BlocProvider(create: (context) => ThemeCubit()),
     ],
     child: const MyApp(),
   ));
@@ -45,19 +47,40 @@ class MyApp extends StatelessWidget {
       BlocProvider.of<TokenManageCubit>(context).checkToken();
     }
 
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: isdark ? Themes().dark : Themes().light,
-        home: BlocBuilder<TokenManageCubit, TokenManageState>(
-          builder: (context, state) {
-            checkToken();
-            if (state is TokenManageNoToken) {
-              return const AuthPage();
-            } else {
-              return MainHomePage();
-            }
-          },
-        ));
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, state) {
+        if (state is ThemeDark) {
+          return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: Themes().light,
+              home: BlocBuilder<TokenManageCubit, TokenManageState>(
+                builder: (context, state) {
+                  checkToken();
+                  if (state is TokenManageNoToken) {
+                    return const AuthPage();
+                  } else {
+                    return MainHomePage();
+                  }
+                },
+              ));
+        } else {
+          return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: Themes().dark,
+              home: BlocBuilder<TokenManageCubit, TokenManageState>(
+                builder: (context, state) {
+                  checkToken();
+                  if (state is TokenManageNoToken) {
+                    return const AuthPage();
+                  } else {
+                    return MainHomePage();
+                  }
+                },
+              ));
+        }
+      },
+    );
   }
 }

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -43,20 +41,25 @@ class FavoritesPage extends StatelessWidget {
         ),
         appBar: AppBar(
           backgroundColor: Constants.darkbackgroundcolor,
-          title: Text('Your Favorites'),
+          title: const Text('Your Favorites'),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 70),
           child: FutureBuilder(
             future: GetUserFavorites().getFav(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!.isEmpty) {
-                  return Center(child: Text('No products in your favorites'));
+                  return const Center(
+                      child: Text('No products in your favorites'));
                 } else {
                   return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, childAspectRatio: 2.7 / 4),
+                    clipBehavior: Clip.none,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2.7 / 4,
+                    ),
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       BlocProvider.of<FavouriteCubit>(context)
@@ -74,7 +77,7 @@ class FavoritesPage extends StatelessWidget {
                   child: Text('Error: ${snapshot.error}'),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

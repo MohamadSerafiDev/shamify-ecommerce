@@ -11,7 +11,7 @@ class FetchCartCubit extends Cubit<FetchCartState> {
     try {
       emit(FetchCartLoading());
       dynamic data = await GetCart().getCart();
-      print('============${data}==========');
+      print('============$data==========');
       if (data.isNotEmpty) {
         emit(FetchCartSuccess(cart: data));
       } else {

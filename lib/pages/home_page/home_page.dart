@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                   ),
                   onFieldSubmitted: (value) {
                     //search backend
-                    Get.to(SearchPage(), arguments: value);
+                    Get.to(const SearchPage(), arguments: value);
                     print(value);
                   },
                 ),

@@ -34,6 +34,14 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                Center(
+                  child: Image.network(
+                    '${Constants.localip}${data['imageURL']}',
+                    width: 180,
+                    height: 210,
+                    alignment: Alignment.center,
+                  ),
+                ),
                 Positioned(
                   top: 5,
                   right: 5,
@@ -58,14 +66,6 @@ class ProductCard extends StatelessWidget {
                     },
                   ),
                 ),
-                Positioned(
-                  top: 50,
-                  left: 25,
-                  child: Image.asset(
-                    AppImages.bell,
-                    width: 150,
-                  ),
-                )
               ],
             ),
             Padding(

@@ -69,8 +69,8 @@ class TopStoresListView extends StatelessWidget {
                   Positioned(
                     top: 70,
                     left: 25,
-                    child: Image.asset(
-                      AppImages.bell,
+                    child: Image.network(
+                      '${Constants.localip}${data[index]['photoURL']}',
                       width: 150,
                     ),
                   )

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/custom_icons.dart';
 import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/pages/search_page/search_page.dart';
 import 'package:store/styles/assets.dart';

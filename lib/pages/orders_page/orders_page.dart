@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:store/api/api.dart';
-import 'package:store/services/search/search_for_products_and_stores.dart';
-import 'package:store/shared_preferences/session_manage.dart';
 import 'package:store/styles/constants.dart';
 
 class OrdersPage extends StatelessWidget {
