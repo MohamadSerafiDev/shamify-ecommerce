@@ -14,7 +14,7 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Constants.darkbackgroundcolor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       actions: [
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.7,

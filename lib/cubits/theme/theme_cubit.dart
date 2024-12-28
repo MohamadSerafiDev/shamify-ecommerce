@@ -7,10 +7,10 @@ class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeInitial());
 
   void changeToDarkTheme() {
-    emit(ThemeDark());
+    emit(ThemeInitial());
   }
 
   void changeToLightTheme() {
-    emit(ThemeInitial());
+    emit(ThemeDark());
   }
 }

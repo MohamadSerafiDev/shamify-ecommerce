@@ -58,7 +58,7 @@ class PriceNCounter extends StatelessWidget {
                           ),
                           child: Image.asset(
                             AppIcons.minus,
-                            color: Constants.darkinsidecolor,
+                            color: Theme.of(context).cardColor,
                             scale: 3,
                           ),
                         ),
@@ -83,7 +83,7 @@ class PriceNCounter extends StatelessWidget {
                           ),
                           child: Image.asset(
                             AppIcons.plus,
-                            color: Constants.darkinsidecolor,
+                            color: Theme.of(context).cardColor,
                             scale: 3,
                           ),
                         ),

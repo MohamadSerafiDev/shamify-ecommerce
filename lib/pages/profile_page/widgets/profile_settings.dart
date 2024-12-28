@@ -21,7 +21,7 @@ class ProfileSettings extends StatelessWidget {
         height: 60,
         width: 350,
         decoration: BoxDecoration(
-          color: Constants.darkinsidecolor,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
@@ -31,7 +31,11 @@ class ProfileSettings extends StatelessWidget {
               Text(text, style: TextStyles.textStyle18),
               // ignore: prefer_const_constructors
               Spacer(),
-              Image.asset(AppIcons.right, width: 11, color: Colors.white),
+              Image.asset(
+                AppIcons.right,
+                width: 11,
+                color: Colors.grey,
+              ),
             ],
           ),
         ),

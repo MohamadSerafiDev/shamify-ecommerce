@@ -37,7 +37,7 @@ class ProductsAppBar extends StatelessWidget {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Constants.darkinsidecolor,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(30)),
                   ),
                   Positioned(

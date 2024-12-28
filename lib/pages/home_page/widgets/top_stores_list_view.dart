@@ -26,7 +26,7 @@ class TopStoresListView extends StatelessWidget {
               arguments: index);
         },
         child: Card(
-          color: Constants.darkinsidecolor,
+          color: Theme.of(context).cardColor,
           //product stack
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class TopStoresListView extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: 200,
                     decoration: BoxDecoration(
-                      color: Constants.darkinsidecolor,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),

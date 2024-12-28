@@ -22,7 +22,7 @@ class ProfileImage extends StatelessWidget {
                 height: 120,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: Constants.darkinsidecolor,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(60),
                 ),
                 child:

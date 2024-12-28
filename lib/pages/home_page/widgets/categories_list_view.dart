@@ -26,7 +26,7 @@ class CategoriesListView extends StatelessWidget {
                 height: 75,
                 width: 75,
                 decoration: BoxDecoration(
-                    color: Constants.darkinsidecolor,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(50)),
                 child: Center(child: Icon(cat[index]['icon'])),
               ),

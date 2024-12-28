@@ -4,9 +4,7 @@ import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/pages/home_page/widgets/bottom_nav_bar.dart';
 
 class MainHomePage extends StatelessWidget {
-  MainHomePage({super.key});
-
-  TextEditingController searchcontroller = TextEditingController();
+  const MainHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

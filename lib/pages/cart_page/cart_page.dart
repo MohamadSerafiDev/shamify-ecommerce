@@ -59,7 +59,7 @@ class CartPage extends HookWidget {
                           height: 110,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.darkinsidecolor,
+                            color: Theme.of(context).cardColor,
                           ),
                           child: Row(
                             children: [

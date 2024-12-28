@@ -40,7 +40,7 @@ class FavoritesPage extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
-          backgroundColor: Constants.darkbackgroundcolor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: const Text('Your Favorites'),
         ),
         body: Padding(

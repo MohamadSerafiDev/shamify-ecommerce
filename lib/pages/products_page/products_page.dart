@@ -31,7 +31,7 @@ class ProductsPage extends HookWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Constants.darkbackgroundcolor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text("$title Products"),
           // clipBehavior: Clip.none,
         ),

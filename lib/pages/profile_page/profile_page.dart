@@ -38,7 +38,7 @@ class ProfilePage extends StatelessWidget {
           height: 110,
           width: 350,
           decoration: BoxDecoration(
-            color: Constants.darkinsidecolor,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: const FirstAndLastNameAndAddressEdit(),
@@ -65,7 +65,7 @@ class ProfilePage extends StatelessWidget {
         ProfileSettings(
           text: 'Theme',
           onTap: () {
-            BlocProvider.of<ThemeCubit>(context).changeToLightTheme();
+            BlocProvider.of<ThemeCubit>(context).changeToDarkTheme();
           },
         ),
         const SizedBox(

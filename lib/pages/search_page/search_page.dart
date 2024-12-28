@@ -31,7 +31,7 @@ class SearchPage extends HookWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Constants.darkbackgroundcolor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: SizedBox(
             height: 50,
             child: TextFormField(

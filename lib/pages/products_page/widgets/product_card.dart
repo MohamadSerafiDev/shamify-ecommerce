@@ -25,7 +25,7 @@ class ProductCard extends StatelessWidget {
         Get.to(ProductPage());
       },
       child: Card(
-        color: Constants.darkinsidecolor,
+        color: Theme.of(context).cardColor,
         //product stack
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class ProductCard extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.25,
                   width: 200,
                   decoration: BoxDecoration(
-                    color: Constants.darkinsidecolor,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),

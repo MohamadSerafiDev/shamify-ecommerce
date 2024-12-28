@@ -27,8 +27,10 @@ class ShimmerLoading extends StatelessWidget {
                 animationDuration: Duration(milliseconds: 1300),
                 animationDurationTwo: Duration(milliseconds: 1300),
                 cardLoadingTheme: CardLoadingTheme(
-                  colorOne: Constants.darkbackgroundcolor.withOpacity(0.7),
-                  colorTwo: Constants.darkinsidecolor,
+                  colorOne: Theme.of(context)
+                      .scaffoldBackgroundColor
+                      .withOpacity(0.7),
+                  colorTwo: Theme.of(context).cardColor,
                 ),
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: 200,
