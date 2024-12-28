@@ -11,8 +11,8 @@ import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';
 import 'package:store/styles/constants.dart';
 
-class ProductPage extends HookWidget {
-  const ProductPage({super.key, required this.title});
+class ProductsPage extends HookWidget {
+  const ProductsPage({super.key, required this.title});
   final String title;
 
   @override
