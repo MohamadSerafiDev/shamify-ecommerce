@@ -6,14 +6,15 @@ part 'fetch_cart_state.dart';
 
 class FetchCartCubit extends Cubit<FetchCartState> {
   FetchCartCubit() : super(FetchCartInitial());
+  List orderList = [];
 
   Future<void> cart() async {
     try {
       emit(FetchCartLoading());
       dynamic data = await GetCart().getCart();
       print('============$data==========');
-      if (data.isNotEmpty) {
-        emit(FetchCartSuccess(cart: data));
+      if (data != null) {
+        emit(FetchCartSuccess(cart: data['items']));
       } else {
         emit(FetchCartInitial());
       }

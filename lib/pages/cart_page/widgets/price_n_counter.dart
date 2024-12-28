@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/cubits/counter/counter_cubit.dart';
+import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
 
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
@@ -11,8 +12,9 @@ class PriceNCounter extends StatelessWidget {
     super.key,
     required this.quantity,
     required this.price,
+    required this.index,
   });
-  // int i = 9;
+  final int index;
   int quantity;
   final int price;
 
@@ -42,6 +44,8 @@ class PriceNCounter extends StatelessWidget {
                         onTap: () {
                           if (quantity > 1) {
                             quantity--;
+                            BlocProvider.of<FetchCartCubit>(context)
+                                .orderList[index]['quantity'] = quantity;
                             BlocProvider.of<CounterCubit>(context).decrement();
                           }
                         },
@@ -66,6 +70,8 @@ class PriceNCounter extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           quantity++;
+                          BlocProvider.of<FetchCartCubit>(context)
+                              .orderList[index]['quantity'] = quantity;
                           BlocProvider.of<CounterCubit>(context).increment();
                         },
                         child: Container(

@@ -55,7 +55,7 @@ class ProductPage extends HookWidget {
                 if (state is FetchStoreProductsSuccess) {
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, childAspectRatio: 2.7 / 4),
+                        crossAxisCount: 2, childAspectRatio: 2.6 / 4),
                     itemCount: BlocProvider.of<FetchStoreProductsCubit>(context)
                         .productsData
                         .length,

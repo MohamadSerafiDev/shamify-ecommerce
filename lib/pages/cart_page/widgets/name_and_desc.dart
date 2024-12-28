@@ -21,6 +21,7 @@ class NameAndDesc extends StatelessWidget {
         ),
         Text(
           name,
+          overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.start,
           style: TextStyles.textStyle22,
         ),

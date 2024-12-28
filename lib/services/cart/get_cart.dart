@@ -14,7 +14,7 @@ class GetCart {
     // print(data['cart']['items'][0]['quantity']);
     // print(data['items'][0]['item']);
 
-    return data['cart']['items'];
+    return data['cart'];
   }
 }
 

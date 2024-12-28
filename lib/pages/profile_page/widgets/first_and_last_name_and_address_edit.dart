@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store/services/user/update_user_info.dart';
 import 'package:store/styles/text_styles.dart';
 
 class FirstAndLastNameAndAddressEdit extends StatelessWidget {
@@ -8,35 +9,55 @@ class FirstAndLastNameAndAddressEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Name: ',
-            style: TextStyles.textStyle18,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return FutureBuilder(
+      future: UpdateUserInfo().updateUser(body: null),
+      builder: (context, snapshot) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'phone: ',
-                style: TextStyles.textStyle14.copyWith(
-                  color: Colors.grey,
-                ),
+              Row(
+                children: [
+                  const Text(
+                    'First name: ',
+                    style: TextStyles.textStyle18,
+                  ),
+                  Text('${snapshot.data?.firstName}',
+                      style: const TextStyle(color: Colors.grey))
+                ],
               ),
-              TextButton(onPressed: () {}, child: const Text("Edit"))
+              Row(
+                children: [
+                  const Text('Last name: ', style: TextStyles.textStyle18),
+                  Text('${snapshot.data?.lastName}',
+                      style: const TextStyle(color: Colors.grey)),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      UpdateUserInfo().updateUser(
+                          body: {'firstName': 'mohamad', 'lastName': 'serafi'});
+                    },
+                    child: const Text("Edit"),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Address: ',
+                    style: TextStyles.textStyle18.copyWith(),
+                  ),
+                  Text(
+                    '${snapshot.data?.location}',
+                    style: const TextStyle(color: Colors.grey),
+                  )
+                ],
+              ),
             ],
           ),
-          Text(
-            'Address: ',
-            style: TextStyles.textStyle14.copyWith(
-              color: Colors.grey,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

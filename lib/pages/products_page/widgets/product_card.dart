@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/api/api.dart';
@@ -35,12 +37,13 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 Center(
-                  child: Image.network(
-                    '${Constants.localip}${data['imageURL']}',
-                    width: 180,
-                    height: 210,
-                    alignment: Alignment.center,
-                  ),
+                  child: Image.asset(AppImages.parcel),
+                  // child: Image.network(
+                  //   '${Constants.localip}${data['imageURL']}',
+                  //   width: 180,
+                  //   height: 210,
+                  //   alignment: Alignment.center,
+                  // ),
                 ),
                 Positioned(
                   top: 5,
@@ -83,28 +86,49 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        data['id'].toString(),
+                        '${data['price']} \$',
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       const Spacer(),
-                      IconButton(
-                          onPressed: () async {
-                            await Api().post(
-                                url:
-                                    '${Constants.localip}/api/v1/add-to-cart/${data['id'].toString()}',
-                                body: {'quantity': "1"},
-                                withToken: true);
-                          },
-                          icon: const Icon(
-                            Icons.add_shopping_cart_outlined,
-                            size: 30,
-                            color: Constants.buttoncolor,
-                          ))
+                      Column(
+                        children: [
+                          IconButton(
+                            onPressed: () async {
+                              await Api().post(
+                                  url:
+                                      '${Constants.localip}/api/v1/add-to-cart/${data['id'].toString()}',
+                                  body: {'quantity': '1'},
+                                  withToken: true);
+                            },
+                            icon: const Icon(
+                              Icons.add_shopping_cart_outlined,
+                              size: 30,
+                              color: Constants.buttoncolor,
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('in storage:'),
+                      Spacer(),
+                      Text(
+                        '${data['count']}',
+                        style: TextStyle(
+                            color:
+                                data['count'] < 4 ? Colors.red : Colors.green),
+                      ),
+                      SizedBox(
+                        width: 17,
+                      )
+                    ],
+                  )
                 ],
               ),
             ),

@@ -58,7 +58,7 @@ class FavoritesPage extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 2.7 / 4,
+                      childAspectRatio: 2.5 / 4,
                     ),
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
