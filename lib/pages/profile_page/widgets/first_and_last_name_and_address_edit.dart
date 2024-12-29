@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:store/services/user/update_user_info.dart';
 import 'package:store/styles/text_styles.dart';
 

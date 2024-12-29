@@ -30,7 +30,15 @@ class FavoritesPage extends StatelessWidget {
                 url: '${Constants.localip}/api/v1/add-all-to-cart',
                 withToken: true,
               );
-              print(response);
+              if (response['message'] == "good") {
+                Get.snackbar(
+                  duration: const Duration(seconds: 1),
+                  'Success',
+                  'All favorites added to cart',
+                  backgroundColor: Theme.of(context).cardColor,
+                  snackPosition: SnackPosition.TOP,
+                );
+              }
             },
             child: Text(
               'add Favorites to your Cart +',

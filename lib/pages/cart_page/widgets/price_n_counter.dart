@@ -45,7 +45,8 @@ class PriceNCounter extends StatelessWidget {
                           if (quantity > 1) {
                             quantity--;
                             BlocProvider.of<FetchCartCubit>(context)
-                                .orderList[index]['quantity'] = quantity;
+                                    .orderList[index]['quantity'] =
+                                quantity.toString();
                             BlocProvider.of<CounterCubit>(context).decrement();
                           }
                         },
@@ -71,7 +72,8 @@ class PriceNCounter extends StatelessWidget {
                         onTap: () {
                           quantity++;
                           BlocProvider.of<FetchCartCubit>(context)
-                              .orderList[index]['quantity'] = quantity;
+                                  .orderList[index]['quantity'] =
+                              quantity.toString();
                           BlocProvider.of<CounterCubit>(context).increment();
                         },
                         child: Container(

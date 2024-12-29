@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -64,9 +66,16 @@ class ProductCard extends StatelessWidget {
                               ? Colors.red
                               : Colors.white,
                         ),
-                        onPressed: () {
-                          BlocProvider.of<FavouriteCubit>(context)
+                        onPressed: () async {
+                          await BlocProvider.of<FavouriteCubit>(context)
                               .toggleFavourite(index: index, id: data['id']);
+                          Get.snackbar(
+                            duration: Duration(milliseconds: 1500),
+                            'Success',
+                            'Added to favorites ❤️',
+                            backgroundColor: Theme.of(context).cardColor,
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
                         },
                       );
                     },
@@ -103,8 +112,16 @@ class ProductCard extends StatelessWidget {
                               await Api().post(
                                   url:
                                       '${Constants.localip}/api/v1/add-to-cart/${data['id'].toString()}',
-                                  body: {'quantity': '1'},
+                                  body: jsonEncode({'quantity': '1'}),
                                   withToken: true);
+                              // create snackbar
+                              Get.snackbar(
+                                duration: Duration(milliseconds: 1500),
+                                'Success',
+                                'Added to cart',
+                                backgroundColor: Theme.of(context).cardColor,
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
                             },
                             icon: const Icon(
                               Icons.add_shopping_cart_outlined,

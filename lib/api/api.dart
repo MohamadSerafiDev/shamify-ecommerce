@@ -34,10 +34,12 @@ class Api {
       dynamic token = await TokenManage().getToken();
       print(token);
       headers.addAll({
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
         'Cookie': '${await SessionManage().getSessionId()}'
       });
     }
+    print('****************************8$body');
     http.Response response =
         await http.post(Uri.parse(url), body: body, headers: headers);
 

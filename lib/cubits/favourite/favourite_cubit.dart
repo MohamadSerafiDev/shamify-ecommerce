@@ -14,7 +14,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
     dynamic response = await Api().post(
         url: '${Constants.localip}/api/v1/add-favorite/$id',
         withToken: true,
-        body: {});
+        body: null);
 
     if (response['isFavorite'] == false) {
       emit(FavouriteUnSelected());

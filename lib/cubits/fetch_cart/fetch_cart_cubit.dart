@@ -22,4 +22,14 @@ class FetchCartCubit extends Cubit<FetchCartState> {
       emit(FetchCartFailure(errormessage: e.toString()));
     }
   }
+
+  void removeFromCart(int index) {
+    orderList.removeAt(index);
+    emit(FetchCartSuccess(cart: orderList));
+  }
+
+  void orderPlaced() {
+    orderList = [];
+    emit(FetchCartInitial());
+  }
 }
