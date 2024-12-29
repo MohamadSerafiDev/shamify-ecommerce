@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/pages/products_page/products_page.dart';
 import 'package:store/styles/assets.dart';
-import 'package:store/styles/constants.dart';
 
 class TopStoresListView extends StatelessWidget {
   TopStoresListView({super.key, required this.index, required this.data});

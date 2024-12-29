@@ -9,7 +9,6 @@ import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/fetch_store_products/fetch_store_products_cubit.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';
-import 'package:store/styles/constants.dart';
 
 class ProductsPage extends HookWidget {
   const ProductsPage({super.key, required this.title});

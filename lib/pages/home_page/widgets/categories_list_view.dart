@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store/styles/constants.dart';
 
 class CategoriesListView extends StatelessWidget {
   const CategoriesListView({

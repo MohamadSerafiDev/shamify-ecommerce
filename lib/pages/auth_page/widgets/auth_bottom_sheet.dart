@@ -44,7 +44,7 @@ Future<dynamic> authBottomSheet(BuildContext context,
         //navigation and error dialog
         listener: (context, state) async {
           if (state is AuthSuccess) {
-            await Get.offAll(MainHomePage(),
+            await Get.offAll(const MainHomePage(),
                 transition: gTransition.Transition.fade,
                 duration: const Duration(milliseconds: 1000));
             dispose();

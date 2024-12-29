@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:store/api/api.dart';
 import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
 import 'package:store/pages/cart_page/widgets/name_and_desc.dart';
 import 'package:store/pages/cart_page/widgets/price_n_counter.dart';

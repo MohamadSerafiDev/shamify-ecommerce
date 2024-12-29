@@ -3,11 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/pages/product_page/product_page.dart';
-import 'package:store/pages/products_page/products_page.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 

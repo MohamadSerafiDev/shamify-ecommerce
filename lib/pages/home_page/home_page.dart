@@ -2,7 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
 import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';

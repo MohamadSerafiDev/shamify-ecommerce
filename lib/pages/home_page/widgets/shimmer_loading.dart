@@ -2,7 +2,6 @@
 
 import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:store/styles/constants.dart';
 
 class ShimmerLoading extends StatelessWidget {
   const ShimmerLoading({

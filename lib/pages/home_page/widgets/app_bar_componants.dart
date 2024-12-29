@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/pages/search_page/search_page.dart';
 import 'package:store/styles/assets.dart';
-import 'package:store/styles/constants.dart';
 
 class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
   const AppBarComponants({super.key, required this.searchcontroller});

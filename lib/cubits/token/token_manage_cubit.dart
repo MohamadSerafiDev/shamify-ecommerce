@@ -26,7 +26,7 @@ class TokenManageCubit extends Cubit<TokenManageState> {
 
   dynamic getPage() {
     if (state is TokenManageWithToken) {
-      return MainHomePage();
+      return const MainHomePage();
     } else {
       return const AuthPage();
     }

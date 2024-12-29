@@ -1,6 +1,6 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:store/styles/assets.dart';
-import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
 class ProfileSettings extends StatelessWidget {
@@ -8,9 +8,11 @@ class ProfileSettings extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
+    required this.end,
   });
   final String text;
   final void Function() onTap;
+  final dynamic end;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +33,8 @@ class ProfileSettings extends StatelessWidget {
               Text(text, style: TextStyles.textStyle18),
               // ignore: prefer_const_constructors
               Spacer(),
-              Image.asset(
-                AppIcons.right,
-                width: 11,
-                color: Colors.grey,
-              ),
+
+              end
             ],
           ),
         ),
