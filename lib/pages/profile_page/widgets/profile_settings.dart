@@ -1,6 +1,4 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
 
 class ProfileSettings extends StatelessWidget {
@@ -31,9 +29,7 @@ class ProfileSettings extends StatelessWidget {
           child: Row(
             children: [
               Text(text, style: TextStyles.textStyle18),
-              // ignore: prefer_const_constructors
-              Spacer(),
-
+              const Spacer(),
               end
             ],
           ),

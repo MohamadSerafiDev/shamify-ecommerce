@@ -1,4 +1,5 @@
 import 'package:store/api/api.dart';
+import 'package:store/models/search_model.dart';
 import 'package:store/styles/constants.dart';
 
 class SearchForProductsAndStores {
@@ -21,10 +22,4 @@ class SearchForProductsAndStores {
 
     return SearchModel(products: productsResult, stores: storesResult);
   }
-}
-
-class SearchModel {
-  SearchModel({required this.products, required this.stores});
-  final dynamic products;
-  final dynamic stores;
 }

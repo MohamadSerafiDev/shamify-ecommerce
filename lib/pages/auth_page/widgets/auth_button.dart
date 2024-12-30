@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:store/styles/constants.dart';
 
@@ -31,7 +29,7 @@ class AuthButton extends StatelessWidget {
           )
         : ElevatedButton(
             //this to disable splash effect of the button
-            style: ButtonStyle(
+            style: const ButtonStyle(
               splashFactory: NoSplash.splashFactory,
             ),
             onPressed: onPressed,

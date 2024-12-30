@@ -1,4 +1,5 @@
 import 'package:store/api/api.dart';
+import 'package:store/models/user_model.dart';
 import 'package:store/styles/constants.dart';
 
 class UpdateUserInfo {
@@ -17,15 +18,4 @@ class UpdateUserInfo {
         lastName: data['data']['lastName'],
         location: data['data']['location']);
   }
-}
-
-class UserModel {
-  final String firstName;
-  final String lastName;
-  final String location;
-
-  UserModel(
-      {required this.firstName,
-      required this.lastName,
-      required this.location});
 }

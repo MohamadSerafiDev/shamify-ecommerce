@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:bloc/bloc.dart';
 import 'package:store/pages/cart_page/cart_page.dart';
 import 'package:store/pages/home_page/home_page.dart';
@@ -10,7 +8,12 @@ part 'navigation_state.dart';
 
 class NavigationBarCubit extends Cubit<NavigationBarState> {
   NavigationBarCubit() : super(NavigationBarState(0));
-  List pages = [HomePage(), CartPage(), OrdersPage(), ProfilePage()];
+  List pages = [
+    HomePage(),
+    const CartPage(),
+    const OrdersPage(),
+    const ProfilePage()
+  ];
   int currentIndex = 0;
 
   void selectTab(int index) {

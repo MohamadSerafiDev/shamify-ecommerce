@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/pages/favorites_page/favorites_page.dart';
@@ -32,7 +30,7 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
             ),
             onFieldSubmitted: (value) {
               //search backend
-              Get.to(SearchPage(), arguments: value);
+              Get.to(const SearchPage(), arguments: value);
               print(value);
               print(searchcontroller.text);
               searchcontroller.clear();
@@ -46,7 +44,7 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
             child: ElevatedButton(
                 onPressed: () {
                   // navigation to fav
-                  Get.to(FavoritesPage());
+                  Get.to(const FavoritesPage());
                 },
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +21,8 @@ class ShimmerLoading extends StatelessWidget {
                   : const EdgeInsets.only(left: 12),
               child: CardLoading(
                 curve: Curves.slowMiddle,
-                animationDuration: Duration(milliseconds: 1300),
-                animationDurationTwo: Duration(milliseconds: 1300),
+                animationDuration: const Duration(milliseconds: 1300),
+                animationDurationTwo: const Duration(milliseconds: 1300),
                 cardLoadingTheme: CardLoadingTheme(
                   colorOne: Theme.of(context)
                       .scaffoldBackgroundColor
@@ -33,7 +31,7 @@ class ShimmerLoading extends StatelessWidget {
                 ),
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: 200,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
             );
           },

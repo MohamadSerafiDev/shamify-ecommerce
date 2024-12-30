@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -20,7 +18,7 @@ class ProductsAppBar extends StatelessWidget {
       height: 50,
       child: Row(
         children: [
-          SizedBox(
+          const SizedBox(
             width: 5,
           ),
           InkWell(
@@ -50,12 +48,12 @@ class ProductsAppBar extends StatelessWidget {
                   )
                 ],
               )),
-          Spacer(),
+          const Spacer(),
           Text(
             '$title Products',
-            style: TextStyle(fontSize: 22),
+            style: const TextStyle(fontSize: 22),
           ),
-          Spacer(
+          const Spacer(
             flex: 4,
           )
         ],

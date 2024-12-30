@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:store/pages/orders_page/widgets/order_list_tile.dart';
 import 'package:store/pages/orders_page/widgets/orders_list_view.dart';
 import 'package:store/pages/orders_page/widgets/tab_row.dart';
 import 'package:store/services/orders/get_orders.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
-import 'package:store/styles/text_styles.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});

@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/fetch_store_products/fetch_store_products_cubit.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';
+import 'package:store/styles/constants.dart';
 
 class ProductsPage extends HookWidget {
   const ProductsPage({super.key, required this.title});
@@ -45,16 +45,18 @@ class ProductsPage extends HookWidget {
                       message: state.errormessage,
                       contentType: ContentType.failure);
                 }
-                // TODO: implement listener
               },
               builder: (context, state) {
                 if (state is FetchStoreProductsLoading) {
-                  return CircularProgressIndicator();
+                  return const SpinKitThreeBounce(
+                    color: Constants.buttoncolor,
+                  );
                 }
                 if (state is FetchStoreProductsSuccess) {
                   return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, childAspectRatio: 2.6 / 4),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 2.6 / 4),
                     itemCount: BlocProvider.of<FetchStoreProductsCubit>(context)
                         .productsData
                         .length,
@@ -70,7 +72,7 @@ class ProductsPage extends HookWidget {
                     },
                   );
                 } else {
-                  return Center(
+                  return const Center(
                     child: Text('data'),
                   );
                 }

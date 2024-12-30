@@ -10,10 +10,6 @@ class MainHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      //top search
-      // appBar: AppBarComponants(
-      //   searchcontroller: searchcontroller,
-      // ),
       bottomNavigationBar: const BottomNavBar(),
       body: BlocBuilder<NavigationBarCubit, NavigationBarState>(
         builder: (context, state) {
