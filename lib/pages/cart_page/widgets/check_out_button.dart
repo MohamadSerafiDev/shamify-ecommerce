@@ -1,9 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
+import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/pages/cart_page/widgets/check_out_bottom_sheet.dart';
 import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
@@ -33,7 +36,9 @@ class CheckOutButton extends StatelessWidget {
                 backgroundColor: Theme.of(context).cardColor,
                 snackPosition: SnackPosition.TOP,
               );
+              Navigator.pop(context);
               BlocProvider.of<FetchCartCubit>(context).orderPlaced();
+              context.read<NavigationBarCubit>().selectTab(2);
             }
           },
         );

@@ -6,7 +6,7 @@ class Themes {
   ThemeData light = ThemeData.light(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: Constants.lightbackgroundcolor,
     textTheme: GoogleFonts.aBeeZeeTextTheme(),
-    iconTheme: const IconThemeData(color: Colors.black),
+    iconTheme: const IconThemeData(color: Colors.grey),
     cardColor: Constants.lightinsidecolor,
     buttonTheme: const ButtonThemeData(
       buttonColor: Constants.buttoncolor,

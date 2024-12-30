@@ -28,6 +28,7 @@ Future<dynamic> CheckOutBottomSheet(BuildContext context,
                   const BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: FutureBuilder(
+              //فاتورة
               future: GetCheckout().getInvoice(
                 dataBody: jsonEncode(
                   {'items': BlocProvider.of<FetchCartCubit>(context).orderList},

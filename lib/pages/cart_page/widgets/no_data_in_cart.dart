@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
 
@@ -21,12 +23,17 @@ class NoDataInCart extends StatelessWidget {
             height: 30,
           ),
           const Text(
-            'No data in your Cart',
+            'No products in your Cart',
             style: TextStyles.textStyle18,
           ),
           const SizedBox(
-            height: 50,
-          )
+            height: 30,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                context.read<NavigationBarCubit>().selectTab(0);
+              },
+              child: const Text('Shop Now >>', style: TextStyles.textStyle18)),
         ],
       ),
     );

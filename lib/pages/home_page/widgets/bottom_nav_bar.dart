@@ -17,7 +17,7 @@ class BottomNavBar extends StatelessWidget {
         return CrystalNavigationBar(
           currentIndex: state.selectedIndex,
           selectedItemColor: Constants.buttoncolor,
-          unselectedItemColor: Theme.of(context).primaryIconTheme.color,
+          unselectedItemColor: Theme.of(context).iconTheme.color,
           items: [
             CrystalNavigationBarItem(
               icon: CustomIcons.home_1,

@@ -1,100 +1,92 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:store/api/api.dart';
+import 'package:store/pages/orders_page/widgets/order_list_tile.dart';
+import 'package:store/pages/orders_page/widgets/orders_list_view.dart';
+import 'package:store/pages/orders_page/widgets/tab_row.dart';
+import 'package:store/services/orders/get_orders.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
 class OrdersPage extends StatelessWidget {
-  OrdersPage({super.key});
+  const OrdersPage({super.key});
   @override
-  final List<Order> orders = [
-    Order(
-        id: '1',
-        title: 'Order 1',
-        status: 'pending',
-        details: 'Details about Order 1'),
-    Order(
-        id: '2',
-        title: 'Order 2',
-        status: 'fulfilled',
-        details: 'Details about Order 2'),
-    Order(
-        id: '3',
-        title: 'Order 3',
-        status: 'pending',
-        details: 'Details about Order 3'),
-    Order(
-        id: '4',
-        title: 'Order 4',
-        status: 'fulfilled',
-        details: 'Details about Order 4'),
-  ];
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'Pending Orders',
-            style: TextStyles.textStyle18,
-          ),
-        ),
-        ...orders
-            .where((order) => order.status == 'pending')
-            .map((order) => ListTile(
-                  title: Text(order.title),
-                  subtitle: Text(order.details),
-                  trailing: SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: SpinKitPouringHourGlass(
+    return Scaffold(
+      body: DefaultTabController(
+        length: 2,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 40),
+          child: Column(
+            children: [
+              TabBar(
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: Constants.buttoncolor,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                splashFactory: NoSplash.splashFactory,
+                tabs: const [
+                  Tab(
+                    child: TabRow(
+                      text: 'Pending',
+                      icon: Icons.timer,
+                    ),
+                  ),
+                  Tab(
+                    child: TabRow(
+                      text: 'Fulfilled',
+                      icon: Icons.done_all,
+                    ),
+                  ),
+                ],
+              ),
+              FutureBuilder(
+                future: GetOrders().get(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.88,
+                      child: TabBarView(
+                        children: [
+                          //pending
+                          OrdersListView(
+                            data: snapshot.data!,
+                            status: 'pending',
+                            icon: const Center(
+                                child: SpinKitPouringHourGlass(
+                              color: Constants.buttoncolor,
+                              strokeWidth: 0.5,
+                              size: 30,
+                            )),
+                          ),
+                          //fulfilled
+                          OrdersListView(
+                            data: snapshot.data!,
+                            status: 'fulfilled',
+                            icon: Image.asset(
+                              AppIcons.truesing,
+                              color: Constants.buttoncolor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return const Center(
+                        child: SpinKitPouringHourGlass(
                       color: Constants.buttoncolor,
                       strokeWidth: 0.5,
                       size: 30,
-                    ),
-                  ),
-                )),
-        Divider(
-          indent: 30,
-          endIndent: 30,
-          color: Colors.white,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'Fulfilled Orders',
-            style: TextStyles.textStyle18,
+                    ));
+                  }
+                },
+              ),
+            ],
           ),
         ),
-        ...orders.where((order) => order.status == 'fulfilled').map(
-              (order) => ListTile(
-                title: Text(order.title),
-                subtitle: Text(order.details),
-                trailing: Image.asset(
-                  AppIcons.truesing,
-                  color: Constants.buttoncolor,
-                  width: 25,
-                ),
-              ),
-            ),
-      ],
+      ),
     );
   }
-}
-
-class Order {
-  final String id;
-  final String title;
-  final String status; // 'pending' or 'fulfilled'
-  final String details;
-
-  Order(
-      {required this.id,
-      required this.title,
-      required this.status,
-      required this.details});
 }
