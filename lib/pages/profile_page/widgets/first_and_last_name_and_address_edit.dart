@@ -1,11 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store/pages/profile_page/widgets/user_info_row.dart';
 import 'package:store/services/user/update_user_info.dart';
 import 'package:store/styles/text_styles.dart';
 
 class FirstAndLastNameAndAddressEdit extends StatelessWidget {
-  const FirstAndLastNameAndAddressEdit({
+  FirstAndLastNameAndAddressEdit({
     super.key,
   });
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,50 +20,41 @@ class FirstAndLastNameAndAddressEdit extends StatelessWidget {
       future: UpdateUserInfo().updateUser(body: null),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          firstNameController.text = '${snapshot.data?.firstName}';
+          lastNameController.text = '${snapshot.data?.lastName}';
+          addressController.text = '${snapshot.data?.location}';
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    const Text(
-                      'First name: ',
-                      style: TextStyles.textStyle18,
-                    ),
-                    Text('${snapshot.data?.firstName}',
-                        style: const TextStyle(color: Colors.grey))
-                  ],
+                UserInfoRow(
+                  firstNameController: firstNameController,
+                  title: 'First name',
                 ),
-                Row(
-                  children: [
-                    const Text('Last name: ', style: TextStyles.textStyle18),
-                    Text('${snapshot.data?.lastName}',
-                        style: const TextStyle(color: Colors.grey)),
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        UpdateUserInfo().updateUser(body: {
-                          'firstName': 'mohamad',
-                          'lastName': 'serafi'
-                        });
-                      },
-                      child: const Text("Edit"),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Address: ',
-                      style: TextStyles.textStyle18.copyWith(),
-                    ),
-                    Text(
-                      '${snapshot.data?.location}',
-                      style: const TextStyle(color: Colors.grey),
-                    )
-                  ],
-                ),
+                UserInfoRow(
+                    firstNameController: lastNameController,
+                    title: 'Last name'),
+                UserInfoRow(
+                    firstNameController: addressController, title: 'Address'),
+                ElevatedButton(
+                  onPressed: () async {
+                    await UpdateUserInfo().updateUser(
+                      body: jsonEncode(
+                        {
+                          'firstName': firstNameController.text,
+                          'lastName': lastNameController.text,
+                          'location': addressController.text
+                        },
+                      ),
+                    );
+                    Get.snackbar(
+                      'success',
+                      'user information updated',
+                    );
+                  },
+                  child: const Text("Save changes"),
+                )
               ],
             ),
           );

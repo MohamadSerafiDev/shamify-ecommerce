@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
     super.key,
   });
 
-  List<Map<String, dynamic>> cat = [
+  final List<Map<String, dynamic>> cat = [
     {'name': 'shirts', 'icon': Icons.numbers},
     {'name': 'T-shirts', 'icon': Icons.numbers},
     {'name': 'Hoodies', 'icon': Icons.numbers},
@@ -29,144 +29,136 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.68,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    prefixIcon: Image.asset(
-                      AppIcons.search,
-                      color: Colors.white,
-                      scale: 2.5,
-                    ),
-                    hintText: "Search",
-                  ),
-                  onFieldSubmitted: (value) {
-                    //search backend
-                    Get.to(const SearchPage(), arguments: value);
-                    print(value);
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: SizedBox(
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        // navigation to fav
-                        Get.to(const FavoritesPage());
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                      ),
-                      child: Image.asset(
-                        AppIcons.isfav,
-                        width: 25,
-                        color: Colors.white,
-                      )),
-                ),
-              ),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        actions: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.85,
-            child: ListView(
-              // clipBehavior: Clip.none,
-              children: [
-                //categories row and see all
-                TextRow(
-                  start: 'Categories',
-                  onPressed: () {},
+            width: MediaQuery.of(context).size.width * 0.68,
+            child: TextFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
                 ),
-                const SizedBox(
-                  height: 10,
+                prefixIcon: Image.asset(
+                  AppIcons.search,
+                  color: Theme.of(context).iconTheme.color,
+                  scale: 2.5,
                 ),
-                //categories buttons row
-                SizedBox(
-                  //avoid unlimited width error
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  child: ListView(
+                hintText: "Search",
+              ),
+              onFieldSubmitted: (value) {
+                //search backend
+                Get.to(const SearchPage(), arguments: value);
+                print(value);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: SizedBox(
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    // navigation to fav
+                    Get.to(const FavoritesPage());
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                  ),
+                  child: Image.asset(
+                    AppIcons.isfav,
+                    width: 25,
+                    color: Colors.white,
+                  )),
+            ),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          clipBehavior: Clip.none,
+          children: [
+            //categories row and see all
+            TextRow(
+              start: 'Categories',
+              onPressed: () {},
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            //categories buttons row
+            SizedBox(
+              //avoid unlimited width error
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.15,
+              child: ListView(
+                  clipBehavior: Clip.none,
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ...List.generate(
+                      7,
+                      (index) {
+                        return CategoriesListView(cat: cat, index: index);
+                      },
+                    )
+                  ]),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            //top seling and see all
+            TextRow(
+              start: "Top Stores",
+              onPressed: () {},
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            //Top Selling row
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: BlocConsumer<FetchStoresCubit, FetchStoresState>(
+                listener: (context, state) {
+                  if (state is FetchStoresFailure) {
+                    errorDialog(context,
+                        title: 'error',
+                        message: state.errormessage,
+                        contentType: ContentType.failure);
+                  }
+                },
+                builder: (context, state) {
+                  if (state is FetchStoresLoading) {
+                    return const ShimmerLoading();
+                  } else if (state is FetchStoresSuccess) {
+                    return ListView(
                       clipBehavior: Clip.none,
                       scrollDirection: Axis.horizontal,
                       children: [
                         ...List.generate(
-                          7,
+                          BlocProvider.of<FetchStoresCubit>(context)
+                              .storesData
+                              .length,
                           (index) {
-                            return CategoriesListView(cat: cat, index: index);
+                            return TopStoresListView(
+                              index: index,
+                              data: BlocProvider.of<FetchStoresCubit>(context)
+                                  .storesData,
+                            );
                           },
                         )
-                      ]),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                //top seling and see all
-                TextRow(
-                  start: "Top Stores",
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                //Top Selling row
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  child: BlocConsumer<FetchStoresCubit, FetchStoresState>(
-                    listener: (context, state) {
-                      if (state is FetchStoresFailure) {
-                        errorDialog(context,
-                            title: 'error',
-                            message: state.errormessage,
-                            contentType: ContentType.failure);
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is FetchStoresLoading) {
-                        return const ShimmerLoading();
-                      } else if (state is FetchStoresSuccess) {
-                        return ListView(
-                          clipBehavior: Clip.none,
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            ...List.generate(
-                              BlocProvider.of<FetchStoresCubit>(context)
-                                  .storesData
-                                  .length,
-                              (index) {
-                                return TopStoresListView(
-                                  index: index,
-                                  data:
-                                      BlocProvider.of<FetchStoresCubit>(context)
-                                          .storesData,
-                                );
-                              },
-                            )
-                          ],
-                        );
-                      } else {
-                        BlocProvider.of<FetchStoresCubit>(context).getStores();
-                        return const ShimmerLoading();
-                      }
-                    },
-                  ),
-                ),
-              ],
+                      ],
+                    );
+                  } else {
+                    BlocProvider.of<FetchStoresCubit>(context).getStores();
+                    return const ShimmerLoading();
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

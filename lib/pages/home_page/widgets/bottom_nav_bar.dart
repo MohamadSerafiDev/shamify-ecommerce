@@ -18,6 +18,8 @@ class BottomNavBar extends StatelessWidget {
           currentIndex: state.selectedIndex,
           selectedItemColor: Constants.buttoncolor,
           unselectedItemColor: Theme.of(context).iconTheme.color,
+          backgroundColor: Theme.of(context).cardColor,
+          enableFloatingNavBar: true,
           items: [
             CrystalNavigationBarItem(
               icon: CustomIcons.home_1,
@@ -32,8 +34,6 @@ class BottomNavBar extends StatelessWidget {
               icon: CustomIcons.profile,
             ),
           ],
-          backgroundColor: Colors.grey.withOpacity(0.1),
-          enableFloatingNavBar: true,
           boxShadow: [
             BoxShadow(
                 blurRadius: 10,

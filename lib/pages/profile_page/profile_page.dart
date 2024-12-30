@@ -1,4 +1,4 @@
-// ignore_for_file: missing_required_param
+// ignore_for_file: missing_required_param, use_build_context_synchronously
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
@@ -25,109 +25,115 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ThemeSwitchingArea(
       child: Scaffold(
-        body: Column(
+        body: ListView(
           children: [
-            const SizedBox(
-              height: 60,
-            ),
-            BlocBuilder<ProfileImageCubit, ProfileImageState>(
-              builder: (context, state) {
-                return const ProfileImage();
-              },
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            Container(
-              height: 110,
-              width: 350,
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const FirstAndLastNameAndAddressEdit(),
-            ),
-            const SizedBox(
-              height: 26,
-            ),
-            ProfileSettings(
-              text: 'Favourites',
-              onTap: () {
-                Get.to(const FavoritesPage());
-              },
-              end: Image.asset(
-                AppIcons.right,
-                width: 11,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            ProfileSettings(
-              text: 'Language',
-              onTap: () {},
-              end: Image.asset(
-                AppIcons.right,
-                width: 11,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            ThemeSwitcher(
-              builder: (context) {
-                return ProfileSettings(
-                  text: 'Theme',
-                  onTap: () {},
-                  end: ThemeSwitcher(builder: (context) {
-                    return InkWell(
-                      onTap: () {
-                        var brightness = ThemeModelInheritedNotifier.of(context)
-                            .theme
-                            .brightness;
-                        ThemeSwitcher.of(context).changeTheme(
-                            theme: brightness == Brightness.light
-                                ? Themes().dark
-                                : Themes().light,
-                            isReversed:
-                                brightness == Brightness.light ? true : false);
-                      },
-                      child: Icon(
-                        ThemeModelInheritedNotifier.of(context)
-                                    .theme
-                                    .brightness ==
-                                Brightness.light
-                            ? Icons.light_mode_rounded
-                            : Icons.dark_mode_rounded,
-                        color: Colors.grey,
-                      ),
-                    );
-                  }),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 25,
-            ),
-            TextButton(
-              onPressed: () async {
-                print(await TokenManage().getToken());
-                await Api().post(
-                  url: '${Constants.localip}/api/v1/logout',
-                  withToken: true,
-                );
-                BlocProvider.of<TokenManageCubit>(context).removedToken();
-                Get.offAll(const AuthPage());
-              },
-              child: Text(
-                "Sign Out",
-                style: TextStyles.textStyle22.copyWith(
-                  color: Colors.red,
+            Column(
+              children: [
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-            )
+                BlocBuilder<ProfileImageCubit, ProfileImageState>(
+                  builder: (context, state) {
+                    return const ProfileImage();
+                  },
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Container(
+                  height: 220,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: FirstAndLastNameAndAddressEdit(),
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+                ProfileSettings(
+                  text: 'Favourites',
+                  onTap: () {
+                    Get.to(const FavoritesPage());
+                  },
+                  end: Image.asset(
+                    AppIcons.right,
+                    width: 11,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ProfileSettings(
+                  text: 'Language',
+                  onTap: () {},
+                  end: Image.asset(
+                    AppIcons.right,
+                    width: 11,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ThemeSwitcher(
+                  builder: (context) {
+                    return ProfileSettings(
+                      text: 'Theme',
+                      onTap: () {},
+                      end: ThemeSwitcher(builder: (context) {
+                        return InkWell(
+                          onTap: () {
+                            var brightness =
+                                ThemeModelInheritedNotifier.of(context)
+                                    .theme
+                                    .brightness;
+                            ThemeSwitcher.of(context).changeTheme(
+                                theme: brightness == Brightness.light
+                                    ? Themes().dark
+                                    : Themes().light,
+                                isReversed: brightness == Brightness.light
+                                    ? true
+                                    : false);
+                          },
+                          child: Icon(
+                            ThemeModelInheritedNotifier.of(context)
+                                        .theme
+                                        .brightness ==
+                                    Brightness.light
+                                ? Icons.light_mode_rounded
+                                : Icons.dark_mode_rounded,
+                            color: Colors.grey,
+                          ),
+                        );
+                      }),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                TextButton(
+                  onPressed: () async {
+                    print(await TokenManage().getToken());
+                    await Api().post(
+                      url: '${Constants.localip}/api/v1/logout',
+                      withToken: true,
+                    );
+                    BlocProvider.of<TokenManageCubit>(context).removedToken();
+                    Get.offAll(const AuthPage());
+                  },
+                  child: Text(
+                    "Sign Out",
+                    style: TextStyles.textStyle22.copyWith(
+                      color: Colors.red,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),

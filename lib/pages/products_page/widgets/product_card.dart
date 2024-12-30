@@ -67,7 +67,6 @@ class ProductCard extends StatelessWidget {
                             duration: const Duration(milliseconds: 1500),
                             'Success',
                             'Added to favorites ❤️',
-                            backgroundColor: Theme.of(context).cardColor,
                             snackPosition: SnackPosition.BOTTOM,
                           );
                         },
@@ -114,15 +113,13 @@ class ProductCard extends StatelessWidget {
                                   duration: const Duration(milliseconds: 1500),
                                   'Success',
                                   'Added to cart',
-                                  backgroundColor: Theme.of(context).cardColor,
                                   snackPosition: SnackPosition.BOTTOM,
                                 );
                               } else {
                                 Get.snackbar(
                                   duration: const Duration(milliseconds: 1500),
                                   'Failed',
-                                  'Not enough in stock',
-                                  backgroundColor: Theme.of(context).cardColor,
+                                  'Not enoug products in stock',
                                   snackPosition: SnackPosition.BOTTOM,
                                 );
                               }

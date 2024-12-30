@@ -2,16 +2,21 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/styles/constants.dart';
 
-class ProfileImage extends StatelessWidget {
+class ProfileImage extends HookWidget {
   const ProfileImage({
     super.key,
   });
 //s
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      context.read<ProfileImageCubit>().checkImage();
+      return null;
+    }, []);
     return Center(
       child: BlocBuilder<ProfileImageCubit, ProfileImageState>(
         builder: (context, state) {
@@ -42,8 +47,10 @@ class ProfileImage extends StatelessWidget {
                 bottom: 3,
                 right: 3,
                 child: InkWell(
-                  onTap: () => BlocProvider.of<ProfileImageCubit>(context)
-                      .pickImageFromGallery(),
+                  onTap: () {
+                    BlocProvider.of<ProfileImageCubit>(context)
+                        .pickImageFromGallery();
+                  },
                   child: Container(
                     width: 30,
                     height: 30,
@@ -51,7 +58,10 @@ class ProfileImage extends StatelessWidget {
                       color: Constants.buttoncolor,
                       borderRadius: BorderRadius.circular(60),
                     ),
-                    child: const Icon(Icons.edit),
+                    child: const Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               )
