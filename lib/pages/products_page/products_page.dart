@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/fetch_store_products/fetch_store_products_cubit.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
+import 'package:store/pages/global_widgets/grid_view_product_screen.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';
 import 'package:store/styles/constants.dart';
 
@@ -18,14 +19,15 @@ class ProductsPage extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(
       () {
+        print('===============${Get.arguments}');
         BlocProvider.of<FetchStoreProductsCubit>(context)
-            .getProducts(storeId: Get.arguments + 1);
+            .getProducts(storeId: Get.arguments);
         return null;
       },
     );
     return PopScope(
+      canPop: true,
       onPopInvokedWithResult: (didPop, result) {
-        Get.back();
         BlocProvider.of<FavouriteCubit>(context).isfav = [];
       },
       child: Scaffold(
@@ -53,24 +55,7 @@ class ProductsPage extends HookWidget {
                   );
                 }
                 if (state is FetchStoreProductsSuccess) {
-                  return GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 2.6 / 4),
-                    itemCount: BlocProvider.of<FetchStoreProductsCubit>(context)
-                        .productsData
-                        .length,
-                    itemBuilder: (context, index) {
-                      BlocProvider.of<FavouriteCubit>(context).isfav.add(
-                          BlocProvider.of<FetchStoreProductsCubit>(context)
-                              .productsData[index]['isFavorite']);
-                      return ProductCard(
-                        index: index,
-                        data: BlocProvider.of<FetchStoreProductsCubit>(context)
-                            .productsData[index],
-                      );
-                    },
-                  );
+                  return GridViewProductScreen(data: state.productData);
                 } else {
                   return const Center(
                     child: Text('data'),
@@ -82,29 +67,3 @@ class ProductsPage extends HookWidget {
     );
   }
 }
-
-
-// FutureBuilder(
-//             future: GetSpecificStoreProducts()
-//                 .getStoreWithProducts(id: Get.arguments + 1),
-//             builder: (context, snapshot) {
-//               if (snapshot.hasData) {
-//                 return GridView.builder(
-//                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                       crossAxisCount: 2, childAspectRatio: 2.7 / 4),
-//                   itemCount: snapshot.data!.length,
-//                   itemBuilder: (context, index) {
-//                     BlocProvider.of<FavouriteCubit>(context)
-//                         .isfav
-//                         .add(snapshot.data![index]['isFavorite']);
-//                     return ProductCard(
-//                       index: index,
-//                       data: snapshot.data![index],
-//                     );
-//                   },
-//                 );
-//               } else {
-//                 return Center(child: CircularProgressIndicator());
-//               }
-//             },
-//           ),

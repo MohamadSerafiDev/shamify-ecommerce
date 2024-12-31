@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                 ProfileSettings(
                   text: 'Favourites',
                   onTap: () {
-                    Get.to(const FavoritesPage());
+                    Get.to(() => const FavoritesPage());
                   },
                   end: Image.asset(
                     AppIcons.right,

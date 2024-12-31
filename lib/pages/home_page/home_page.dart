@@ -1,31 +1,19 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:store/cubits/fetch_stores/fetch_stores_cubit.dart';
-import 'package:store/pages/favorites_page/favorites_page.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/home_page/widgets/categories_list_view.dart';
+import 'package:store/pages/home_page/widgets/home_favorites_button.dart';
+import 'package:store/pages/home_page/widgets/home_search_field.dart';
 import 'package:store/pages/home_page/widgets/shimmer_loading.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
-import 'package:store/pages/search_page/search_page.dart';
-import 'package:store/styles/assets.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({
+  const HomePage({
     super.key,
   });
-
-  final List<Map<String, dynamic>> cat = [
-    {'name': 'shirts', 'icon': Icons.numbers},
-    {'name': 'T-shirts', 'icon': Icons.numbers},
-    {'name': 'Hoodies', 'icon': Icons.numbers},
-    {'name': 'Bags', 'icon': Icons.numbers},
-    {'name': 'Shoes', 'icon': Icons.numbers},
-    {'name': 'Accessories', 'icon': Icons.numbers},
-    {'name': 'Gloves', 'icon': Icons.numbers},
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,46 +21,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         actions: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.68,
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                prefixIcon: Image.asset(
-                  AppIcons.search,
-                  color: Theme.of(context).iconTheme.color,
-                  scale: 2.5,
-                ),
-                hintText: "Search",
-              ),
-              onFieldSubmitted: (value) {
-                //search backend
-                Get.to(const SearchPage(), arguments: value);
-                print(value);
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                  onPressed: () {
-                    // navigation to fav
-                    Get.to(const FavoritesPage());
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                  ),
-                  child: Image.asset(
-                    AppIcons.isfav,
-                    width: 25,
-                    color: Colors.white,
-                  )),
-            ),
-          ),
+          const HomeSearchField(),
+          const HomeFavoritesButton(),
         ],
       ),
       body: Padding(
@@ -100,7 +50,7 @@ class HomePage extends StatelessWidget {
                     ...List.generate(
                       7,
                       (index) {
-                        return CategoriesListView(cat: cat, index: index);
+                        return CategoriesListView(index: index);
                       },
                     )
                   ]),
@@ -163,28 +113,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// FutureBuilder(
-//               future: GetAllStores().getStores(),
-//               builder: (context, snapshot) {
-//                 if (snapshot.hasData) {
-//                   return ListView(
-//                     clipBehavior: Clip.none,
-//                     scrollDirection: Axis.horizontal,
-//                     children: [
-//                       ...List.generate(
-//                         snapshot.data!.length,
-//                         (index) {
-//                           return TopStoresListView(
-//                             index: index,
-//                             data: snapshot.data,
-//                           );
-//                         },
-//                       )
-//                     ],
-//                   );
-//                 } else {
-//                   return ShimmerLoading();
-//                 }
-//               },
-//             ),

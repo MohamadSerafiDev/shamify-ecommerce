@@ -30,7 +30,8 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
             ),
             onFieldSubmitted: (value) {
               //search backend
-              Get.to(const SearchPage(), arguments: value);
+              Get.to(() => const SearchPage(), arguments: value);
+
               print(value);
               print(searchcontroller.text);
               searchcontroller.clear();
@@ -44,7 +45,7 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
             child: ElevatedButton(
                 onPressed: () {
                   // navigation to fav
-                  Get.to(const FavoritesPage());
+                  Get.to(() => const FavoritesPage());
                 },
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),

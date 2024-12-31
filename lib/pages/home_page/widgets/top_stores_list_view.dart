@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/pages/products_page/products_page.dart';
 import 'package:store/styles/assets.dart';
+import 'package:store/styles/text_styles.dart';
 
 class TopStoresListView extends StatelessWidget {
   TopStoresListView({super.key, required this.index, required this.data});
@@ -19,10 +20,10 @@ class TopStoresListView extends StatelessWidget {
         splashColor: Colors.transparent,
         onTap: () {
           Get.to(
-              ProductsPage(
-                title: data[index]['name'],
-              ),
-              arguments: index);
+              () => ProductsPage(
+                    title: data[index]['name'],
+                  ),
+              arguments: data[index]['id']);
         },
         child: Card(
           color: Theme.of(context).cardColor,
@@ -40,39 +41,13 @@ class TopStoresListView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  // Positioned(
-                  //   top: 5,
-                  //   right: 5,
-                  //   child: BlocBuilder<FavouriteCubit, FavouriteState>(
-                  //     builder: (context, state) {
-                  //       return IconButton(
-                  //         icon: Image.asset(
-                  //           BlocProvider.of<FavouriteCubit>(context)
-                  //                   .isfav[index]
-                  //               ? AppIcons.isfav
-                  //               : AppIcons.notfav,
-                  //           width: 28,
-                  //           color: BlocProvider.of<FavouriteCubit>(context)
-                  //                   .isfav[index]
-                  //               ? Colors.red
-                  //               : Colors.white,
-                  //         ),
-                  //         onPressed: () {
-                  //           BlocProvider.of<FavouriteCubit>(context)
-                  //               .toggleFavourite(index);
-                  //         },
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
                   Positioned(
                     top: 70,
                     left: 25,
-                    child: Image.asset(AppIcons.truesing),
-                    // child: Image.network(
-                    //   '${Constants.localip}${data[index]['photoURL']}',
-                    //   width: 150,
-                    // ),
+                    child: Image.asset(
+                      AppImages.checkout,
+                      width: 150,
+                    ),
                   )
                 ],
               ),
@@ -81,20 +56,21 @@ class TopStoresListView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Text(
                   data[index]['name'],
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyles.textStyle18
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Text(
-                  data[index]['name'],
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                  data[index]['description'],
+                  style: TextStyles.textStyle14.copyWith(
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .color!
+                        .withOpacity(0.65),
                   ),
                 ),
               ),

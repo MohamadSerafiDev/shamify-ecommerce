@@ -7,7 +7,11 @@ final class FetchStoreProductsInitial extends FetchStoreProductsState {}
 
 final class FetchStoreProductsLoading extends FetchStoreProductsState {}
 
-final class FetchStoreProductsSuccess extends FetchStoreProductsState {}
+final class FetchStoreProductsSuccess extends FetchStoreProductsState {
+  final List<ProductModel> productData;
+
+  FetchStoreProductsSuccess({required this.productData});
+}
 
 final class FetchStoreProductsFailure extends FetchStoreProductsState {
   final String errormessage;

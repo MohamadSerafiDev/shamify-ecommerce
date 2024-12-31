@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:store/models/search_model.dart';
 import 'package:store/services/search/search_for_products_and_stores.dart';
+import 'package:store/services/stores/get_specific_store_products.dart';
 
 part 'search_state.dart';
 

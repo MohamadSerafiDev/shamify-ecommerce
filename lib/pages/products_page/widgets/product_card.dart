@@ -8,13 +8,14 @@ import 'package:get/get.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/pages/product_page/product_page.dart';
+import 'package:store/services/stores/get_specific_store_products.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.index, required this.data});
   final int index;
-  final dynamic data;
+  final ProductModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class ProductCard extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         // Get.to(const ProductPage(title: '',), arguments: index);
-        Get.to(ProductPage());
+        Get.to(() => ProductPage());
       },
       child: Card(
         color: Theme.of(context).cardColor,
@@ -62,7 +63,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         onPressed: () async {
                           await BlocProvider.of<FavouriteCubit>(context)
-                              .toggleFavourite(index: index, id: data['id']);
+                              .toggleFavourite(index: index, id: data.id);
                           Get.snackbar(
                             duration: const Duration(milliseconds: 1500),
                             'Success',
@@ -82,7 +83,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data['name'],
+                    data.name,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -91,7 +92,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${data['price']} \$',
+                        '${data.price} \$',
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -102,10 +103,10 @@ class ProductCard extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () async {
-                              if (data['count'] > 0) {
+                              if (data.count > 0) {
                                 await Api().post(
                                     url:
-                                        '${Constants.localip}/api/v1/add-to-cart/${data['id'].toString()}',
+                                        '${Constants.localip}/api/v1/add-to-cart/${data.id.toString()}',
                                     body: jsonEncode({'quantity': '1'}),
                                     withToken: true);
                                 // create snackbar
@@ -140,10 +141,9 @@ class ProductCard extends StatelessWidget {
                       const Text('in storage:'),
                       const Spacer(),
                       Text(
-                        '${data['count']}',
+                        '${data.count}',
                         style: TextStyle(
-                            color:
-                                data['count'] < 4 ? Colors.red : Colors.green),
+                            color: data.count < 4 ? Colors.red : Colors.green),
                       ),
                       const SizedBox(
                         width: 17,

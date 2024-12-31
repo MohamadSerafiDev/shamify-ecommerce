@@ -48,11 +48,9 @@ class CartProduct extends StatelessWidget {
               ),
               SizedBox(
                 width: 80,
-                child: Flexible(
-                  child: NameAndDesc(
-                    name: state.cart[index]['item']['name'],
-                    desc: state.cart[index]['item']['description'],
-                  ),
+                child: NameAndDesc(
+                  name: state.cart[index]['item']['name'],
+                  desc: state.cart[index]['item']['description'],
                 ),
               ),
               const SizedBox(

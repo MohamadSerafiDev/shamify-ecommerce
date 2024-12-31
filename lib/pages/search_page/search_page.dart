@@ -2,7 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
@@ -10,9 +9,9 @@ import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
 import 'package:store/pages/home_page/widgets/top_stores_list_view.dart';
 import 'package:store/pages/products_page/widgets/product_card.dart';
-import 'package:store/styles/assets.dart';
-import 'package:store/styles/constants.dart';
-import 'package:store/styles/text_styles.dart';
+import 'package:store/pages/search_page/widgets/no_results_found.dart';
+import 'package:store/pages/search_page/widgets/search_field.dart';
+import 'package:store/pages/search_page/widgets/search_loading_double_bounce.dart';
 
 class SearchPage extends HookWidget {
   const SearchPage({super.key});
@@ -26,32 +25,12 @@ class SearchPage extends HookWidget {
 
     return PopScope(
       onPopInvokedWithResult: (didPop, result) {
-        Get.back();
         BlocProvider.of<FavouriteCubit>(context).isfav = [];
       },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: SizedBox(
-            height: 50,
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                prefixIcon: Image.asset(
-                  AppIcons.search,
-                  color: Colors.white,
-                  scale: 2.5,
-                ),
-                hintText: Get.arguments,
-              ),
-              onFieldSubmitted: (value) {
-                //search backend
-                BlocProvider.of<SearchCubit>(context).search(query: value);
-              },
-            ),
-          ),
+          title: const SearchField(),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -66,21 +45,7 @@ class SearchPage extends HookWidget {
             },
             builder: (context, state) {
               if (state is Searchloading) {
-                return const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SpinKitDoubleBounce(
-                        color: Constants.buttoncolor,
-                        size: 100,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text('Loading ...', style: TextStyles.textStyle22),
-                  ],
-                );
+                return const SearchLoadingDoubleBounce();
               } else if (state is SearchSuccess) {
                 //check cubit
                 return ListView(
@@ -117,7 +82,10 @@ class SearchPage extends HookWidget {
                       children: [
                         Text('(${state.products.length})'),
                         Flexible(
-                          child: TextRow(start: '  Products', onPressed: () {}),
+                          child: TextRow(
+                            start: '  Products',
+                            onPressed: () {},
+                          ),
                         ),
                       ],
                     ),
@@ -133,7 +101,7 @@ class SearchPage extends HookWidget {
                               itemBuilder: (context, index) {
                                 BlocProvider.of<FavouriteCubit>(context)
                                     .isfav
-                                    .add(state.products[index]['isFavorite']);
+                                    .add(state.products[index].isFavorite);
                                 return SizedBox(
                                   width: 200,
                                   child: ProductCard(
@@ -146,24 +114,7 @@ class SearchPage extends HookWidget {
                   ],
                 );
               } else {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Image.asset(
-                        AppImages.search,
-                        width: 200,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'No thing found',
-                      style: TextStyles.textStyle22,
-                    ),
-                  ],
-                );
+                return const NoResultsFound();
               }
             },
           ),

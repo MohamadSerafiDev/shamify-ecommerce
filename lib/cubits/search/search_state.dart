@@ -9,7 +9,7 @@ final class Searchloading extends SearchState {}
 
 final class SearchSuccess extends SearchState {
   final List stores;
-  final List products;
+  final List<ProductModel> products;
 
   SearchSuccess({required this.stores, required this.products});
 }

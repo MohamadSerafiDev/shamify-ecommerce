@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CategoriesListView extends StatelessWidget {
-  const CategoriesListView({
+  CategoriesListView({
     super.key,
-    required this.cat,
     required this.index,
   });
 
-  final List<Map<String, dynamic>> cat;
+  final List<Map<String, dynamic>> cat = [
+    {'name': 'shirts', 'icon': Icons.numbers},
+    {'name': 'T-shirts', 'icon': Icons.numbers},
+    {'name': 'Hoodies', 'icon': Icons.numbers},
+    {'name': 'Bags', 'icon': Icons.numbers},
+    {'name': 'Shoes', 'icon': Icons.numbers},
+    {'name': 'Accessories', 'icon': Icons.numbers},
+    {'name': 'Gloves', 'icon': Icons.numbers},
+  ];
   final int index;
 
   @override
