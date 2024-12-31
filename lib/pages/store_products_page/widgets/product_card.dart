@@ -23,7 +23,9 @@ class ProductCard extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         // Get.to(const ProductPage(title: '',), arguments: index);
-        Get.to(() => ProductPage());
+        Get.to(() => ProductPage(
+              product: data,
+            ));
       },
       child: Card(
         color: Theme.of(context).cardColor,
@@ -52,18 +54,15 @@ class ProductCard extends StatelessWidget {
                     builder: (context, state) {
                       return IconButton(
                         icon: Image.asset(
-                          BlocProvider.of<FavouriteCubit>(context).isfav[index]
-                              ? AppIcons.isfav
-                              : AppIcons.notfav,
+                          data.isFavorite ? AppIcons.isfav : AppIcons.notfav,
                           width: 28,
-                          color: BlocProvider.of<FavouriteCubit>(context)
-                                  .isfav[index]
-                              ? Colors.red
-                              : Colors.white,
+                          color: data.isFavorite ? Colors.red : Colors.white,
                         ),
                         onPressed: () async {
+                          data.isFavorite = !data.isFavorite;
                           await BlocProvider.of<FavouriteCubit>(context)
-                              .toggleFavourite(index: index, id: data.id);
+                              .toggleFavourite(id: data.id);
+
                           Get.snackbar(
                             duration: const Duration(milliseconds: 1500),
                             'Success',

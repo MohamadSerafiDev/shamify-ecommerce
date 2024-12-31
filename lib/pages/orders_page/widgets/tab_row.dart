@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
 class TabRow extends StatelessWidget {
@@ -17,7 +18,7 @@ class TabRow extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: Colors.white,
+          color: Constants.buttoncolor,
         ),
         Text(
           '  $text',

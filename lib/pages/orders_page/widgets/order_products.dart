@@ -12,20 +12,14 @@ class OrderProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvokedWithResult: (didPop, result) {
-        Get.back();
-        BlocProvider.of<FavouriteCubit>(context).isfav = [];
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text(title),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: GridViewProductScreen(data: data),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: GridViewProductScreen(data: data),
       ),
     );
   }

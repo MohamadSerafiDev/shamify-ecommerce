@@ -21,8 +21,16 @@ class OrdersPage extends StatelessWidget {
               TabBar(
                 dividerColor: Colors.transparent,
                 indicator: BoxDecoration(
-                  color: Constants.buttoncolor,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      color: Colors.grey.withOpacity(0.3),
+                      blurStyle: BlurStyle.inner,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
                 ),
                 splashFactory: NoSplash.splashFactory,
                 tabs: const [

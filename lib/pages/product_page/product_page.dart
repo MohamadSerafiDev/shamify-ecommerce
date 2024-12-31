@@ -1,16 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:store/services/stores/get_specific_store_products.dart';
 
 class ProductPage extends StatelessWidget {
-  final Product product = Product(
-    id: '1',
-    name: 'Sample Product',
-    price: 29.99,
-    description: 'This is a sample product description. ',
-    imageUrl: 'https://via.placeholder.com/150',
-  );
+  final ProductModel product;
 
-  ProductPage({super.key});
+  const ProductPage({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,28 +22,24 @@ class ProductPage extends StatelessWidget {
               itemCount: 5,
               itemBuilder: (context, index, realIndex) {
                 return Container(
-                  width: 150,
-                  height: 150,
-                  color: Colors.red,
+                  width: 200,
+                  height: 200,
+                  color: Theme.of(context).cardColor,
+                  child: Image.asset(
+                    'assets/images/no-image-icon.jpg',
+                  ),
                 );
               },
               options: CarouselOptions(
-                  height: 200,
-                  autoPlay: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 1500),
-                  autoPlayInterval: const Duration(milliseconds: 2500),
-                  enlargeFactor: 0.6,
-                  viewportFraction: 0.6,
-                  pauseAutoPlayOnTouch: true),
+                height: 200,
+                autoPlay: true,
+                autoPlayAnimationDuration: const Duration(seconds: 2),
+                autoPlayInterval: const Duration(seconds: 4),
+                enlargeFactor: 0.6,
+                viewportFraction: 0.6,
+                pauseAutoPlayOnTouch: true,
+              ),
             ),
-            // Center(
-            //   child: Image.network(
-            //     product.imageUrl,
-            //     height: 200,
-            //     width: 200,
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
             const SizedBox(height: 16),
             Text(
               product.name,
@@ -65,16 +56,28 @@ class ProductPage extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
             const Spacer(),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  textStyle: const TextStyle(fontSize: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                  child: const Text('Add to Cart'),
                 ),
-                child: const Text('Add to Cart'),
-              ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
+                    textStyle: const TextStyle(fontSize: 16),
+                  ),
+                  child: const Text('Add to Cart'),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/pages/products_page/products_page.dart';
+import 'package:store/pages/store_products_page/products_page.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
 
@@ -20,10 +20,11 @@ class TopStoresListView extends StatelessWidget {
         splashColor: Colors.transparent,
         onTap: () {
           Get.to(
-              () => ProductsPage(
-                    title: data[index]['name'],
-                  ),
-              arguments: data[index]['id']);
+            () => ProductsPage(
+              title: data[index]['name'],
+              id: data[index]['id'],
+            ),
+          );
         },
         child: Card(
           color: Theme.of(context).cardColor,

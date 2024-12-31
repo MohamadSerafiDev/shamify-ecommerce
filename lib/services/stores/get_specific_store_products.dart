@@ -45,7 +45,7 @@ class ProductModel {
   final int id;
   final num price;
   final num count;
-  final bool isFavorite;
+  bool isFavorite;
   final String name;
   final String storeName;
   final String description;

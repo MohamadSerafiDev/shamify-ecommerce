@@ -19,7 +19,7 @@ class GetOrders {
         productsData.add(
           ProductModel(
             id: data[i]['orderItems'][j]['product']['id'],
-            count: data[i]['orderItems'][j]['quantity'],
+            count: data[i]['orderItems'][j]['product']['count'],
             name: data[i]['orderItems'][j]['product']['name'],
             price: data[i]['orderItems'][j]['product']['price'],
             storeName: 'store name',

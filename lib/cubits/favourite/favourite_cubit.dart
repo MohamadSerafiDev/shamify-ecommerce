@@ -7,22 +7,17 @@ part 'favourite_state.dart';
 
 class FavouriteCubit extends Cubit<FavouriteState> {
   FavouriteCubit() : super(FavouriteInitial());
-  List<bool> isfav = [];
 
-  Future<void> toggleFavourite(
-      {required final int index, required final int id}) async {
+  Future<String> toggleFavourite({required final int id}) async {
     dynamic response = await Api().post(
         url: '${Constants.localip}/api/v1/add-favorite/$id',
         withToken: true,
         body: null);
 
-    if (response['isFavorite'] == false) {
-      emit(FavouriteUnSelected());
-    } else {
-      emit(FavouriteSelected());
-    }
-
+    emit(
+      FavouriteUpdated(),
+    );
+    return response['message'];
     // fav api
-    isfav[index] = !isfav[index];
   }
 }

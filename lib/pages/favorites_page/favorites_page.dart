@@ -9,7 +9,6 @@ import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/fetch_favorites/fetch_favorites_cubit.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/global_widgets/grid_view_product_screen.dart';
-import 'package:store/pages/products_page/widgets/product_card.dart';
 import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
@@ -24,48 +23,44 @@ class FavoritesPage extends HookWidget {
         return null;
       },
     );
-    return PopScope(
-      onPopInvokedWithResult: (didPop, result) {
-        Get.back();
-        BlocProvider.of<FavouriteCubit>(context).isfav = [];
-      },
-      child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: const SizedBox(
-          width: 300,
-          child: AddFavToCartFloatingButton(),
-        ),
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: const Text('Your Favorites'),
-        ),
-        body: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 70),
-            child: BlocConsumer<FetchFavoritesCubit, FetchFavoritesState>(
-              listener: (context, state) {
-                if (state is FetchFavoritesFailure) {
-                  errorDialog(context,
-                      title: 'Error',
-                      message: state.errormessage,
-                      contentType: ContentType.failure);
-                }
-              },
-              builder: (context, state) {
-                if (state is FetchFavoritesLoading) {
-                  return const SpinKitThreeBounce(
-                    color: Constants.buttoncolor,
-                  );
-                }
-                if (state is FetchFavoritesSuccess) {
-                  return GridViewProductScreen(data: state.productData);
-                } else {
-                  return const Center(
-                    child: Text('data'),
-                  );
-                }
-              },
-            )),
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: const SizedBox(
+        width: 300,
+        child: AddFavToCartFloatingButton(),
       ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: const Text('Your Favorites'),
+      ),
+      body: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 70),
+          child: BlocConsumer<FetchFavoritesCubit, FetchFavoritesState>(
+            listener: (context, state) {
+              if (state is FetchFavoritesFailure) {
+                errorDialog(context,
+                    title: 'Error',
+                    message: state.errormessage,
+                    contentType: ContentType.failure);
+              }
+            },
+            builder: (context, state) {
+              if (state is FetchFavoritesLoading) {
+                return const SpinKitThreeBounce(
+                  color: Constants.buttoncolor,
+                );
+              }
+              if (state is FetchFavoritesSuccess) {
+                return GridViewProductScreen(
+                  data: state.productData,
+                );
+              } else {
+                return const Center(
+                  child: Text('data'),
+                );
+              }
+            },
+          )),
     );
   }
 }
