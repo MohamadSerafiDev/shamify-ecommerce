@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
+import 'package:store/pages/global_widgets/add_to_cart_button.dart';
+import 'package:store/pages/global_widgets/fav_button.dart';
 import 'package:store/pages/product_page/product_page.dart';
 import 'package:store/services/stores/get_specific_store_products.dart';
 import 'package:store/styles/assets.dart';
@@ -23,9 +25,15 @@ class ProductCard extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () {
         // Get.to(const ProductPage(title: '',), arguments: index);
-        Get.to(() => ProductPage(
-              product: data,
-            ));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return ProductPage(
+                product: data,
+              );
+            },
+          ),
+        );
       },
       child: Card(
         color: Theme.of(context).cardColor,
@@ -50,29 +58,7 @@ class ProductCard extends StatelessWidget {
                 Positioned(
                   top: 5,
                   right: 5,
-                  child: BlocBuilder<FavouriteCubit, FavouriteState>(
-                    builder: (context, state) {
-                      return IconButton(
-                        icon: Image.asset(
-                          data.isFavorite ? AppIcons.isfav : AppIcons.notfav,
-                          width: 28,
-                          color: data.isFavorite ? Colors.red : Colors.white,
-                        ),
-                        onPressed: () async {
-                          data.isFavorite = !data.isFavorite;
-                          await BlocProvider.of<FavouriteCubit>(context)
-                              .toggleFavourite(id: data.id);
-
-                          Get.snackbar(
-                            duration: const Duration(milliseconds: 1500),
-                            'Success',
-                            'Added to favorites ❤️',
-                            snackPosition: SnackPosition.BOTTOM,
-                          );
-                        },
-                      );
-                    },
-                  ),
+                  child: FavButton(data: data),
                 ),
               ],
             ),
@@ -100,35 +86,9 @@ class ProductCard extends StatelessWidget {
                       const Spacer(),
                       Column(
                         children: [
-                          IconButton(
-                            onPressed: () async {
-                              if (data.count > 0) {
-                                await Api().post(
-                                    url:
-                                        '${Constants.localip}/api/v1/add-to-cart/${data.id.toString()}',
-                                    body: jsonEncode({'quantity': '1'}),
-                                    withToken: true);
-                                // create snackbar
-                                Get.snackbar(
-                                  duration: const Duration(milliseconds: 1500),
-                                  'Success',
-                                  'Added to cart',
-                                  snackPosition: SnackPosition.BOTTOM,
-                                );
-                              } else {
-                                Get.snackbar(
-                                  duration: const Duration(milliseconds: 1500),
-                                  'Failed',
-                                  'Not enoug products in stock',
-                                  snackPosition: SnackPosition.BOTTOM,
-                                );
-                              }
-                            },
-                            icon: const Icon(
-                              Icons.add_shopping_cart_outlined,
-                              size: 30,
-                              color: Constants.buttoncolor,
-                            ),
+                          AddToCartButton(
+                            data: data,
+                            iconColor: Constants.buttoncolor,
                           ),
                         ],
                       )

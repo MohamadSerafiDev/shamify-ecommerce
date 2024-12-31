@@ -2,8 +2,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:get/get.dart';
-import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/home_page/widgets/text_row.dart';
@@ -14,19 +12,22 @@ import 'package:store/pages/search_page/widgets/search_field.dart';
 import 'package:store/pages/search_page/widgets/search_loading_double_bounce.dart';
 
 class SearchPage extends HookWidget {
-  const SearchPage({super.key});
+  const SearchPage({super.key, required this.query});
+  final String query;
 
   @override
   Widget build(BuildContext context) {
     useEffect(() {
-      BlocProvider.of<SearchCubit>(context).search(query: Get.arguments);
+      BlocProvider.of<SearchCubit>(context).search(query: query);
       return null;
     });
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const SearchField(),
+        title: SearchField(
+          query: query,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -51,7 +52,8 @@ class SearchPage extends HookWidget {
                     children: [
                       Text('(${state.stores.length})'),
                       Flexible(
-                          child: TextRow(start: '  Stores', onPressed: () {})),
+                        child: TextRow(start: '  Stores', onPressed: () {}),
+                      ),
                     ],
                   ),
                   state.stores.isEmpty

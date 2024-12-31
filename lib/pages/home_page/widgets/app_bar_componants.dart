@@ -30,10 +30,10 @@ class AppBarComponants extends StatelessWidget implements PreferredSizeWidget {
             ),
             onFieldSubmitted: (value) {
               //search backend
-              Get.to(() => const SearchPage(), arguments: value);
+              Get.to(() => SearchPage(
+                    query: value,
+                  ));
 
-              print(value);
-              print(searchcontroller.text);
               searchcontroller.clear();
             },
           ),

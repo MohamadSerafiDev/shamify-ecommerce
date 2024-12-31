@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gap/gap.dart';
 import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
 import 'package:store/services/cart/get_checkout.dart';
 import 'package:store/styles/constants.dart';
@@ -49,7 +50,7 @@ Future<dynamic> CheckOutBottomSheet(BuildContext context,
                           const Text(
                             'Checkout',
                           ),
-                          const SizedBox(height: 20),
+                          const Gap(20),
                           ...List.generate(
                             snapshot.data.length - 1,
                             (index) {
@@ -63,7 +64,7 @@ Future<dynamic> CheckOutBottomSheet(BuildContext context,
                           buildSummaryRow('Subtotal', total),
                           buildSummaryRow('tax', 12.80),
                           buildSummaryRow('Total', total + 12.80),
-                          const SizedBox(height: 20),
+                          const Gap(20),
                           ElevatedButton(
                             onPressed: onTapOrder,
                             child: const Text('Place Order'),

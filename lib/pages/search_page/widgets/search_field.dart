@@ -7,13 +7,16 @@ import 'package:store/styles/assets.dart';
 class SearchField extends StatelessWidget {
   const SearchField({
     super.key,
+    required this.query,
   });
+  final String query;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
       child: TextFormField(
+        initialValue: query,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
@@ -23,7 +26,6 @@ class SearchField extends StatelessWidget {
             color: Colors.white,
             scale: 2.5,
           ),
-          hintText: Get.arguments,
         ),
         onFieldSubmitted: (value) {
           //search backend

@@ -26,7 +26,9 @@ class HomeSearchField extends StatelessWidget {
         ),
         onFieldSubmitted: (value) {
           //search backend
-          Get.to(() => const SearchPage(), arguments: value);
+          Get.to(() => SearchPage(
+                query: value,
+              ));
 
           print(value);
         },

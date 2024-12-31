@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:store/cubits/auth/auth_cubit.dart';
+import 'package:store/cubits/category/fetch_category_cubit.dart';
 import 'package:store/cubits/counter/counter_cubit.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
@@ -28,6 +29,7 @@ void main() {
       BlocProvider(create: (context) => FetchStoresCubit()),
       BlocProvider(create: (context) => FetchStoreProductsCubit()),
       BlocProvider(create: (context) => FetchFavoritesCubit()),
+      BlocProvider(create: (context) => FetchCategoryCubit()),
       BlocProvider(create: (context) => SearchCubit()),
       BlocProvider(create: (context) => FetchCartCubit()),
       BlocProvider(create: (context) => CounterCubit()),
