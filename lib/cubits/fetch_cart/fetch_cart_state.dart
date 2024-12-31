@@ -9,6 +9,8 @@ final class FetchCartLoading extends FetchCartState {}
 
 final class FetchCartEmpty extends FetchCartState {}
 
+final class FetchCartDeleted extends FetchCartState {}
+
 final class FetchCartSuccess extends FetchCartState {
   final dynamic cart;
   FetchCartSuccess({required this.cart});

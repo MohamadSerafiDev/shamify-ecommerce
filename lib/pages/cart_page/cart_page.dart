@@ -39,6 +39,8 @@ class CartPage extends HookWidget {
               ),
             );
           } else if (state is FetchCartSuccess) {
+            //avoid duplicate checkout data
+            BlocProvider.of<FetchCartCubit>(context).orderList = [];
             return Stack(
               children: [
                 ListView.builder(

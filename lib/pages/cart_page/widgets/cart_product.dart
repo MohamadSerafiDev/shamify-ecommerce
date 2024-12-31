@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
 import 'package:store/pages/cart_page/widgets/name_and_desc.dart';
 import 'package:store/pages/cart_page/widgets/price_n_counter.dart';
 import 'package:store/styles/assets.dart';
@@ -24,22 +27,36 @@ class CartProduct extends StatelessWidget {
           ),
           child: Row(
             children: [
+              IconButton(
+                onPressed: () async {
+                  BlocProvider.of<FetchCartCubit>(context)
+                      .removeFromCart(index, state.cart[index]['item']['id']);
+                  Get.snackbar(
+                    'Success',
+                    'Item deleted successfully',
+                  );
+                },
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                  size: 30,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Image.asset(AppImages.parcel),
               ),
-              const SizedBox(
-                width: 10,
-              ),
               SizedBox(
                 width: 80,
-                child: NameAndDesc(
-                  name: state.cart[index]['item']['name'],
-                  desc: state.cart[index]['item']['description'],
+                child: Flexible(
+                  child: NameAndDesc(
+                    name: state.cart[index]['item']['name'],
+                    desc: state.cart[index]['item']['description'],
+                  ),
                 ),
               ),
               const SizedBox(
-                width: 80,
+                width: 55,
               ),
               PriceNCounter(
                 quantity: state.cart[index]['quantity'] is String
