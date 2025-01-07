@@ -20,8 +20,8 @@ class AuthCubit extends Cubit<AuthState> {
           url: '${Constants.localip}/api/v1/login',
           body: {'phone': phone, 'password': password},
           withToken: false);
-      userData.addAll(data);
-      await TokenManage().saveToken(data[0]['token']);
+      // userData.addAll(data);
+      await TokenManage().saveToken(data['token']);
 
       print(await TokenManage().getToken());
       print(await SessionManage().getSessionId());

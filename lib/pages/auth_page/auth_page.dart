@@ -17,19 +17,16 @@ class AuthPage extends StatelessWidget {
       body: Column(
         children: [
           const Gap(
-            100,
+            160,
           ),
           Image.asset(
             AppImages.splashview,
-            width: 150,
+            color: Constants.buttoncolor,
+            width: 250,
           ),
           const Gap(
             30,
           ),
-          Text('Welcome to Our Store',
-              style: TextStyles.textStyle32.copyWith(
-                color: Constants.buttoncolor,
-              )),
           const Gap(
             80,
           ),

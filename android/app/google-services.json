@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1091999412961",
+    "project_id": "shamify-e491e",
+    "storage_bucket": "shamify-e491e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091999412961:android:82d6d4ce4d67a99f96fda0",
+        "android_client_info": {
+          "package_name": "com.example.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN93Fjqm2zd_Q2dTINC71dwY_8IE_hoPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091999412961:android:0cb3bc9ad1ce640896fda0",
+        "android_client_info": {
+          "package_name": "com.example.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN93Fjqm2zd_Q2dTINC71dwY_8IE_hoPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

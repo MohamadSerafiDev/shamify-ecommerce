@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
+import 'package:store/styles/constants.dart';
 
 class Loading extends StatelessWidget {
   const Loading({super.key});
@@ -21,7 +23,9 @@ class Loading extends StatelessWidget {
         } else if (state is TokenManageWithToken) {
           return const MainHomePage();
         } else {
-          return const CircularProgressIndicator();
+          return const SpinKitDualRing(
+            color: Constants.buttoncolor,
+          );
         }
       },
     );

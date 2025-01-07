@@ -1,4 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -14,12 +16,18 @@ import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
-import 'package:store/pages/auth_page/auth_page.dart';
-import 'package:store/pages/home_page/main_home_page.dart';
 import 'package:store/pages/splash_view/splash_screen.dart';
 import 'package:store/styles/themes.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  //initialize firebase here
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  String? messaging = await FirebaseMessaging.instance.getToken(vapidKey: null);
+  print(messaging);
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => AuthCubit()),
