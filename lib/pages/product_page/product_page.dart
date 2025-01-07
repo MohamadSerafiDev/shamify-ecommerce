@@ -33,11 +33,13 @@ class ProductPage extends HookWidget {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
+              height: MediaQuery.of(context).size.height * 0.78,
               child: ListView(
                 clipBehavior: Clip.none,
                 children: [
-                  const ProductImagesCarouselSlider(),
+                  ProductImagesCarouselSlider(
+                    imgUrl: product.imageURL,
+                  ),
                   const Gap(16),
                   Text(product.name, style: TextStyles.textStyle22),
                   const Gap(8),

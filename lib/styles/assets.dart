@@ -6,7 +6,7 @@ class AppImages {
   static const String search = 'assets/images/search.png';
   static const String login = 'assets/images/login.png';
   static const String signup = 'assets/images/signup.png';
-  static const String splahview = 'assets/images/splahview.png';
+  static const String splashview = 'assets/images/splash.png';
 }
 
 class AppIcons {

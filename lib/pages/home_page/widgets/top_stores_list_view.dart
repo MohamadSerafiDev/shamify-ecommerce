@@ -15,7 +15,7 @@ class TopStoresListView extends StatelessWidget {
     return Padding(
       padding: index == 0
           ? const EdgeInsets.only(left: 0)
-          : const EdgeInsets.only(left: 12),
+          : const EdgeInsets.only(left: 10),
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: () {
@@ -36,7 +36,7 @@ class TopStoresListView extends StatelessWidget {
                 children: [
                   Container(
                     height: MediaQuery.of(context).size.height * 0.3,
-                    width: 200,
+                    width: 190,
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
@@ -64,14 +64,18 @@ class TopStoresListView extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Text(
-                  data[index]['description'],
-                  style: TextStyles.textStyle14.copyWith(
-                    color: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .color!
-                        .withOpacity(0.65),
+                child: SizedBox(
+                  width: 130,
+                  child: Text(
+                    data[index]['description'],
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyles.textStyle14.copyWith(
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .color!
+                          .withOpacity(0.65),
+                    ),
                   ),
                 ),
               ),

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/cubits/fetch_favorites/fetch_favorites_cubit.dart';
+import 'package:store/pages/favorites_page/widgets/add_fav_to_cart_floating_button.dart';
 import 'package:store/pages/global_widgets/error_dialog.dart';
 import 'package:store/pages/global_widgets/grid_view_product_screen.dart';
 import 'package:store/styles/constants.dart';
@@ -25,10 +26,7 @@ class FavoritesPage extends HookWidget {
     );
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: const SizedBox(
-        width: 300,
-        child: AddFavToCartFloatingButton(),
-      ),
+      floatingActionButton: const AddFavToCartFloatingButton(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: const Text('Your Favorites'),
@@ -61,38 +59,6 @@ class FavoritesPage extends HookWidget {
               }
             },
           )),
-    );
-  }
-}
-
-class AddFavToCartFloatingButton extends StatelessWidget {
-  const AddFavToCartFloatingButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      backgroundColor: Constants.buttoncolor,
-      onPressed: () async {
-        dynamic response = await Api().post(
-          url: '${Constants.localip}/api/v1/add-all-to-cart',
-          withToken: true,
-        );
-        if (response['message'] == "good") {
-          Get.snackbar(
-            duration: const Duration(seconds: 1),
-            'Success',
-            'All favorites added to cart',
-            backgroundColor: Theme.of(context).cardColor,
-            snackPosition: SnackPosition.TOP,
-          );
-        }
-      },
-      child: Text(
-        'add Favorites to your Cart +',
-        style: TextStyles.textStyle18.copyWith(fontWeight: FontWeight.w500),
-      ),
     );
   }
 }

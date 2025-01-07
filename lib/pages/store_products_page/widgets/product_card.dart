@@ -1,12 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:store/api/api.dart';
-import 'package:store/cubits/favourite/favourite_cubit.dart';
+import 'package:gap/gap.dart';
 import 'package:store/pages/global_widgets/add_to_cart_button.dart';
 import 'package:store/pages/global_widgets/fav_button.dart';
 import 'package:store/pages/product_page/product_page.dart';
@@ -38,81 +33,75 @@ class ProductCard extends StatelessWidget {
       child: Card(
         color: Theme.of(context).cardColor,
         //product stack
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
+                  Center(
+                    child:
+                        Image.network('${Constants.localip}${data.imageURL}'),
+                  ),
+                  Positioned(
+                    top: 5,
+                    right: 5,
+                    child: FavButton(data: data),
+                  ),
+                ],
+              ),
+              Text(
+                data.name,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
-                Center(
-                  child: Image.asset(AppImages.parcel),
-                ),
-                Positioned(
-                  top: 5,
-                  right: 5,
-                  child: FavButton(data: data),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              Row(
                 children: [
                   Text(
-                    data.name,
+                    '${data.price} \$',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Row(
+                  const Spacer(),
+                  Column(
                     children: [
-                      Text(
-                        '${data.price} \$',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      AddToCartButton(
+                        data: data,
+                        iconColor: Constants.buttoncolor,
                       ),
-                      const Spacer(),
-                      Column(
-                        children: [
-                          AddToCartButton(
-                            data: data,
-                            iconColor: Constants.buttoncolor,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('in storage:'),
-                      const Spacer(),
-                      Text(
-                        '${data.count}',
-                        style: TextStyle(
-                            color: data.count < 4 ? Colors.red : Colors.green),
-                      ),
-                      const SizedBox(
-                        width: 17,
-                      )
                     ],
                   )
                 ],
               ),
-            ),
-          ],
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('in storage:'),
+                  const Spacer(),
+                  Text(
+                    '${data.count}',
+                    style: TextStyle(
+                        color: data.count < 4 ? Colors.red : Colors.green),
+                  ),
+                  const Gap(17)
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

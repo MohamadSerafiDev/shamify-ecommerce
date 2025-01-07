@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class CategoriesListView extends StatelessWidget {
   CategoriesListView({
@@ -37,14 +38,14 @@ class CategoriesListView extends StatelessWidget {
                 child: Center(child: Icon(cat[index]['icon'])),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            const Gap(
+              10,
             ),
             Text(cat[index]['name']),
           ],
         ),
-        const SizedBox(
-          width: 13,
+        const Gap(
+          13,
         )
       ],
     );

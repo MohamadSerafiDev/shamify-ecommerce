@@ -46,6 +46,7 @@ class SearchPage extends HookWidget {
             } else if (state is SearchSuccess) {
               //check cubit
               return ListView(
+                clipBehavior: Clip.none,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,6 +64,7 @@ class SearchPage extends HookWidget {
                       : SizedBox(
                           height: MediaQuery.of(context).size.height * 0.4,
                           child: ListView.builder(
+                            clipBehavior: Clip.none,
                             itemCount: state.stores.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
@@ -93,13 +95,20 @@ class SearchPage extends HookWidget {
                       : SizedBox(
                           height: MediaQuery.of(context).size.height * 0.4,
                           child: ListView.builder(
+                            clipBehavior: Clip.none,
                             itemCount: state.products.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return SizedBox(
                                 width: 200,
-                                child: ProductCard(
-                                    index: index, data: state.products[index]),
+                                child: Padding(
+                                  padding: index == 0
+                                      ? const EdgeInsets.only(left: 0)
+                                      : const EdgeInsets.only(left: 10),
+                                  child: ProductCard(
+                                      index: index,
+                                      data: state.products[index]),
+                                ),
                               );
                             },
                           ),

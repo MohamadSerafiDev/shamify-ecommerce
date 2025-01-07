@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:store/pages/auth_page/widgets/auth_bottom_sheet.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/styles/assets.dart';
@@ -15,22 +16,22 @@ class AuthPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(
-            height: 100,
+          const Gap(
+            100,
           ),
           Image.asset(
-            AppImages.splahview,
+            AppImages.splashview,
             width: 150,
           ),
-          const SizedBox(
-            height: 30,
+          const Gap(
+            30,
           ),
           Text('Welcome to Our Store',
               style: TextStyles.textStyle32.copyWith(
                 color: Constants.buttoncolor,
               )),
-          const SizedBox(
-            height: 80,
+          const Gap(
+            80,
           ),
           Center(
             child: AuthButton(
@@ -44,8 +45,8 @@ class AuthPage extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(
-            height: 20,
+          const Gap(
+            20,
           ),
           Center(
             child: AuthButton(

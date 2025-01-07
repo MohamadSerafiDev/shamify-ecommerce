@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
@@ -19,15 +20,15 @@ class NoDataInCart extends StatelessWidget {
             AppImages.parcel,
             width: 200,
           ),
-          const SizedBox(
-            height: 30,
+          const Gap(
+            30,
           ),
           const Text(
             'No products in your Cart',
             style: TextStyles.textStyle18,
           ),
-          const SizedBox(
-            height: 30,
+          const Gap(
+            30,
           ),
           ElevatedButton(
               onPressed: () {

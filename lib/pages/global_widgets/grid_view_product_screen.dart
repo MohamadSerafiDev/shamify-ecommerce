@@ -14,9 +14,9 @@ class GridViewProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 2.6 / 4,
+        childAspectRatio: MediaQuery.of(context).size.aspectRatio * 1.13,
         crossAxisSpacing: 4,
         mainAxisSpacing: 4,
       ),

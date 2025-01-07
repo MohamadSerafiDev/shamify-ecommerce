@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:store/styles/text_styles.dart';
 
 class NameAndDesc extends StatelessWidget {
@@ -16,8 +17,8 @@ class NameAndDesc extends StatelessWidget {
       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 20,
+        const Gap(
+          20,
         ),
         Text(
           name,
@@ -25,8 +26,8 @@ class NameAndDesc extends StatelessWidget {
           textAlign: TextAlign.start,
           style: TextStyles.textStyle22,
         ),
-        const SizedBox(
-          height: 9,
+        const Gap(
+          9,
         ),
         Text(
           desc,

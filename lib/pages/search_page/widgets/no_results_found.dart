@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/text_styles.dart';
 
@@ -18,8 +19,8 @@ class NoResultsFound extends StatelessWidget {
             width: 200,
           ),
         ),
-        const SizedBox(
-          height: 20,
+        const Gap(
+          20,
         ),
         const Text(
           'No thing found',

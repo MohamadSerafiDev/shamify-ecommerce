@@ -36,7 +36,7 @@ class AddToCartButton extends StatelessWidget {
           );
         } else {
           Get.snackbar(
-            duration: const Duration(milliseconds: 1500),
+            duration: const Duration(seconds: 1),
             'Failed',
             'Not enoug products in stock',
             snackPosition: SnackPosition.BOTTOM,

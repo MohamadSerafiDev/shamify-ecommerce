@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:gap/gap.dart';
 import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
@@ -19,8 +20,8 @@ class SearchLoadingDoubleBounce extends StatelessWidget {
             size: 100,
           ),
         ),
-        SizedBox(
-          height: 30,
+        Gap(
+          30,
         ),
         Text('Loading ...', style: TextStyles.textStyle22),
       ],

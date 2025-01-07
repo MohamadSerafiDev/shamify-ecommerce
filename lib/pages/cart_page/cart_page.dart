@@ -41,30 +41,28 @@ class CartPage extends HookWidget {
           } else if (state is FetchCartSuccess) {
             //avoid duplicate checkout data
             BlocProvider.of<FetchCartCubit>(context).orderList = [];
-            return Stack(
+            return Column(
               children: [
-                ListView.builder(
-                  clipBehavior: Clip.none,
-                  itemCount: state.cart.length,
-                  itemBuilder: (context, index) {
-                    // for handling checkout data in form id and quantity
-                    BlocProvider.of<FetchCartCubit>(context).orderList.add({
-                      'id': state.cart[index]['item']['id'],
-                      'quantity': state.cart[index]['quantity'].toString(),
-                    });
-                    //
-                    return CartProduct(
-                      state: state,
-                      index: index,
-                    );
-                  },
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.78,
+                  child: ListView.builder(
+                    clipBehavior: Clip.none,
+                    itemCount: state.cart.length,
+                    itemBuilder: (context, index) {
+                      // for handling checkout data in form id and quantity
+                      BlocProvider.of<FetchCartCubit>(context).orderList.add({
+                        'id': state.cart[index]['item']['id'],
+                        'quantity': state.cart[index]['quantity'].toString(),
+                      });
+                      //
+                      return CartProduct(
+                        state: state,
+                        index: index,
+                      );
+                    },
+                  ),
                 ),
-                Positioned(
-                  top: MediaQuery.of(context).size.height * 0.78,
-                  left: MediaQuery.of(context).size.width * 0.23,
-                  width: 200,
-                  child: const CheckOutButton(),
-                )
+                const CheckOutButton(),
               ],
             );
           } else {

@@ -3,6 +3,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart'
     as gTransition;
@@ -89,8 +90,8 @@ Future<dynamic> authBottomSheet(BuildContext context,
                       width: 120,
                     ),
                   ),
-                  const SizedBox(
-                    height: 70,
+                  const Gap(
+                    70,
                   ),
                   AuthTextField(
                     ispass: false,
@@ -99,8 +100,8 @@ Future<dynamic> authBottomSheet(BuildContext context,
                     isconfirm: false,
                     controller: phonecontroller,
                   ),
-                  const SizedBox(
-                    height: 0,
+                  const Gap(
+                    0,
                   ),
                   AuthTextField(
                     ispass: true,

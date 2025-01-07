@@ -16,6 +16,7 @@ import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
 import 'package:store/pages/home_page/main_home_page.dart';
+import 'package:store/pages/splash_view/splash_screen.dart';
 import 'package:store/styles/themes.dart';
 
 void main() {
@@ -46,10 +47,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Future<void> checkToken() async {
-      BlocProvider.of<TokenManageCubit>(context).checkToken();
-    }
-
     return ThemeProvider(
         initTheme: Themes().dark,
         builder: (context, myTheme) {
@@ -57,16 +54,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: myTheme,
-              home: BlocBuilder<TokenManageCubit, TokenManageState>(
-                builder: (context, state) {
-                  checkToken();
-                  if (state is TokenManageNoToken) {
-                    return const AuthPage();
-                  } else {
-                    return const MainHomePage();
-                  }
-                },
-              ));
+              home: const SplashScreen());
         });
   }
 }

@@ -24,7 +24,9 @@ class FavButton extends StatelessWidget {
             icon: Image.asset(
               data.isFavorite ? AppIcons.isfav : AppIcons.notfav,
               width: 28,
-              color: data.isFavorite ? Colors.red : Colors.white,
+              color: data.isFavorite
+                  ? Colors.red
+                  : Theme.of(context).iconTheme.color,
             ),
             onPressed: () async {
               data.isFavorite = !data.isFavorite;
@@ -32,7 +34,7 @@ class FavButton extends StatelessWidget {
                   .toggleFavourite(id: data.id);
 
               Get.snackbar(
-                duration: const Duration(milliseconds: 1500),
+                duration: const Duration(seconds: 1),
                 'Success',
                 message,
                 snackPosition: SnackPosition.BOTTOM,

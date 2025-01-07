@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
             ),
             //top seling and see all
             TextRow(
-              start: "Top Stores",
+              start: "All Stores",
               onPressed: () {},
             ),
             const SizedBox(
