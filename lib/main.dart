@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:store/api/api.dart';
 import 'package:store/cubits/auth/auth_cubit.dart';
 import 'package:store/cubits/category/fetch_category_cubit.dart';
 import 'package:store/cubits/counter/counter_cubit.dart';
@@ -16,18 +17,28 @@ import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
+import 'package:store/pages/revealing%20nft/nft_reveal.dart';
 import 'package:store/pages/splash_view/splash_screen.dart';
 import 'package:store/styles/themes.dart';
-import 'firebase_options.dart';
+
+//
 
 void main() async {
   //initialize firebase here
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  String? messaging = await FirebaseMessaging.instance.getToken(vapidKey: null);
-  print(messaging);
+  await Firebase.initializeApp();
+  String? messaging = await FirebaseMessaging.instance.getToken();
+
+  for (var i = 2000; i < 2500; i++) {
+    dynamic res = await Api().get(
+        url:
+            'https://ipfs.io/ipfs/bafybeie4xm6bkcedb2zotcsjbggiykcu77tur73jbpeq2x2qzhvt47bbja/$i/');
+    res['attributes'][0]['value'] == res['attributes'][1]['value']
+        ? print('${res['name']} : : : ${res['attributes'][0]} ')
+        : print('${res['name']}=====================');
+  }
+
+  print("FCM Token: $messaging");
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => AuthCubit()),
@@ -59,10 +70,11 @@ class MyApp extends StatelessWidget {
         initTheme: Themes().dark,
         builder: (context, myTheme) {
           return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: myTheme,
-              home: const SplashScreen());
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: myTheme,
+            home: NftReveal(),
+          );
         });
   }
 }

@@ -15,6 +15,6 @@ class ProfileImageSave {
 
   Future<void> removePath() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_imagePath);
+    await prefs.setString(_imagePath, '');
   }
 }

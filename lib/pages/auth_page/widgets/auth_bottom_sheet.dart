@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, library_prefixes
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -21,7 +22,9 @@ TextEditingController confirmcontroller = TextEditingController();
 Future<dynamic> authBottomSheet(BuildContext context,
     {required bool isLogin,
     required String imagePath,
-    required String buttonText}) {
+    required String buttonText}) async {
+  String? fcmToken = await FirebaseMessaging.instance.getToken();
+  print("FCM Token: $fcmToken");
   @override
   void dispose() {
     phonecontroller.dispose();
@@ -131,6 +134,7 @@ Future<dynamic> authBottomSheet(BuildContext context,
                                 .logInWithPhoneAndPassword(
                               phone: phonecontroller.text,
                               password: passwordcontroller.text,
+                              fcm: fcmToken!,
                             );
                             phonecontroller.clear();
                             passwordcontroller.clear();
@@ -152,6 +156,7 @@ Future<dynamic> authBottomSheet(BuildContext context,
                                 confirm: confirmcontroller.text,
                                 firstName: 'firstName',
                                 lastName: 'lastName',
+                                fcm: fcmToken!,
                               );
 
                               phonecontroller.clear();

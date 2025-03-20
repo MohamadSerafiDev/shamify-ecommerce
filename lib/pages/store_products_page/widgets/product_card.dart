@@ -50,8 +50,12 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child:
-                        Image.network('${Constants.localip}${data.imageURL}'),
+                    child: data.imageURL == ''
+                        ? Image.asset(AppImages.parcel)
+                        : Image.network(
+                            '${Constants.localip}${data.imageURL}',
+                            height: 200,
+                          ),
                   ),
                   Positioned(
                     top: 5,

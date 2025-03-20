@@ -18,7 +18,7 @@ class SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Begin fading in the logo and text after a short delay
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 700), () {
       setState(() {
         opacity = 1.0;
       });

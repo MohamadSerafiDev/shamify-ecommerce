@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/pages/store_products_page/products_page.dart';
 import 'package:store/styles/assets.dart';
+import 'package:store/styles/constants.dart';
 import 'package:store/styles/text_styles.dart';
 
 class TopStoresListView extends StatelessWidget {
@@ -43,12 +44,21 @@ class TopStoresListView extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 70,
-                    left: 25,
-                    child: Image.asset(
-                      AppImages.checkout,
-                      width: 150,
-                    ),
+                    top: 50,
+                    left: 20,
+                    child: data[index]['photoURL'] == ""
+                        ? Center(
+                            child: Image.asset(
+                              AppImages.splashview,
+                              width: 150,
+                            ),
+                          )
+                        : Center(
+                            child: Image.network(
+                              '${Constants.localip}${data[index]['photoURL']}',
+                              width: 150,
+                            ),
+                          ),
                   )
                 ],
               ),

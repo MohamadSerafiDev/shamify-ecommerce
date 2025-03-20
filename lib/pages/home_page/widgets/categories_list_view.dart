@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:store/styles/assets.dart';
 
 class CategoriesListView extends StatelessWidget {
   CategoriesListView({
@@ -8,13 +9,13 @@ class CategoriesListView extends StatelessWidget {
   });
 
   final List<Map<String, dynamic>> cat = [
-    {'name': 'shirts', 'icon': Icons.numbers},
-    {'name': 'T-shirts', 'icon': Icons.numbers},
-    {'name': 'Hoodies', 'icon': Icons.numbers},
-    {'name': 'Bags', 'icon': Icons.numbers},
-    {'name': 'Shoes', 'icon': Icons.numbers},
-    {'name': 'Accessories', 'icon': Icons.numbers},
-    {'name': 'Gloves', 'icon': Icons.numbers},
+    {'name': 'shirts', 'image': AppImages.shirts},
+    {'name': 'T-shirts', 'image': AppImages.tshirt},
+    {'name': 'Hoodies', 'image': AppImages.hoodies},
+    {'name': 'Bags', 'image': AppImages.bags},
+    {'name': 'Shoes', 'image': AppImages.shoes},
+    {'name': 'Accessories', 'image': AppImages.accessories},
+    {'name': 'Gloves', 'image': AppImages.gloves},
   ];
   final int index;
 
@@ -30,12 +31,17 @@ class CategoriesListView extends StatelessWidget {
                 //categories navigation
               },
               child: Container(
-                height: 75,
-                width: 75,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                height: 90,
+                width: 90,
                 decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(50)),
-                child: Center(child: Icon(cat[index]['icon'])),
+                child: Center(
+                  child: Image.asset(
+                    cat[index]['image'],
+                  ),
+                ),
               ),
             ),
             const Gap(

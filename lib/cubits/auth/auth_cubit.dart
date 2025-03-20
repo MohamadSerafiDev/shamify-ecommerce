@@ -12,13 +12,15 @@ class AuthCubit extends Cubit<AuthState> {
   List userData = [];
 
   Future<void> logInWithPhoneAndPassword(
-      {required String phone, required String password}) async {
+      {required String phone,
+      required String password,
+      required String fcm}) async {
     //if you found the user in your database go
     try {
       emit(AuthLoading());
       dynamic data = await Api().post(
           url: '${Constants.localip}/api/v1/login',
-          body: {'phone': phone, 'password': password},
+          body: {'phone': phone, 'password': password, 'fcmToken': fcm},
           withToken: false);
       // userData.addAll(data);
       await TokenManage().saveToken(data['token']);
@@ -36,6 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUpWithEmailAndPassword(
       {required String phone,
       required String password,
+      required String fcm,
       required String confirm,
       required String firstName,
       required String lastName}) async {
@@ -49,7 +52,8 @@ class AuthCubit extends Cubit<AuthState> {
             "lastName": lastName,
             "location": "mazzeh",
             "phone": phone,
-            "password": password
+            "password": password,
+            'fcmToken': fcm
           },
           withToken: false);
 

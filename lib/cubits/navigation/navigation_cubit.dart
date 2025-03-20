@@ -9,7 +9,7 @@ part 'navigation_state.dart';
 class NavigationBarCubit extends Cubit<NavigationBarState> {
   NavigationBarCubit() : super(NavigationBarState(0));
   List pages = [
-    HomePage(),
+    const HomePage(),
     const CartPage(),
     const OrdersPage(),
     const ProfilePage()

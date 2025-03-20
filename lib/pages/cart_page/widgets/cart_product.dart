@@ -6,6 +6,7 @@ import 'package:store/cubits/fetch_cart/fetch_cart_cubit.dart';
 import 'package:store/pages/cart_page/widgets/name_and_desc.dart';
 import 'package:store/pages/cart_page/widgets/price_n_counter.dart';
 import 'package:store/styles/assets.dart';
+import 'package:store/styles/constants.dart';
 
 class CartProduct extends StatelessWidget {
   const CartProduct({
@@ -45,9 +46,13 @@ class CartProduct extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Image.asset(
-                  AppImages.splashview,
-                  width: 50,
+                child: Center(
+                  child: state.cart[index]['item']['imageURL'] == ''
+                      ? Image.asset(AppImages.parcel)
+                      : Image.network(
+                          '${Constants.localip}/storage/${state.cart[index]['item']['image_source']}',
+                          width: 70,
+                        ),
                 ),
               ),
               SizedBox(

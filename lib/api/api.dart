@@ -20,7 +20,7 @@ class Api {
       // print(jsonDecode(response.body));
       return jsonDecode(response.body);
     } else {
-      print(jsonDecode(response.body));
+      // print(jsonDecode(response.body));
       throw Exception('Failed to load data : ${response.statusCode}');
     }
   }

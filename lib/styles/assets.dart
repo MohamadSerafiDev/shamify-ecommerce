@@ -7,6 +7,14 @@ class AppImages {
   static const String login = 'assets/images/login.png';
   static const String signup = 'assets/images/signup.png';
   static const String splashview = 'assets/images/splash.png';
+  //
+  static const String shirts = 'assets/images/shirt.png';
+  static const String tshirt = 'assets/images/t-shirt.png';
+  static const String hoodies = 'assets/images/hoodies.png';
+  static const String bags = 'assets/images/bags.png';
+  static const String shoes = 'assets/images/shoe.png';
+  static const String accessories = 'assets/images/accessories.png';
+  static const String gloves = 'assets/images/gloves.png';
 }
 
 class AppIcons {
