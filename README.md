@@ -1,1 +1,3 @@
-my project to make store application
+# shamify-ecommerce
+
+ecommerce app
