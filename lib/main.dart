@@ -15,7 +15,6 @@ import 'package:store/cubits/navigation/navigation_cubit.dart';
 import 'package:store/cubits/profile_image/profile_image_cubit.dart';
 import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
-import 'package:store/pages/revealing%20nft/nft_reveal.dart';
 import 'package:store/pages/splash_view/splash_screen.dart';
 import 'package:store/styles/themes.dart';
 
@@ -26,15 +25,6 @@ void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // String? messaging = await FirebaseMessaging.instance.getToken();
-
-  for (var i = 2046; i < 5555; i++) {
-    dynamic res = await Api().get(
-        url:
-            'https://ipfs.io/ipfs/bafybeiespxwhrtbddcnm5qxyyes6hmyb43sis2jteoeexffpnn72sffxle/$i');
-    res['attributes'][3]['value'] == 'Divine'
-        ? print('${res['name']} : : : ${res['attributes'][3]} ')
-        : print('${res['name']}=====================');
-  }
 
   // print("FCM Token: $messaging");
   runApp(MultiBlocProvider(
