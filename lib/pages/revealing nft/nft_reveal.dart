@@ -7,16 +7,10 @@ class NftReveal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.builder(
-      itemCount: 1,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Center(child: Text('haha')),
-            Text('${index + i}'),
-          ],
-        );
-      },
+        body: Container(
+      color: Colors.amber,
+      width: 100,
+      height: 100,
     ));
   }
 }

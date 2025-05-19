@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:store/cubits/search/search_cubit.dart';
 import 'package:store/styles/assets.dart';
 

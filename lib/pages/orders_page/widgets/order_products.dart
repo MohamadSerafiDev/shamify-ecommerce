@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:store/cubits/favourite/favourite_cubit.dart';
 import 'package:store/pages/global_widgets/grid_view_product_screen.dart';
 import 'package:store/services/stores/get_specific_store_products.dart';
 

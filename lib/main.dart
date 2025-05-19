@@ -1,6 +1,4 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -25,20 +23,20 @@ import 'package:store/styles/themes.dart';
 
 void main() async {
   //initialize firebase here
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  String? messaging = await FirebaseMessaging.instance.getToken();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  // String? messaging = await FirebaseMessaging.instance.getToken();
 
-  for (var i = 2000; i < 2500; i++) {
+  for (var i = 2046; i < 5555; i++) {
     dynamic res = await Api().get(
         url:
-            'https://ipfs.io/ipfs/bafybeie4xm6bkcedb2zotcsjbggiykcu77tur73jbpeq2x2qzhvt47bbja/$i/');
-    res['attributes'][0]['value'] == res['attributes'][1]['value']
-        ? print('${res['name']} : : : ${res['attributes'][0]} ')
+            'https://ipfs.io/ipfs/bafybeiespxwhrtbddcnm5qxyyes6hmyb43sis2jteoeexffpnn72sffxle/$i');
+    res['attributes'][3]['value'] == 'Divine'
+        ? print('${res['name']} : : : ${res['attributes'][3]} ')
         : print('${res['name']}=====================');
   }
 
-  print("FCM Token: $messaging");
+  // print("FCM Token: $messaging");
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => AuthCubit()),
@@ -73,7 +71,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: myTheme,
-            home: NftReveal(),
+            home: const SplashScreen(),
           );
         });
   }

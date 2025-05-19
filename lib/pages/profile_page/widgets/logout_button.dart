@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:store/api/api.dart';
 import 'package:store/cubits/token/token_manage_cubit.dart';
 import 'package:store/pages/auth_page/auth_page.dart';
-import 'package:store/pages/profile_page/widgets/profile_image.dart';
 import 'package:store/shared_preferences/profile_image_save.dart';
 import 'package:store/shared_preferences/token_manage.dart';
 import 'package:store/styles/constants.dart';

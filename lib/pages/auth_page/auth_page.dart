@@ -4,7 +4,6 @@ import 'package:store/pages/auth_page/widgets/auth_bottom_sheet.dart';
 import 'package:store/pages/auth_page/widgets/auth_button.dart';
 import 'package:store/styles/assets.dart';
 import 'package:store/styles/constants.dart';
-import 'package:store/styles/text_styles.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({
