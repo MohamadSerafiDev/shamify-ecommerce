@@ -73,87 +73,129 @@ Below are screenshots of the application in both light and dark themes.
 
 ### Authentication Page
 
-#### Light Theme
-
-![Auth - Light Theme](screenshots/auth%20page%20-%20light.png)
-![Signup - Light Theme](screenshots/signup%20page%20-%20light.png)
-![SignIn - Light Theme](screenshots/login%20page%20-%20light.png)
-
-#### Dark Theme
-
-![Auth- Dark Theme](screenshots/auth%20page%20-dark.png)
-![Signup - Dark Theme](screenshots/signup%20page%20-%20dark.png)
-![SignIn - Dark Theme](screenshots/login%20page%20-%20dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/auth%20page%20-%20light.png" width="300" alt="Auth - Light Theme"/></td>
+    <td><img src="screenshots/auth%20page%20-dark.png" width="300" alt="Auth - Dark Theme"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/signup%20page%20-%20light.png" width="300" alt="Signup - Light Theme"/></td>
+    <td><img src="screenshots/signup%20page%20-%20dark.png" width="300" alt="Signup - Dark Theme"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/login%20page%20-%20light.png" width="300" alt="SignIn - Light Theme"/></td>
+    <td><img src="screenshots/login%20page%20-%20dark.png" width="300" alt="SignIn - Dark Theme"/></td>
+  </tr>
+</table>
 
 ### Home Page
 
-#### Light Theme
-
-![Home - Light Theme](screenshots/home%20page%20-%20light.png)
-
-#### Dark Theme
-
-![Home - Dark Theme](screenshots/home%20page1%20-dark.png)
-![Home - Dark Theme](screenshots/home%20page2%20-dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/home%20page%20-%20light.png" width="300" alt="Home - Light Theme"/></td>
+    <td><img src="screenshots/home%20page1%20-dark.png" width="300" alt="Home - Dark Theme 1"/></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img src="screenshots/home%20page2%20-dark.png" width="300" alt="Home - Dark Theme 2"/></td>
+  </tr>
+</table>
 
 ### Cart Page
 
-#### Light Theme
-
-![Cart - Light Theme](screenshots/cart%20page%20-%20light.png)
-
-#### Dark Theme
-
-![Empty Cart - Dark Theme](screenshots/empty%20cart%20page%20-%20dark.png)
-![Cart - Dark Theme](screenshots/full%20cart%20page%20-%20dark.png)
-![Checkout Cart - Dark Theme](screenshots/checkout%20page%20-%20dark.png)
-![Placeorder Cart - Dark Theme](screenshots/place%20order%20-dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/cart%20page%20-%20light.png" width="300" alt="Cart - Light Theme"/></td>
+    <td><img src="screenshots/empty%20cart%20page%20-%20dark.png" width="300" alt="Empty Cart - Dark Theme"/></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img src="screenshots/full%20cart%20page%20-%20dark.png" width="300" alt="Cart - Dark Theme"/></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img src="screenshots/checkout%20page%20-%20dark.png" width="300" alt="Checkout Cart - Dark Theme"/></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img src="screenshots/place%20order%20-dark.png" width="300" alt="Placeorder Cart - Dark Theme"/></td>
+  </tr>
+</table>
 
 ### Pending and Fullfilled Orders Page
 
-#### Light Theme
-
-![Orders - Light Theme](screenshots/orders%20page%20-%20light.png)
-
-#### Dark Theme
-
-![Orders - Dark Theme](screenshots/orders%20page%20-%20dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/orders%20page%20-%20light.png" width="300" alt="Orders - Light Theme"/></td>
+    <td><img src="screenshots/orders%20page%20-%20dark.png" width="300" alt="Orders - Dark Theme"/></td>
+  </tr>
+</table>
 
 ### Profile Page
 
-#### Light Theme
-
-![Profile - Light Theme](screenshots/profile%20page%20-%20light.png)
-
-#### Dark Theme
-
-![Profile - Dark Theme](screenshots/profile%20page%20-dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/profile%20page%20-%20light.png" width="300" alt="Profile - Light Theme"/></td>
+    <td><img src="screenshots/profile%20page%20-dark.png" width="300" alt="Profile - Dark Theme"/></td>
+  </tr>
+</table>
 
 ### Product Page
 
-#### Light Theme
-
-![Product - Light Theme](screenshots/product%20page%20-%20light.png)
-
-#### Dark Theme
-
-![Product - Dark Theme](screenshots/product%20page%20-%20dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/product%20page%20-%20light.png" width="300" alt="Product - Light Theme"/></td>
+    <td><img src="screenshots/product%20page%20-%20dark.png" width="300" alt="Product - Dark Theme"/></td>
+  </tr>
+</table>
 
 ### Favourites Page
 
-#### Light Theme
-
-![Fav - Light Theme](screenshots/fav%20page%20-light.png)
-
-#### Dark Theme
-
-![Fav - Dark Theme](screenshots/fav%20page%20-dark.png)
+<table>
+  <tr>
+    <td><strong>Light Theme</strong></td>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/fav%20page%20-light.png" width="300" alt="Fav - Light Theme"/></td>
+    <td><img src="screenshots/fav%20page%20-dark.png" width="300" alt="Fav - Dark Theme"/></td>
+  </tr>
+</table>
 
 ### Search For Stores and Products Page
 
-#### Dark Theme
-
-![Search - Light Theme](screenshots/search%20page%20-%20dark.png)
+<table>
+  <tr>
+    <td><strong>Dark Theme</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/search%20page%20-%20dark.png" width="300" alt="Search - Dark Theme"/></td>
+  </tr>
+</table>
 
 ## Assets
 
