@@ -75,85 +75,85 @@ Below are screenshots of the application in both light and dark themes.
 
 #### Light Theme
 
-![Auth - Light Theme](screenshots/auth page - light.png)
-![Signup - Light Theme](screenshots/signup page - light.png)
-![SignIn - Light Theme](screenshots/login page - light.png)
+![Auth - Light Theme](screenshots/auth%20page%20-%20light.png)
+![Signup - Light Theme](screenshots/signup%20page%20-%20light.png)
+![SignIn - Light Theme](screenshots/login%20page%20-%20light.png)
 
 #### Dark Theme
 
-![Auth- Dark Theme](screenshots/auth page -dark.png)
-![Signup - Dark Theme](screenshots/signup page - dark.png)
-![SignIn - Dark Theme](screenshots/login page - dark.png)
+![Auth- Dark Theme](screenshots/auth%20page%20-dark.png)
+![Signup - Dark Theme](screenshots/signup%20page%20-%20dark.png)
+![SignIn - Dark Theme](screenshots/login%20page%20-%20dark.png)
 
 ### Home Page
 
 #### Light Theme
 
-![Home - Light Theme](screenshots/home page - light.png)
+![Home - Light Theme](screenshots/home%20page%20-%20light.png)
 
 #### Dark Theme
 
-![Home - Dark Theme](screenshots/home page1 -dark.png)
-![Home - Dark Theme](screenshots/home page2 -dark.png)
+![Home - Dark Theme](screenshots/home%20page1%20-dark.png)
+![Home - Dark Theme](screenshots/home%20page2%20-dark.png)
 
 ### Cart Page
 
 #### Light Theme
 
-![Cart - Light Theme](screenshots/cart page - light.png)
+![Cart - Light Theme](screenshots/cart%20page%20-%20light.png)
 
 #### Dark Theme
 
-![Empty Cart - Dark Theme](screenshots/empty cart page - dark.png)
-![Cart - Dark Theme](screenshots/full cart page - dark.png)
-![Checkout Cart - Dark Theme](screenshots/checkout page - dark.png)
-![Placeorder Cart - Dark Theme](screenshots/place order -dark.png)
+![Empty Cart - Dark Theme](screenshots/empty%20cart%20page%20-%20dark.png)
+![Cart - Dark Theme](screenshots/full%20cart%20page%20-%20dark.png)
+![Checkout Cart - Dark Theme](screenshots/checkout%20page%20-%20dark.png)
+![Placeorder Cart - Dark Theme](screenshots/place%20order%20-dark.png)
 
 ### Pending and Fullfilled Orders Page
 
 #### Light Theme
 
-![Orders - Light Theme](screenshots/orders page - light.png)
+![Orders - Light Theme](screenshots/orders%20page%20-%20light.png)
 
 #### Dark Theme
 
-![Orders - Dark Theme](screenshots/orders page - dark.png)
+![Orders - Dark Theme](screenshots/orders%20page%20-%20dark.png)
 
 ### Profile Page
 
 #### Light Theme
 
-![Profile - Light Theme](screenshots/profile page - light.png)
+![Profile - Light Theme](screenshots/profile%20page%20-%20light.png)
 
 #### Dark Theme
 
-![Profile - Dark Theme](screenshots/profile page -dark.png)
+![Profile - Dark Theme](screenshots/profile%20page%20-dark.png)
 
 ### Product Page
 
 #### Light Theme
 
-![Product - Light Theme](screenshots/product page - light.png)
+![Product - Light Theme](screenshots/product%20page%20-%20light.png)
 
 #### Dark Theme
 
-![Product - Dark Theme](screenshots/product page - dark.png)
+![Product - Dark Theme](screenshots/product%20page%20-%20dark.png)
 
 ### Favourites Page
 
 #### Light Theme
 
-![Fav - Light Theme](screenshots/fav page -light.png)
+![Fav - Light Theme](screenshots/fav%20page%20-light.png)
 
 #### Dark Theme
 
-![Fav - Dark Theme](screenshots/fav page -dark.png)
+![Fav - Dark Theme](screenshots/fav%20page%20-dark.png)
 
 ### Search For Stores and Products Page
 
 #### Dark Theme
 
-![Search - Light Theme](screenshots/search page - dark.png)
+![Search - Light Theme](screenshots/search%20page%20-%20dark.png)
 
 ## Assets
 
